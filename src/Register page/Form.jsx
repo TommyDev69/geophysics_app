@@ -118,7 +118,7 @@ const Form = ({
                 />
             </div>
 
-            <div onClick={togglePassword} className='flex justify-end absolute right-[8px] top-5 '>
+            <div onClick={togglePassword} className='flex justify-end absolute right-[8px] top-4 '>
                 < FontAwesomeIcon icon={isPasswordVisible ? faEye : faEyeSlash} />
             </div>
           </div>
