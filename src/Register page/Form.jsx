@@ -25,13 +25,13 @@ const Form = ({
             Fullname
           </label>
         </div>
-        <div className="w-full">
+        <div className="">
           <input
             type="text"
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] pl-[30px] pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
+            className="w-full  rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] md:pl-[30px]  md:pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
             placeholder="Enter your full name"
           />
           <p className="text-red-700">{error.fullName}</p>
@@ -59,7 +59,7 @@ const Form = ({
         </div>
 
         {/* Organisation and Role */}
-        <div className="flex space-x-4">
+        <div className="md:flex space-x-4">
           <div className="w-full">
             <div className="pb-2">
               <label className="capitalize font-medium text-[12px] leading-[1.5] tracking-[-0.05em]">
@@ -77,9 +77,9 @@ const Form = ({
             <p className="text-red-700">{error.organisation}</p>
           </div>
 
-          <div className="w-full">
+          <div className="w-full ">
             <div className="pb-2">
-              <label className="capitalize font-medium text-[12px] leading-[1.5] tracking-[-0.05em]">
+              <label className="capitalize md:ml-0 ml-[-12px]  font-medium text-[12px] leading-[1.5] tracking-[-0.05em]">
                 Role dropdown
               </label>
             </div>
@@ -87,7 +87,7 @@ const Form = ({
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] pl-[30px] pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
+              className="w-full md:ml-0 ml-[-12px] rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] pl-[30px] pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
             >
             
               <option value="">Choose role</option>
@@ -113,12 +113,12 @@ const Form = ({
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] pl-[30px] pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
+                    className="w-full  rounded-[10px] border-2 focus:border-[#f5f5f5] focus:border-0 py-[8px] pl-[30px] pr-[39px] focus:bg-[#f5f5f5] bg-[#f5f5f5]"
                     placeholder="Enter your password"
                 />
             </div>
 
-            <div onClick={togglePassword} className='flex justify-end absolute right-[8px] top-4 '>
+            <div onClick={togglePassword} className='flex justify-end absolute md:right-[8px] md:top-4 right-[10px] top-4 '>
                 < FontAwesomeIcon icon={isPasswordVisible ? faEye : faEyeSlash} />
             </div>
           </div>
@@ -177,8 +177,8 @@ const Form = ({
               Login here
             </button>
           </div>
-          <div className="flex mx-auto text-center items-center justify-center text-[12px] w-[375px] mwt-2">
-            <p>
+          <div className="flex md:mx-auto texvt-cednter   items-center justify-center md:text-[12px] text-[9px]  md:w-[375px] mt-2">
+            <p className='md:w-full w-8/12 text-center'>
               By continuing you agree you have read, understood and agree Terms and Conditions and Privacy Policy
             </p>
           </div>
