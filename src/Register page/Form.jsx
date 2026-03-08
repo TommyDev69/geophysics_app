@@ -177,6 +177,7 @@ const Form = ({
               Login here
             </button>
           </div>
+          <div className="flex"></div>
           <div className="flex md:mx-auto texvt-cednter   items-center justify-center md:text-[12px] text-[9px]  md:w-[375px] mt-2">
             <p className='md:w-full w-8/12 text-center'>
               By continuing you agree you have read, understood and agree Terms and Conditions and Privacy Policy
