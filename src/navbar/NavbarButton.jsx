@@ -1,4 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 const NavbarButton = () => {
+    const navigating = useNavigate();
+
+    const handleRegister = () => {
+        navigating("/Register");
+    };
+
     return ( 
         <div className="flex md:min-w-[237px] min-w-0  md:space-x-1 ">
             <div className="flex items-center md:p-4 p-2">
@@ -7,7 +14,7 @@ const NavbarButton = () => {
                 </button>
             </div>
              <div className="flex items-center md:p-4 p-2">
-                <button type="button" className="bg-[#585858] border-2 py-2 md:py-3 min-w-[50px] md:min-w-[120px] border-[##DADCE0]  rounded-[10px]">
+                <button  onClick={handleRegister} type="button" className="bg-[#585858] border-2 py-2 md:py-3 min-w-[50px] md:min-w-[120px] border-[##DADCE0]  rounded-[10px]">
                     <p className="font-instrument text-[#ffffff] text-[8px] md:text-[16px] leading-[24px] tracking-[-0.31px] capitalize hover:bg">register</p>
                 </button>
             </div>

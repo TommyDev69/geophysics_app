@@ -1,17 +1,22 @@
-// import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Footer from './footer/Footer';
-import Body from './head/Body';
-import ProjectContainer from './project setup/ProjectContainer';
+
+import LandingPage from './Landing page/LandingPage';
 import SignUpApp from './Register page/SignUpApp';
 
 function App() {
   return (
     <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path = "/Register" element={<SignUpApp />} />
+        </Routes>
+      </Router>
       {/* <Body />
       <ProjectContainer />
       <Footer /> */}
-      <SignUpApp />
+      {/* <SignUpApp /> */}
     </div>
   );
 }
