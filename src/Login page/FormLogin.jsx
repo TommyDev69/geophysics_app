@@ -1,4 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const FormLogin = () => {
+     const navigateLogin =useNavigate();
+    
+    const handleRegister =() =>{
+        navigateLogin("/Register");
+    }
     return ( 
         <div className="max-w-[577px] mx-auto  pt-20">
             <div className="min-w-[272px]">
@@ -33,9 +40,9 @@ const FormLogin = () => {
                     <div className="w-full">
                         <button type="buttom" className="py-[12px] w-full px-[195px] bg-[#585858] rounded-[10px] capitalize text-[#ffffff]">login</button>
                     </div>
-                    <div className="flex pt-4 gap-2 max-w-[577px] justify-center  pt-12 pb-8 ">
+                    <div className="flex pt-4 gap-2 max-w-[577px] justify-center   pb-8 ">
                                 <p className="font-instrument font-normal  text-[15px] leading-[150%] tracking-[-5%]">Don’t have an account?</p>
-                                <a href= "#" className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</a>
+                                <Link to= {handleRegister} className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</Link>
                     </div>
         </div>
      );
