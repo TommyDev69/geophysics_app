@@ -42,7 +42,7 @@ const FormLogin = () => {
                     </div>
                     <div className="flex pt-4 gap-2 max-w-[577px] justify-center   pb-8 ">
                                 <p className="font-instrument font-normal  text-[15px] leading-[150%] tracking-[-5%]">Don’t have an account?</p>
-                                <Link to= {handleRegister} className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</Link>
+                                <button type='button' onClick= {handleRegister} className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</button>
                     </div>
         </div>
      );
