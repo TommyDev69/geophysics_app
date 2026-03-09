@@ -1,15 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 const NavbarButton = () => {
     const navigating = useNavigate();
-
+   
     const handleRegister = () => {
         navigating("/Register");
     };
 
+    const navigateLogin =useNavigate();
+    
+    const handleLogin =() =>{
+        navigateLogin("/Login");
+    }
+
     return ( 
         <div className="flex md:min-w-[237px] min-w-0  md:space-x-1 ">
             <div className="flex items-center md:p-4 p-2">
-                <button type="button" className="bg-[#ffffff] py-2 md:py-3 border-2 md:min-w-[108px] min-w-[44px] border-[##DADCE0] opacity-50 rounded-[10px]">
+                <button type="button" onClick={handleLogin} className="bg-[#ffffff] py-2 md:py-3 border-2 md:min-w-[108px] min-w-[44px] border-[##DADCE0] opacity-50 rounded-[10px]">
                     <p className="font-instrument text-[#364153] text-[8px] md:text-[16px] leading-[24px] tracking-[-0.31px] capitalize">login</p>
                 </button>
             </div>
