@@ -1,5 +1,6 @@
 import { useState } from 'react'; // ✅ Add this
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 import { faCheck, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Form = ({
   formData,
@@ -16,6 +17,12 @@ const Form = ({
   const togglePassword = () => {
     setIsPasswordVisible((prev) => !prev);
   }
+
+   const navigateLogin =useNavigate();
+    
+    const handleLogin =() =>{
+        navigateLogin("/Login");
+    }
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex-col">
@@ -172,20 +179,23 @@ const Form = ({
             <button
               type="button"
               className="ml-1 font-bold text-blue-600 underline"
-              onClick={() => console.log("Redirect to login")}
+              onClick={handleLogin}
             >
               Login here
             </button>
           </div>
-          <div className="flex w-full">
+          <div className="flex w-full items-center">
               <div>
-                 <input type="checkbox" id="terms" name="terms" className="mr-2" />
+                 <input type="checkbox" id="terms" name="agreeTerms" className="mr-2" value={formData.agreeTerms} />
               </div>
-          <div className="flex md:mx-auto texvt-cednter   items-center justify-center md:text-[12px] text-[9px]  md:w-[375px] mt-2">
-            <p className='md:w-full w-8/12 text-center'>
-              By continuing you agree you have read, understood and agree Terms and Conditions and Privacy Policy
-            </p>
-          </div>
+              
+                
+                <div className="flex md:mx-auto texvt-cednter   items-center justify-center md:text-[12px] text-[9px]  md:w-[375px] mt-2">
+                  <p className='md:w-full w-8/12 text-center'>
+                    By continuing you agree you have read, understood and agree Terms and Conditions and Privacy Policy
+                  </p>
+                </div>
+            
           </div>
         </div>
       </div>

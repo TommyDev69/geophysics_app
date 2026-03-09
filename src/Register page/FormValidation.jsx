@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.min.css'; // Import SweetAlert2 CSS
+import 'sweetalert2/dist/sweetalert2.min.css';
 import Form from "./Form";
 
 const FormValidation = () => {
@@ -10,21 +10,22 @@ const FormValidation = () => {
     organisation: "",
     role: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    agreeTerms: false
   });
 
   const [error, setError] = useState({
     fullName: "",
     email: "",
     organisation: "",
+    role: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    agreeTerms: ""
   });
-//unmasked password eyes to see the password
- 
+
   const password = formData.password;
 
-  // Password checks for live feedback
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumber = /[0-9]/.test(password);
@@ -34,8 +35,11 @@ const FormValidation = () => {
 
   // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value
+    }));
   };
 
   // Handle form submission
@@ -46,13 +50,15 @@ const FormValidation = () => {
       fullName: "",
       email: "",
       organisation: "",
+      role: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      agreeTerms: ""
     };
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
-    // Validations
+    // Validate fields
     if (!formData.fullName) newErrors.fullName = "Enter your full name";
     if (!formData.email) newErrors.email = "Enter your email";
     else if (!emailRegex.test(formData.email)) newErrors.email = "Enter a valid email address";
@@ -66,12 +72,22 @@ const FormValidation = () => {
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match";
 
+  
+    // Set errors so they show under inputs
+    // If checkbox not checked, show SweetAlert warning
+      if (!formData.agreeTerms) {
+        Swal.fire({
+          icon: "warning",
+          title: "Terms Required",
+          text: newErrors.agreeTerms
+        });
+      }
     setError(newErrors);
-
-    const hasError = Object.values(newErrors).some((err) => err !== "");
+    // Stop submission if any error exists
+    const hasError = Object.values(newErrors).some(err => err !== "");
     if (hasError) return;
 
-    // Show SweetAlert2 if form is valid
+    // Success
     Swal.fire({
       title: "Success!",
       text: "Registration successful!",
@@ -86,7 +102,8 @@ const FormValidation = () => {
       organisation: "",
       role: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      agreeTerms: ''
     });
   };
 
