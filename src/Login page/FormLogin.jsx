@@ -33,7 +33,7 @@ const FormLogin = () => {
                             </div>
                             <div className="flex pt-4 gap-2 ">
                                 <p className="font-instrument font-normal text-[16px] leading-[100%] tracking-normal">Forget password?</p>
-                                <a href= "#" className="font-instrument font-bold text-[16px] leading-[100%] tracking-normal ">Resent</a>
+                                <a href= "#" className="font-instrument font-bold text-[16px] leading-[100%] tracking-normal ">Reset</a>
                             </div>
                     </div>
                 </div>
