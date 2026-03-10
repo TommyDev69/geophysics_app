@@ -10,7 +10,8 @@ const Form = ({
   hasUpperCase,
   hasLowerCase,
   hasNumber,
-  hasLength
+  hasLength,
+  hasSpecialChar
 }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -142,6 +143,9 @@ const Form = ({
             <p className={hasLength ? "text-green-600" : "text-red-600"}>
               <FontAwesomeIcon icon={hasLength ? faCheck : faTimes} /> At least 8 characters
             </p>
+           <p className={hasSpecialChar ? "text-green-600" : "text-red-600"}>
+             <FontAwesomeIcon icon={hasSpecialChar ? faCheck : faTimes} /> Special character
+          </p>
           </div>
         </div>
 

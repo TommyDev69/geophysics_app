@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import LandingPage from './Landing page/LandingPage';
-import SignUpApp from './Register page/SignUpApp';
-import MainLogin from './Login page/MainLogin';
+import LandingPage from './Fontend Component/Landing page/LandingPage';
+import SignUpApp from './Fontend Component/Register page/SignUpApp';
+import MainLogin from './Fontend Component/Login page/MainLogin';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path = "/Login" element={<MainLogin />} />
         </Routes>
       </Router>
-   
+    
     </div>
   );
 }

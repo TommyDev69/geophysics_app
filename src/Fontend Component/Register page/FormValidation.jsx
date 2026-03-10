@@ -30,6 +30,7 @@ const FormValidation = () => {
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumber = /[0-9]/.test(password);
   const hasLength = password.length >= 8;
+  const hasSpecialChar = /[@$!%*?&]/.test(password);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -117,6 +118,7 @@ const FormValidation = () => {
       hasLowerCase={hasLowerCase}
       hasNumber={hasNumber}
       hasLength={hasLength}
+      hasSpecialChar={hasSpecialChar}
     />
   );
 };
