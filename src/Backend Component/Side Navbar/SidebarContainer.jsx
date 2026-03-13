@@ -18,7 +18,7 @@ export default function SidebarContainer() {
       </div>
 
       {/* Dashboard Area */}
-      <div className="flex-1 transition-all duration-300 relative">
+      <div className="flex-1  relative">
 
         {/* Mobile Menu Button */}
         <div className="md:hidden pl-4 border-1">
@@ -36,14 +36,17 @@ export default function SidebarContainer() {
           <>
             {/* Overlay */}
             <div
-              className="fixed inset-0 bdg-black/40 z-40"
-              onClick={toggleSidebar} // click overlay to close
-            ></div>
+          onClick={toggleSidebar}
+          className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-700 md:hidden
+            ${isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
+        />
 
-            {/* Sidebar Modal */}
-            <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg transform transition-transform duration-300">
-              
-              {/* Close Button Inside Sidebar */}
+        {/* Sidebar */}
+        <div
+          className={`fixed top-0 left-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg
+            transform transition-transform duration-700 ease-in-out md:hidden
+            ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
               <div className="flex  pl-4 mb-4 border-1">
                 <FontAwesomeIcon
                   icon={faXmark}
