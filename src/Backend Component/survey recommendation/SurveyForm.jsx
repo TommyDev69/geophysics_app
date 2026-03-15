@@ -39,9 +39,9 @@ const SurveyForm = ({ content, title }) => {
             Survey Objective *
           </p>
 
-          <div className=" py-3 grid grid-cols-2 gap-4 py-8">
+          <div className=" py-3 grid grid-cols-2 gap-8 ">
             {content.map((dataItems) => (
-              <button key={dataItems.id} type="button" className="w-[378px] py-[18px] pby-[2px] px-[18px] rounded-[10px] border-2  border-[#DADCE0]">
+              <button key={dataItems.id} type="button" className=" w-full py-[18px]  px-[18px] rounded-[10px] border-2  border-[#DADCE0]">
                 <img src={dataItems.photo} alt="survey" />
 
                 <div className="w-[376px] pt-9">
