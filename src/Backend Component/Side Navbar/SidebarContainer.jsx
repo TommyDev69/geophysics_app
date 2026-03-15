@@ -3,6 +3,7 @@ import SidebarConnectivity from "./SidebarConnectivity";
 import DashboardContainer from "../asset/DashboardContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import Survey from "../survey recommendation/Survey";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -29,7 +30,8 @@ export default function SidebarContainer() {
           />
         </div>
 
-        <DashboardContainer />
+        {/* <DashboardContainer /> */}
+        <Survey />
 
         {/* Mobile Sidebar Modal */}
         {isSidebarOpen && (
@@ -43,10 +45,7 @@ export default function SidebarContainer() {
 
         {/* Sidebar */}
         <div
-          className={`fixed top-0 left-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg
-            transform transition-transform duration-700 ease-in-out md:hidden
-            ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
-        >
+          className={`fixed top-0 left-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg transform transition-transform duration-700 ease-in-out md:hidden ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
               <div className="flex  pl-4 mb-4 border-1">
                 <FontAwesomeIcon
                   icon={faXmark}
