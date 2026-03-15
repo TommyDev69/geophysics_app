@@ -7,7 +7,7 @@ const SurveyForm = ({ content, title }) => {
         </p>
       </div>
 
-      <div className="w-[768px] mx-auto">
+      <div className="w-[768px] mx-auto border border-[#DADCE0] rounded-[10px] px-9 py-6">
         <div className="w-full py-9">
 
           {/* Project Name */}
@@ -98,6 +98,16 @@ const SurveyForm = ({ content, title }) => {
             className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
           />
         </div>
+      </div>
+
+      <div className="flex justify-between mx-auto w-[768px] py-8">
+        <button className="w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px] leading-5 tracking-[-0.15px]">
+          Cancel
+        </button>
+
+        <button className="w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px] leading-5 tracking-[-0.15px]">
+          next
+        </button>
       </div>
     </>
   );
