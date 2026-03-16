@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.min.css';
 import SurveyContent from "./SurveyContent";
 import number1 from "../image/num1.png"
 import number2 from "../image/num2.png"
@@ -17,9 +19,11 @@ const SurveyConnectivity = () => {
         {id:6, name:"review and report",range:range,photo: number6}
 
     ])
+
+
     return (
         <div className="w-full py-14">
-            <SurveyContent title ="survey recommendation" survey={survey} />
+            <SurveyContent  title ="survey recommendation" survey={survey} />
         </div>
 
      );
