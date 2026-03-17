@@ -4,6 +4,7 @@ import DashboardContainer from "../asset/DashboardContainer";
 import Survey from "../survey recommendation/Survey";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import MyProject from "../../Fontend Component/MyProject/MyProject";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,7 +38,9 @@ export default function SidebarContainer() {
 
         {/* Conditional rendering */}
         {activeMenu === "dashboard" && <DashboardContainer />}
+        {activeMenu === "my project" && < MyProject/>}
         {activeMenu === "survey recommendation" && <Survey />}
+
 
         {/* Mobile Sidebar Modal */}
         {isSidebarOpen && (

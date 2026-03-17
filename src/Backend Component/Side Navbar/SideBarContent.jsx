@@ -1,6 +1,6 @@
-const SiderBarContent = ({ data, onMenuClick, activeMenu }) => {
-  return (
-    <>
+const SideBarContent = ( {data, onMenuClick, activeMenu}) => {
+    return ( 
+         <>
       {data.map((item) => {
         const isActive = activeMenu === item.name; // compute before returning JSX
         return (
@@ -23,7 +23,7 @@ const SiderBarContent = ({ data, onMenuClick, activeMenu }) => {
         );
       })}
     </>
-  );
-};
-
-export default SiderBarContent;
+     );
+}
+ 
+export default SideBarContent;

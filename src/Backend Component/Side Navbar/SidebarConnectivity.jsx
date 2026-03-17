@@ -5,7 +5,8 @@ import SurveyIcon from "../image/survey.png";
 import Planner from "../image/planner.png";
 import Setting from "../image/setting.png";
 import LogOut from "../image/LogOut.png";
-import SiderBarContent from "./SiderBarContent";
+
+import SideBarContent from "./SideBarContent";
 
 const SidebarConnectivity = ({ onMenuClick, activeMenu }) => {
   const [content] = useState([
@@ -19,7 +20,8 @@ const SidebarConnectivity = ({ onMenuClick, activeMenu }) => {
 
   return (
     <div className="min-w-[258px] ">
-      <SiderBarContent data={content} onMenuClick={onMenuClick} activeMenu={activeMenu} />
+   
+      <SideBarContent data={content} onMenuClick={onMenuClick} activeMenu={activeMenu} />
       
     </div>
   );

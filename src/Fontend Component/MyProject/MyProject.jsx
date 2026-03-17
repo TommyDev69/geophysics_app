@@ -1,12 +1,12 @@
-import search from "../images/Search.jpg"
+import search from "../image/Frame.png"
 
 export default function MyProject() {
     return (
-        <div className="md:container flex-1 flex flex-col w-[967px] gap-[8px] m-[5px]">
+        <div className=" flex-1 flex flex-col w-[967px] gap-[8px] mx-auto">
             {/* Title */}
             <div className="flex flex-col max-w-[967px] gap-[8px]">
                 <div className="flex h-[36px] pt-[15px]">
-                    <h1 className="font-instrument font-bold text-3xl leading-[36px] tracking-[0.4px] text-[#101828]">
+                    <h1 className="font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4px] text-[#101828]">
                         My Project
                     </h1>
                 </div>

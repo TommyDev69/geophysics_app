@@ -3,9 +3,9 @@ const SurveyContent = ({ title, survey }) => {
     return ( 
         <div clasdsName="flex">
             <div className="w-full flex justify-between items-center ">
-                <div className="w-[456px] text-[#364153] py-10">
+                <div className="w-[456px] text-[#364153] pb-10">
                     <h1 class="font-bold w-[370px] text-[30px] leading-[36px] tracking-[0.4px] capitalize ">{title}</h1>
-                    <p className="w-[72px]">Step 1 of 6</p>
+                    <p className="w-[72px] py-4">Step 1 of 6</p>
                 </div>
                 <div className="w-[159px]">
                     <button type="button" className="rounded-[10px] border-[2px] border-[#DADCE0] w-[#ffffff]">
