@@ -9,7 +9,7 @@
 
 export default function ProjectPlanner() {
     return (
-        <div className=" flex flex-col -w-[967px] h-[1046px] mt-[41px] ml-[8px] gap-[22px]">
+        <div className=" flex flex-col w-[967px] h-[1046px] mt-[41px] mx-auto gap-[22px]">
             <div className="flex w-[967px] h-[64px] justify-between">
                 <div className="flex flex-col gap-[4px] w-[314px] h-[36px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
                     <h1 className="">Agile Project Planner</h1>
