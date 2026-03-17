@@ -9,10 +9,9 @@ const SurveyForm = ({
   handleSurveyChange,
   handleSurveySubmit,
   handleSurveyObjective,
-  handleNavigateNext
 }) => {
   return (
-    <form onSubmit={{handleSurveySubmit} }>
+    <form onSubmit={handleSurveySubmit}>
       <div className="w-[917px] py-6 px-[12px]">
         <p className="font-semibold text-[20px] leading-7 tracking-[-0.45px] capitalize text-[#101828]">
           {title}
@@ -26,7 +25,6 @@ const SurveyForm = ({
           <label className="font-medium text-[14px] text-[#364153]">
             Project Name *
           </label>
-
           <input
             type="text"
             name="projectName"
@@ -35,17 +33,13 @@ const SurveyForm = ({
             placeholder="e.g., Lagos Coastal Survey"
             className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
           />
-
-          <p className="text-red-500 text-[12px]">
-            {error.projectName}
-          </p>
+          <p className="text-red-500 text-[12px]">{error.projectName}</p>
 
           {/* Description */}
           <div className="py-9">
             <label className="font-medium text-[14px] text-[#364153] capitalize">
               Description
             </label>
-
             <textarea
               rows="5"
               placeholder="Provide a brief description of the survey project..."
@@ -54,10 +48,7 @@ const SurveyForm = ({
           </div>
 
           {/* Survey Objective */}
-          <p className="font-medium text-[14px]">
-            Survey Objective *
-          </p>
-
+          <p className="font-medium text-[14px]">Survey Objective *</p>
           <div className="py-3 grid grid-cols-2 gap-8">
             {content.map((item) => (
               <button
@@ -65,14 +56,13 @@ const SurveyForm = ({
                 type="button"
                 onClick={() => handleSurveyObjective(item.topic)}
                 className={`w-full py-[18px] px-[18px] rounded-[10px] border-2 transition
-                ${
-                  surveyForm.surveyObjctive === item.topic
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-[#DADCE0]"
-                }`}
+                  ${
+                    surveyForm.surveyObjective === item.topic
+                      ? "border-blue-500 bg-blue-50"
+                      : "border-[#DADCE0]"
+                  }`}
               >
                 <img src={item.photo} alt="survey" />
-
                 <div className="pt-6">
                   <p className="font-medium text-[14px] text-[#364153] capitalize">
                     {item.topic}
@@ -81,16 +71,10 @@ const SurveyForm = ({
               </button>
             ))}
           </div>
-
-          <p className="text-red-500 text-[12px]">
-            {error.surveyObjctive}
-          </p>
+          <p className="text-red-500 text-[12px]">{error.surveyObjective}</p>
 
           {/* Others */}
-          <label className="font-medium text-[14px] text-[#364153]">
-            Others
-          </label>
-
+          <label className="font-medium text-[14px] text-[#364153]">Others</label>
           <input
             type="text"
             className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
@@ -99,21 +83,14 @@ const SurveyForm = ({
           {/* Client Info */}
           <div className="flex gap-5 py-8">
             <div className="w-[376px]">
-              <label className="font-medium text-[14px] text-[#364153]">
-                Client Name
-              </label>
-
+              <label className="font-medium text-[14px] text-[#364153]">Client Name</label>
               <input
                 type="text"
                 className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
               />
             </div>
-
             <div className="w-[376px]">
-              <label className="font-medium text-[14px] text-[#364153]">
-                Client Email
-              </label>
-
+              <label className="font-medium text-[14px] text-[#364153]">Client Email</label>
               <input
                 type="text"
                 className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
@@ -122,22 +99,21 @@ const SurveyForm = ({
           </div>
 
           {/* Date */}
-          <label className="font-medium text-[14px] text-[#364153]">
-            Target Completion Date
-          </label>
-
+          <label className="font-medium text-[14px] text-[#364153]">Target Completion Date</label>
           <input
             type="date"
             className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
           />
-
         </div>
       </div>
 
       {/* Buttons */}
       <div className="flex justify-between mx-auto w-[768px] py-8">
-
-        <button className="flex gap-2 items-center justify-center w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px]">
+        <button
+          type="button"
+          onClick={() => window.history.back()}
+          className="flex gap-2 items-center justify-center w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px]"
+        >
           <img src={left} alt="" />
           Cancel
         </button>
@@ -149,7 +125,6 @@ const SurveyForm = ({
           Next
           <img src={right} alt="" />
         </button>
-
       </div>
     </form>
   );

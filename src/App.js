@@ -9,6 +9,8 @@ import Survey from './Backend Component/survey recommendation/Survey';
 import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 import MyProject from './Fontend Component/MyProject/MyProject';
 import Sidebar from './Backend Component/Side Navbar/Sidebar';
+import SecondSurveyContaine from './Backend Component/survey recommendation/second survey step/SecondSurveyContaine';
+import ProjectPlanner from './Project-Planner/ProjectPlanner';
 
 // import MainContainer from './Backend Component/MainContainer';
 // import Survey from './Backend Component/survey recommendation/Survey';
@@ -27,11 +29,14 @@ function App() {
           <Route path="/dashboard" element={<Sidebar />} />
           <Route path="/survey" element={<Sidebar/>} />
           <Route path="/project" element={<Sidebar/>} />
-
+           <Route path="/dashboard/survey/step-2" element={<SecondSurveyContaine />} />
+           <Route path="/planner" element={<ProjectPlanner />} />
 
 
         </Routes>
       </Router>
+
+      {/* <SecondSurveyContaine/> */}
     </div>
   );
 }

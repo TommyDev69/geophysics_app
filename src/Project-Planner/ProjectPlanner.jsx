@@ -9,7 +9,7 @@
 
 export default function ProjectPlanner() {
     return (
-        <div className=" flex flex-col -w-[967px] h-[1046px] mt-[81px] ml-[8px] gap-[22px]">
+        <div className=" flex flex-col -w-[967px] h-[1046px] mt-[41px] ml-[8px] gap-[22px]">
             <div className="flex w-[967px] h-[64px] justify-between">
                 <div className="flex flex-col gap-[4px] w-[314px] h-[36px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
                     <h1 className="">Agile Project Planner</h1>
@@ -18,7 +18,7 @@ export default function ProjectPlanner() {
                 <div className="relative w-[158px] h-[44px] rounded-[10px] border-[2px] border-[#DADCEO] flex gap-2 items-center justify-center">
                     <img src={save}
                         alt="save"
-                        className="absolute left-[18px] top-[14p] top-1/2 -translate-y-1/2 w-[16px] h-[16px]"
+                        className="absolute left-[18px]  top-1/2 -translate-y-1/2 w-[16px] h-[16px]"
                     />
                     <button className="ml-[44px] font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
                         Save as Draft

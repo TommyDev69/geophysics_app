@@ -9,12 +9,12 @@ import number5 from "../../image/num5.png"
 import number6 from "../../image/num6.png"
 import range from "../../image/range.png"
 import SecondSurveyContent from "./SecondSurveyContent";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 const SecondSurveyConnectivity = () => {
-  const navigateNext = useNavigate()
-  const handleNavigateNext = () =>{
-    navigateNext('../second survey step/SecondSurveyContaine.jsx')
-  }
+  // const navigateNext = useNavigate()
+  // const handleNavigateNext = () =>{
+  //   navigateNext('../second survey step/SecondSurveyContaine.jsx')
+  // }
     const [survey, setSurvey] = useState([
         {id:1, name:"project setup",range:range, photo: number1},
         {id:2, name:"survey area", range:range,photo: number2},

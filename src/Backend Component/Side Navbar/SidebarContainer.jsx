@@ -5,6 +5,7 @@ import Survey from "../survey recommendation/Survey";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import MyProject from "../../Fontend Component/MyProject/MyProject";
+import ProjectPlanner from "../../Project-Planner/ProjectPlanner";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -40,6 +41,8 @@ export default function SidebarContainer() {
         {activeMenu === "dashboard" && <DashboardContainer />}
         {activeMenu === "my project" && < MyProject/>}
         {activeMenu === "survey recommendation" && <Survey />}
+        {activeMenu === "project planner" && <ProjectPlanner />}
+
 
 
         {/* Mobile Sidebar Modal */}
