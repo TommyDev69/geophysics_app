@@ -1,4 +1,4 @@
-import search from "../image/Frame.png"
+import search from "../../Backend Component/image/Search.png"
 
 export default function MyProject() {
     return (
