@@ -9,9 +9,10 @@ const SurveyForm = ({
   handleSurveyChange,
   handleSurveySubmit,
   handleSurveyObjective,
+  handleNavigateNext
 }) => {
   return (
-    <>
+    <form onSubmit={{handleSurveySubmit} }>
       <div className="w-[917px] py-6 px-[12px]">
         <p className="font-semibold text-[20px] leading-7 tracking-[-0.45px] capitalize text-[#101828]">
           {title}
@@ -142,7 +143,7 @@ const SurveyForm = ({
         </button>
 
         <button
-          onClick={handleSurveySubmit}
+          type="submit"
           className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
         >
           Next
@@ -150,7 +151,7 @@ const SurveyForm = ({
         </button>
 
       </div>
-    </>
+    </form>
   );
 };
 

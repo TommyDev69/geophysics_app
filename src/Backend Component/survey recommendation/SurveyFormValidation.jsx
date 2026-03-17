@@ -9,8 +9,9 @@ import fourth from "../image/🏛️.png";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useNavigate } from "react-router-dom";
+
 const SurveyFormValidation = () => {
-//   const navigatePage = useNavigate();
+  // const navigateNext = useNavigate();
 
   const [content] = useState([
     { id: 1, photo: first, topic: "Environmental Assessment" },
@@ -21,18 +22,17 @@ const SurveyFormValidation = () => {
 
   const [surveyForm, setSurveyForm] = useState({
     projectName: "",
-    surveyObjctive: "",
+    surveyObjective: "",
   });
 
   const [error, setError] = useState({
     projectName: "",
-    surveyObjctive: "",
+    surveyObjective: "",
   });
 
   // Handle input change
   const handleSurveyChange = (e) => {
     const { name, value } = e.target;
-
     setSurveyForm((prev) => ({
       ...prev,
       [name]: value,
@@ -43,9 +43,14 @@ const SurveyFormValidation = () => {
   const handleSurveyObjective = (value) => {
     setSurveyForm((prev) => ({
       ...prev,
-      surveyObjctive: value,
+      surveyObjective: value,
     }));
   };
+
+  // Navigate to next page
+  // const handleNavigateNext = () => {
+  //   navigateNext("/second-survey-step"); // use your route path
+  // };
 
   // Submit Form
   const handleSurveySubmit = (e) => {
@@ -53,20 +58,20 @@ const SurveyFormValidation = () => {
 
     const surveyFormError = {
       projectName: "",
-      surveyObjctive: "",
+      surveyObjective: "",
     };
 
     if (!surveyForm.projectName) {
       surveyFormError.projectName = "Project name is required";
     }
 
-    if (!surveyForm.surveyObjctive) {
-      surveyFormError.surveyObjctive = "Survey objective must be selected";
+    if (!surveyForm.surveyObjective) {
+      surveyFormError.surveyObjective = "Survey objective must be selected";
     }
 
     setError(surveyFormError);
 
-    if (surveyFormError.projectName || surveyFormError.surveyObjctive) {
+    if (surveyFormError.projectName || surveyFormError.surveyObjective) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -79,7 +84,10 @@ const SurveyFormValidation = () => {
       icon: "success",
       title: "Success",
       text: "Survey setup completed",
-    });
+    })
+    // .then(() => {
+    //   handleNavigateNext();
+    // });
   };
 
   return (
@@ -92,6 +100,7 @@ const SurveyFormValidation = () => {
         handleSurveyChange={handleSurveyChange}
         handleSurveySubmit={handleSurveySubmit}
         handleSurveyObjective={handleSurveyObjective}
+        // handleNavPage={handleNavigateNext} // keep only one prop
       />
     </div>
   );

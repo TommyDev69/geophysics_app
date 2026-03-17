@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 const FormLogin = () => {
      const navigateLogin =useNavigate();
     
     const handleRegister =() =>{
         navigateLogin("/Register");
+    }
+
+    const navigateDashboard =useNavigate();
+    
+    const handleDashboard =() =>{
+      navigateDashboard("/Dashboard");
     }
     return ( 
         <div className="max-w-[577px] mx-auto  pt-20">
@@ -38,7 +44,7 @@ const FormLogin = () => {
                     </div>
                 </div>
                     <div className="w-full">
-                        <button type="buttom" className="py-[12px] w-full px-[195px] bg-[#585858] rounded-[10px] capitalize text-[#ffffff]">login</button>
+                        <button type="buttom" onClick={handleDashboard}  className="py-[12px] w-full px-[195px] bg-[#585858] rounded-[10px] capitalize text-[#ffffff]">login</button>
                     </div>
                     <div className="flex pt-4 gap-2 max-w-[577px] justify-center   pb-8 ">
                                 <p className="font-instrument font-normal  text-[15px] leading-[150%] tracking-[-5%]">Don’t have an account?</p>
