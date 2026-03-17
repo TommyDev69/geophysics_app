@@ -10,19 +10,26 @@ import ProjectPlanner from './Project-Planner/Project-Planner';
 import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
+<<<<<<< HEAD
 >>>>>>> 83a1774 (Updated project files)
+=======
+import MainContainer from './Backend Component/MainContainer';
+>>>>>>> d42f3ef (Update sidebar + dashboard behavior)
 
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path = "/Register" element={<SignUpApp />} />
           <Route path = "/Login" element={<MainLogin />} />
           <Route path = "/project-planner" element={<ProjectPlanner />} />
         </Routes>
-      </Router>
+      </Router> */}
+      <MainContainer />
+
+
     
     </div>
   );
