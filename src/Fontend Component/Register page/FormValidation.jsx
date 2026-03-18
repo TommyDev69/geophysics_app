@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Form from "./Form";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUserAction } from "../../redux/slice/user/usersSlice";
 
 const FormValidation = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,8 @@ const FormValidation = () => {
     confirmPassword: "",
     agreeTerms: false
   });
+    // dispatch
+  const dispatch = useDispatch()
 
   const [error, setError] = useState({
     fullName: "",
@@ -46,6 +50,15 @@ const FormValidation = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData, "form");
+    const { fullName, email, password, organisation } = formData || {};
+
+    dispatch(registerUserAction({
+      fullName,
+      email,
+      password,
+      organisation,
+    }))
 
     const newErrors = {
       fullName: "",
@@ -107,6 +120,18 @@ const FormValidation = () => {
       agreeTerms: ''
     });
   };
+
+   //select store data
+  const { user, loading, success } = useSelector((state) => state?.users)
+
+  // Navigate
+  useEffect(() => {
+    if (success) {
+      window.location.href = "/login";
+      // navigate("/login");
+    }
+  }, [success])
+
 
   return (
     <Form
