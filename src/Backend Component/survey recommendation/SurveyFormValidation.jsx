@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-
 import SurveyForm from "./SurveyForm";
 
 import first from "../image/🌿.png";
@@ -10,9 +8,7 @@ import second from "../image/⛏️.png";
 import third from "../image/🏗️.png";
 import fourth from "../image/🏛️.png";
 
-const SurveyFormValidation = () => {
-  const navigate = useNavigate();
-
+const SurveyFormValidation = ({ onNext }) => {
   const [content] = useState([
     { id: 1, photo: first, topic: "Environmental Assessment" },
     { id: 2, photo: second, topic: "Resource Exploration" },
@@ -30,29 +26,25 @@ const SurveyFormValidation = () => {
     surveyObjective: "",
   });
 
-  // Handle input changes
   const handleSurveyChange = (e) => {
     const { name, value } = e.target;
     setSurveyForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle survey objective selection
   const handleSurveyObjective = (value) => {
     setSurveyForm((prev) => ({ ...prev, surveyObjective: value }));
   };
 
-  // Navigate to the next page
-  const handleNavigateNext = () => {
-    navigate("/second-survey"); // Make sure this route exists in App.js
-  };
-
-  // Handle form submission
   const handleSurveySubmit = (e) => {
     e.preventDefault();
 
     const surveyFormError = {
-      projectName: !surveyForm.projectName ? "Project name is required" : "",
-      surveyObjective: !surveyForm.surveyObjective ? "Survey objective must be selected" : "",
+      projectName: !surveyForm.projectName.trim()
+        ? "Project name is required"
+        : "",
+      surveyObjective: !surveyForm.surveyObjective
+        ? "Survey objective must be selected"
+        : "",
     };
 
     setError(surveyFormError);
@@ -70,11 +62,13 @@ const SurveyFormValidation = () => {
       icon: "success",
       title: "Success",
       text: "Survey setup completed",
-    }).then(() => handleNavigateNext());
+    }).then(() => {
+      if (onNext) onNext(); // ✅ Trigger parent callback to show SecondSurveyContainer
+    });
   };
 
   return (
-    <div className="w-[967px] border border-[#DADCE0] rounded-[10px] py-[10px] mx-auto">
+    <div className="max-w-[967px] w-full border border-[#DADCE0] rounded-[10px] py-[10px] mx-auto mt-10">
       <SurveyForm
         title="Project Setup"
         content={content}

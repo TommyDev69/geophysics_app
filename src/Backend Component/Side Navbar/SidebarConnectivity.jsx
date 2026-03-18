@@ -16,6 +16,9 @@ const SidebarConnectivity = ({ onMenuClick, activeMenu }) => {
     { id: 4, name: "project planner", icon: Planner },
     { id: 5, name: "setting", icon: Setting },
     { id: 6, name: "logout", icon: LogOut },
+    // { id: 6, name: "logout", icon: LogOut },/
+
+
   ]);
 
   return (

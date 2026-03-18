@@ -6,17 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import MyProject from "../../Fontend Component/MyProject/MyProject";
 import ProjectPlanner from "../../Project-Planner/ProjectPlanner";
+import SurveyFormValidation from "../survey recommendation/SurveyFormValidation";
+import SecondSurveyContaine from "../../second survey step/SecondSurveyContaine";
+import ThirdSurveyContainer from "../Third Survey/ThirdSurveyContainer";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("dashboard"); // Track active page
+  const [surveyStep, setSurveyStep] = useState(1); // Track survey step
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  // Handles menu clicks
   const handleMenuClick = (menuName) => {
     setActiveMenu(menuName);
-    setIsSidebarOpen(false); // Close mobile sidebar after click
+    setSurveyStep(1); // Reset survey step if sidebar menu changes
+    setIsSidebarOpen(false);
+  };
+
+  const handleSurveyNext = () => {
+    setSurveyStep(2); // Move to next survey step
   };
 
   return (
@@ -39,11 +47,21 @@ export default function SidebarContainer() {
 
         {/* Conditional rendering */}
         {activeMenu === "dashboard" && <DashboardContainer />}
-        {activeMenu === "my project" && < MyProject/>}
-        {activeMenu === "survey recommendation" && <Survey />}
+        {activeMenu === "my project" && <MyProject />}
+        {activeMenu === "survey recommendation" && (
+          <>
+            {surveyStep === 1 && (
+              <SurveyFormValidation onNext={() => setSurveyStep(2)} />
+            )}
+
+            {surveyStep === 2 && (
+              <SecondSurveyContaine onNext={() => setSurveyStep(3)} />
+            )}
+
+            {surveyStep === 3 && <ThirdSurveyContainer />}
+          </>
+        )}
         {activeMenu === "project planner" && <ProjectPlanner />}
-
-
 
         {/* Mobile Sidebar Modal */}
         {isSidebarOpen && (

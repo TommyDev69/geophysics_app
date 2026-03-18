@@ -1,16 +1,16 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
-import number1 from "../../image/num1.png"
-import number2 from "../../image/num2.png"
-import number3 from "../../image/num3.png"
-import number4 from "../../image/num4.png"
-import number5 from "../../image/num5.png"
-import number6 from "../../image/num6.png"
-import range from "../../image/range.png"
+import number1 from "../Backend Component/image/num1.png"
+import number2 from "../Backend Component/image/num2.png"
+import number3 from "../Backend Component/image/num3.png"
+import number4 from "../Backend Component/image/num4.png"
+import number5 from "../Backend Component/image/num5.png"
+import number6 from "../Backend Component/image/num6.png"
+import range from "../Backend Component/image/range.png"
 import SecondSurveyContent from "./SecondSurveyContent";
 // import { useNavigate } from "react-router-dom";
-const SecondSurveyConnectivity = () => {
+const SecondSurveyConnectivity = ({onNext}) => {
   // const navigateNext = useNavigate()
   // const handleNavigateNext = () =>{
   //   navigateNext('../second survey step/SecondSurveyContaine.jsx')
@@ -78,7 +78,9 @@ const SecondSurveyConnectivity = () => {
     icon: "success",
     title: "Success",
     text: "Survey setup completed",
-  });
+  }).then(() => {
+      if (onNext) onNext(); // ✅ Trigger parent callback to show ThirdSurveyContainer
+    });
 };
     return (
         <div className="w-full py-14">
