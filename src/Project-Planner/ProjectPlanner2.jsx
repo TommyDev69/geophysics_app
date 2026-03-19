@@ -143,12 +143,12 @@ export default function ProjectPlanner2() {
 
                                 </div>
                                 <div className="w-[352px] rounded-[10px] border py-[8px] px-[16px] border-[#DADCEO]">
-                                    <input type="text" placeholder="Role"/>
+                                    <input type="text" placeholder="Role" />
                                 </div>
-                                <div className="w-[40px]">
-                                <button>
-                                    <img src={trash} alt="" />
-                                </button>
+                                <div className="w-[40px] mt-[7px] ml-[9]">
+                                    <button>
+                                        <img src={trash} alt="Delete" />
+                                    </button>
                                 </div>
 
                             </div>
