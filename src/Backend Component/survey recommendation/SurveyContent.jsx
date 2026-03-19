@@ -17,7 +17,7 @@ const SurveyContent = ({ title, survey }) => {
                     </button>
                 </div>
             </div>
-            <div className="flex w-[967px] items-center rounded-[10px] border-[1px] border-[#DADCE0] py-[10px]">
+            <div className="flex w-[967px] items-center rounded-[10px] px-[25px] border-[1px] border-[#DADCE0] py-[10px]">
                 {survey.map(item => (
                 
                     <div className=" py-5"style={{paddingTop: item.paddingTop, paddingBottom: item.paddingBottom}} id={item.id}>

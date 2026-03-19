@@ -122,7 +122,7 @@ const FormValidation = () => {
   };
 
    //select store data
-  const { user, loading, success } = useSelector((state) => state?.users)
+  const {  success } = useSelector((state) => state?.users)
 
   // Navigate
   useEffect(() => {

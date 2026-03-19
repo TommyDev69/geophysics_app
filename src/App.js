@@ -12,24 +12,36 @@ import SurveyContainer from './Backend Component/survey recommendation/SurveyCon
 import SecondSurveyContaine from './second survey step/SecondSurveyContaine';
 import ThirdSurveyConnectivity from './Backend Component/Third Survey/ThirdSurveyConnectivity';
 import ThirdSurveyContainer from './Backend Component/Third Survey/ThirdSurveyContainer';
+import FourthSurveyHead from './Fourth Survey/FourthSurveyHead';
+import FourthSurveyContainer from './Fourth Survey/FourthSurveyContainer';
+import ThirdSurveySideBar from './Backend Component/Third Survey/ThirdSurveySideBar';
+import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
+import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Public Pages */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<SignUpApp />} />
-        <Route path="/login" element={<MainLogin />} />
-        <Route path="/planner" element={<ProjectPlanner />} />
+    <div className='app'>
 
-        {/* Dashboard / Survey Pages */}
-        <Route path="/dashboard" element={<Sidebar />} />
-        <Route path="/survey" element={<SurveyContainer />} />
-        <Route path="/survey/step-2" element={<SecondSurveyContaine />} />
-        <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
-      </Routes>
-    </Router>
+       {/* <Router> */}
+         {/* <Routes> */}
+           {/* Public Pages */}
+           {/* <Route path="/" element={<LandingPage />} />
+           <Route path="/register" element={<SignUpApp />} />
+           <Route path="/login" element={<MainLogin />} />
+           <Route path="/planner" element={<ProjectPlanner />} /> */}
+  
+           {/* Dashboard / Survey Pages */}
+           {/* <Route path="/dashboard" element={<Sidebar />} />
+           <Route path="/survey" element={<SurveyContainer />} />
+           <Route path="/survey/step-2" element={<SecondSurveyContaine />} />
+           <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
+         </Routes> */}
+       {/* </Router> */}
+
+{/* <ThirdSurveySideBar /> */}
+       {/* <FifthSurveyContainer /> */}
+       <SixSurveyContainer />
+    </div>
   );
 }
 
