@@ -11,6 +11,7 @@ import MyProject from './Fontend Component/MyProject/MyProject';
 import Sidebar from './Backend Component/Side Navbar/Sidebar';
 import SecondSurveyContaine from './Backend Component/survey recommendation/second survey step/SecondSurveyContaine';
 import ProjectPlanner from './Project-Planner/ProjectPlanner';
+import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
 
 // import MainContainer from './Backend Component/MainContainer';
 // import Survey from './Backend Component/survey recommendation/Survey';
