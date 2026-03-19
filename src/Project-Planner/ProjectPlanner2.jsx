@@ -1,9 +1,11 @@
 import save from "./Save.jpg";
 import plusIcon from "./Plus.jpg";
 import back from "./back.jpg";
-import forward from "./forward.jpg";
+import forward from "./forward.jpg"
+import trash from "./Trash2.jpg"
 
-export default function ProjectPlanner() {
+
+export default function ProjectPlanner2() {
     return (
         <div className=" flex flex-col w-[967px] h-[1046px] mt-[41px] mx-auto gap-[22px]">
             <div className="flex w-[967px] h-[64px] justify-between">
@@ -40,7 +42,7 @@ export default function ProjectPlanner() {
 
                     <div className="flex w-[306px] h-[64px] mt-3">
                         <div className="md:container flex flex-col w-[145px] h-[64px] gap-[8px] items-center justify-center">
-                            <div className="container flex w-[40px] h-[40px] text-[#4A5565] rounded-[16777200px] bg-[#E5E7EB] items-center justify-center">
+                            <div className="container flex w-[40px] h-[40px] text-[#FFFFFF] rounded-[16777200px] bg-[#585858] items-center justify-center">
                                 <h1 className="">2</h1>
                             </div>
                             <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
@@ -66,7 +68,7 @@ export default function ProjectPlanner() {
                     </div>
                 </div>
             </div>
-            <div className="w-[967px] h-[795px] rounded-[10px] border text[#FFFFFF] border-[#DADCEO] shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]">
+            <div className="w-[967px] h-[718px] rounded-[10px] border text[#FFFFFF] border-[#DADCEO] shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]">
                 <div className="flex flex-col w-[768px] h=[693px] mt-[20px] gap-[16px] justify-center">
                     <div className="w-[917px] h-[28px] mt-[2px] ml-[25px]">
                         <div className="w-[124px] h-[28px] font-instrument font-semiBold text-[20px] leading-[28px] tracking-[-0.45px] text-[#101828]">
@@ -113,7 +115,7 @@ export default function ProjectPlanner() {
                                 Sprint Duration (days)
                             </label>
                             <input
-                                className="w-[768px] h-[42px] placeholder:text-[#0A0A0A] rounded-[10px] border border-[#DADCEO] px-[16px] py-[8px]"
+                                className="w-[768px] h-[42px] text-[#0A0A0A] rounded-[10px] placeholder:text-[#0A0A0A] border border-[#DADCEO] px-[16px] py-[8px]"
                                 placeholder="14"
                             />
                         </div>
@@ -125,8 +127,8 @@ export default function ProjectPlanner() {
                                 <option value=""></option>
                             </select>
                         </div>
-                        <div className="flex flex-col w-[768px] h-[188px] gap-[12px]">
-                            <div className="flex w-[768px] h-[36px] justify-between mt-[6px]">
+                        <div className="flex flex-col w-[768px] h-[18px] gap-[12px]">
+                            <div className="flex w-[768px] h-[90px] justify-between mt-[6px] cap-[12px]">
                                 <label htmlFor="w-[100px] h-[20px] font-instrument font-medium leading-[20px] tracking-[-0.15px] text-[#364553]">
                                     Team Members
                                 </label>
@@ -135,9 +137,23 @@ export default function ProjectPlanner() {
                                     <span>Add Member</span>
                                 </button>
                             </div>
-                        </div>
+                            <div className="flex h-[42px] gap-[12px] items-center justify-center">
+                                <div className="w-[352px] rounded-[10px] border py-[8px] px-[16px] border-[#DADCEO]">
+                                    <input type="text" placeholder="Member name" />
 
-                        <div className="w-[768px] h-[340px] rounded-[10px] border-2 border-[#D1D5DC] flex flex-col items-center justify-center gap-4 mb-[20px]">
+                                </div>
+                                <div className="w-[352px] rounded-[10px] border py-[8px] px-[16px] border-[#DADCEO]">
+                                    <input type="text" placeholder="Role" />
+                                </div>
+                                <div className="w-[40px] mt-[7px] ml-[9]">
+                                    <button>
+                                        <img src={trash} alt="Delete" />
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        {/* <div className="w-[768px] h-[340px] rounded-[10px] border-2 border-[#D1D5DC] flex flex-col items-center justify-center gap-4 mb-[20px]">
                             <p className="w-[764px] h-[24px] font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px] text-center text-[#6A7282]">
                                 No team member added yet
                             </p>
@@ -145,7 +161,7 @@ export default function ProjectPlanner() {
                                 <img src={plusIcon} alt="plus" className="w-[16px] h-[16px]" />
                                 <span>Add Member</span>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>
