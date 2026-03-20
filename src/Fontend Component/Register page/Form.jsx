@@ -2,6 +2,7 @@ import { useState } from 'react'; // ✅ Add this
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { faCheck, faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import LoadingComponent from '../LoadingComp/LoadingComponent';
 const Form = ({
   formData,
   handleChange,
@@ -11,7 +12,9 @@ const Form = ({
   hasLowerCase,
   hasNumber,
   hasLength,
-  hasSpecialChar
+  hasSpecialChar,
+  loading,
+  serverError
 }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -169,12 +172,21 @@ const Form = ({
 
         {/* Submit button */}
         <div className="flex justify-center items-center w-full pt-6">
-          <input
+          <button
             type="submit"
-            value="Register"
-            className="capitalize cursor-pointer w-full text-center border-2 rounded-[10px] text-white bg-[#585858] focus:border-0 py-[8px] pl-[30px] pr-[39px]"
-          />    
+            disabled={loading}
+            className="capitalize cursor-pointer w-full text-center border-2 rounded-[10px] text-white bg-[#585858] focus:border-0 py-[8px] pl-[30px] pr-[39px] disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center"
+          >
+            {loading ? <LoadingComponent /> : "Register"}
+          </button>
         </div>
+
+        {/* Server Error Display */}
+        {serverError && (
+          <div className="mt-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
+            {serverError}
+          </div>
+        )}
 
         {/* Links and terms */}
         <div className="w-full mt-4">
@@ -190,7 +202,14 @@ const Form = ({
           </div>
           <div className="flex w-full items-center">
               <div>
-                 <input type="checkbox" id="terms" name="agreeTerms" className="mr-2" value={formData.agreeTerms} />
+                 <input 
+                   type="checkbox" 
+                   id="terms" 
+                   name="agreeTerms" 
+                   className="mr-2" 
+                   checked={formData.agreeTerms} 
+                   onChange={handleChange}
+                 />
               </div>
               
                 

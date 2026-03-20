@@ -15,7 +15,7 @@ const FormValidation = () => {
     confirmPassword: "",
     agreeTerms: false
   });
-    // dispatch
+  // dispatch
   const dispatch = useDispatch()
 
   const [error, setError] = useState({
@@ -50,16 +50,6 @@ const FormValidation = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData, "form");
-    const { fullName, email, password, organisation } = formData || {};
-
-    dispatch(registerUserAction({
-      fullName,
-      email,
-      password,
-      organisation,
-    }))
-
     const newErrors = {
       fullName: "",
       email: "",
@@ -78,6 +68,7 @@ const FormValidation = () => {
     else if (!emailRegex.test(formData.email)) newErrors.email = "Enter a valid email address";
 
     if (!formData.organisation) newErrors.organisation = "Enter your organisation";
+    if (!formData.role) newErrors.role = "Please select a role";
 
     if (!formData.password) newErrors.password = "Enter your password";
     else if (!passwordRegex.test(formData.password))
@@ -86,28 +77,38 @@ const FormValidation = () => {
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match";
 
-  
+    if (!formData.agreeTerms) newErrors.agreeTerms = "You must agree to the terms and conditions";
+
+
     // Set errors so they show under inputs
     // If checkbox not checked, show SweetAlert warning
-      if (!formData.agreeTerms) {
-        Swal.fire({
-          icon: "warning",
-          title: "Terms Required",
-          text: newErrors.agreeTerms
-        });
-      }
+    if (!formData.agreeTerms) {
+      Swal.fire({
+        icon: "warning",
+        title: "Terms Required",
+        text: "You must agree to the terms and conditions"
+      });
+    }
+   
     setError(newErrors);
     // Stop submission if any error exists
     const hasError = Object.values(newErrors).some(err => err !== "");
     if (hasError) return;
+    dispatch(registerUserAction({
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      organisation: formData.organisation,
+      role: formData.role
+    }))
 
-    // Success
-    Swal.fire({
-      title: "Success!",
-      text: "Registration successful!",
-      icon: "success",
-      confirmButtonText: "OK"
-    });
+    // Success will be handled by Redux state changes
+    // Swal.fire({
+    //   title: "Success!",
+    //   text: "Registration successful!",
+    //   icon: "success",
+    //   confirmButtonText: "OK"
+    // });
 
     // Reset form
     setFormData({
@@ -117,20 +118,25 @@ const FormValidation = () => {
       role: "",
       password: "",
       confirmPassword: "",
-      agreeTerms: ''
+      agreeTerms: false
     });
   };
 
-   //select store data
-  const { user, loading, success } = useSelector((state) => state?.users)
+  //select store data
+  const { user, loading, success, error: serverError, successMessage } = useSelector((state) => state?.users)
 
   // Navigate
   useEffect(() => {
-    if (success) {
+    if (success && successMessage) {
+      Swal.fire({
+        title: "Success!",
+        text: successMessage,
+        icon: "success",
+        confirmButtonText: "OK"
+      });
       window.location.href = "/login";
-      // navigate("/login");
     }
-  }, [success])
+  }, [success, successMessage]);
 
 
   return (
@@ -144,6 +150,8 @@ const FormValidation = () => {
       hasNumber={hasNumber}
       hasLength={hasLength}
       hasSpecialChar={hasSpecialChar}
+      loading={loading}
+      serverError={serverError}
     />
   );
 };
