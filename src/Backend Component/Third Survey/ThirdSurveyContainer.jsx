@@ -1,12 +1,12 @@
 import React from 'react'
 
- import ThirdSurveyContent from './ThirdSurveyContent'
+import ThirdSurveyValidation from './ThirdSurveyValidation'
 
 export default function ThirdSurveyContainer() {
   return (
-    <div className='w-[1280px] mx-auto'>
+    <div className='w-[967px] py-10 mx-auto'>
        
-      <ThirdSurveyContent /> 
+      <ThirdSurveyValidation /> 
     </div>
   )
 }

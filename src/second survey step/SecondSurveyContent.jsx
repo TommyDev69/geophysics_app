@@ -4,9 +4,9 @@ import right from "../Backend Component/image/ChevronRight.png";
 import left from "../Backend Component/image/ChevronLeft.png";
 export default function SecondSurveyContent({title, survey,error, SecondTitle, secondSurveyForm, handleSubmit, handleSecondSurveyChange}) {
   return (
-    <form  onSubmit={handleSubmit}>
+    <form className='w-[967px] mx-auto' onSubmit={handleSubmit}>
 
-        <div clasdsName="flex">
+        <div clasdsName="flex ">
             <div className="w-full flex justify-between items-center ">
                 <div className="w-[456px] text-[#364153] py-10">
                     <h1 class="font-bold w-[370px] text-[30px] leading-[36px] tracking-[0.4px] capitalize ">{title}</h1>
@@ -58,8 +58,8 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
                             className="w-full rounded-[10px]  border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
                         />
                         <p className="text-red-500 text-[12px]">
-                        {error.latName}
-            </p>
+                          {error.latName}
+                        </p>
                     </div>
 
                     <div className="mx-auto w-[917px] py-10">
@@ -72,12 +72,12 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
                             className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
                         />
                         <p className="text-red-500 text-[12px]">
-                {error.longName}
-            </p>
+                           {error.longName}
+                        </p>
                     </div>
-            </div>
+                </div>
 
-            <div className="flex justify-between py-8">
+                <div className="flex justify-between py-8">
             
                     <button className="flex gap-2 items-center justify-center w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px]">
                         <img src={left} alt="" />
@@ -92,7 +92,7 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
                         <img src={right} alt="" />
                     </button>
             
-                    </div>
+                </div>
             </div>
 
         </div>

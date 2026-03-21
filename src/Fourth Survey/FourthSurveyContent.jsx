@@ -1,105 +1,145 @@
-import React from 'react'
-import  info from '../Backend Component/image/Info.png'
-import Ellipse from '../Backend Component/image/Ellipse 1.png'
-export default function FourthSurveyContent() {
+import React from 'react';
+import info from '../Backend Component/image/Info.png';
+import Ellipse from '../Backend Component/image/Ellipse 1.png';
+import left from '../Backend Component/image/ChevronLeft.png';
+import right from '../Backend Component/image/ChevronRight.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faXmark, faCheck, faThumbsDown, faSmileBeam, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
+export default function FourthSurveyContent({ handleSelect, selectedRow, handleIcon }) {
+
+  const methods = [
+    { id: 'magnetic', name: 'Magnetic Survey', details: 'Magnetic survey extra details here' },
+    { id: 'gravity', name: 'Gravity Survey', details: 'Gravity survey extra details here' },
+  ];
+
   return (
-    <div className='w-full border px-[30px]   border-[#DADCE0]'>
-       <div className="w-[917px] py-[14px]">
-        <p className="w-[238px] font-instrument font-semibold text-[20px] leading-[28px] tracking-[-0.45px] text-[#101828]">Method Recommendation</p>
-       </div>
-       <div className="w-[917px] rounded-[10px] px-[20px] border py-[24px] border-[#D7D7D7] bg-[#FAFAFA]">
-          <div className="w-[439px] py-6">
-            <p className="font-instrument font-normal text-[16px] pb-4 leading-[28px] tracking-[-0.45px]">Primary Recommendation</p>
-             <h1 className='text-[#101828] font-instrument font-semibold text-[24px] leading-[28px] tracking-[-0.45px]'>Electrical Resistivity Tomography (ERT)</h1>
-          </div>
-          <div className="w-[885px] pt-6 flex">
-            <div className="w-[439px]">
-              <div className="flex w-[182px] pb-6 items-center">
-                <img src={info} alt="" className='w-[19px] h-[19px]'  />
-                <div className="w-[439px]"> 
-                  <p className="font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.45px]">Why this method?</p>
-                </div>
+    <form onSubmit={handleSelect}>
+
+      <div className="w-full border px-6 py-4 rounded-lg border-gray-300">
+
+        {/* HEADER */}
+        <h2 className="text-xl font-semibold mb-4">Method Recommendation</h2>
+
+        {/* PRIMARY CARD */}
+        <div className="border rounded-lg p-4 bg-gray-100 mb-6">
+          <h3 className="text-lg font-semibold mb-2">Primary Recommendation</h3>
+          <p>Electrical Resistivity Tomography (ERT)</p>
+
+          <div className="flex mt-4">
+            {/* LEFT */}
+            <div className="w-1/2">
+              <div className="flex items-center mb-2">
+                <img src={info} alt="" className="w-5 h-5" />
+                <p className="ml-2 font-semibold">Why this method?</p>
               </div>
-              <div className="flex items-center">
-                <div>
-                  <img src={Ellipse} alt='' className='w-[11px] h-[11px]'/>
+              {[
+                "Excellent for mapping aquifer boundaries and salinity interfaces.",
+                "Optimal for target depth of 5m - 50m.",
+                "Resilient to low ambient noise levels."
+              ].map((text, idx) => (
+                <div key={idx} className="flex items-center mb-1">
+                  <img src={Ellipse} alt="" className="w-3 h-3" />
+                  <p className="ml-2 text-sm">{text}</p>
                 </div>
-                <div className="w-[443px]">
-                  <p className="text-[#101828] font-instrument font-normal text-[14px] leading-[28px] tracking-[-0.45px]">Excellent for mapping aquifer boundaries and salinity interfaces.</p>
-                </div>
-
-              </div>
-
-              <div className="flex items-center">
-                <div>
-                  <img src={Ellipse} alt='' className='w-[11px] h-[11px]'/>
-                </div>
-                <div className="w-[443px]">
-                  <p className="text-[#101828] font-instrument font-normal text-[14px] leading-[28px] tracking-[-0.45px]">Optimal for target depth of 5m - 50m.</p>
-                </div>
-
-              </div>
-
-              <div className="flex items-center">
-                <div>
-                  <img src={Ellipse} alt='' className='w-[11px] h-[11px]'/>
-                </div>
-                <div className="w-[443px]">
-                  <p className="text-[#101828] font-instrument font-normal text-[14px] leading-[28px] tracking-[-0.45px]">Resilient to low ambient noise levels.</p>
-                </div>
-
-              </div>
+              ))}
             </div>
 
-            <div className="w-[424px]  text-[#101828]">
-              <p className="pb-6  font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.45px]">Field Technique Summary</p>
-              <div className='border rounded-[10px] border-[#D8D8D8] py-[14px]'>
-
-                <div className="flex  justify-between w-[400px] items-center">
-                  <p className='w-[100px] text-[#6A7282] capitalize font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px] text-center'>array types</p>
-                  <p className="w-[151px] font-instrument font-semibold text-[14px] leading-[20px] tracking-[-0.15px] text-center">Wenner-Schlumberger</p>
-                    </div>
-
-                      <div className="flex rounded-[10px] justify-between w-[400px] pl-5 items-center">
-                        <p className='w-[100wpx] text-[#6A7282] capitalize font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px] text-center'>Electrode Spacing:</p>
-                        <p className="w-[151px] font-instrument font-semibold text-[14px] leading-[20px] tracking-[-0.15px] text-center">5.0 meters</p>
-                      </div>
-
-                      
-                      <div className="flex rounded-[10px] justify-between w-[400px] items-center pl-5">
-                        <p className='w-[10w0px] text-[#6A7282] capitalize font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px] text-center'>Max Depth of Invest:</p>
-                        <p className="w-[151px] font-instrument font-semibold text-[14px] leading-[20px] tracking-[-0.15px] text-center">65 meters</p>
-                      </div>
+            {/* RIGHT */}
+            <div className="w-1/2">
+              <p className="font-semibold mb-2">Field Technique Summary</p>
+              <div className="border rounded-lg p-2">
+                <div className="flex justify-between mb-1">
+                  <span className="text-gray-500">Array Types</span>
+                  <span className="font-semibold">Wenner-Schlumberger</span>
+                </div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-gray-500">Electrode Spacing</span>
+                  <span className="font-semibold">5.0 meters</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Max Depth</span>
+                  <span className="font-semibold">65 meters</span>
+                </div>
               </div>
             </div>
           </div>
-       </div>
+        </div>
 
-       <div className="w-[917px] bg-[#FAFAFA] border border-[#D7D7D7] my-8 rounded-[10px]">
-        <p className="w-[185fpx] font-instrument font-semibold text-[20px] leading-[28px] tracking-[-0.45px] pt-4 px-6">Alternative Methods</p>
-        <div className="w-[890px] py-2">
-          <table className='w-full text-[#101828]'>
+        {/* ALTERNATIVE METHODS TABLE */}
+        <div className="border rounded-lg p-4 bg-gray-50 mb-6">
+          <h3 className="font-semibold mb-2">Alternative Methods</h3>
+
+          <table className="w-full text-left">
             <thead>
-              <tr className='bg-[#EFEFEF]'>
-                <th className=' flex justify-start pl-8 text-[18px] uppercase'>method</th>
-                <th className='text-[18px] uppercase text-ceenter '>ACTION</th>
+              <tr className="bg-gray-200">
+                <th className="pl-2">METHOD</th>
+                <th className="text-center">ACTION</th>
+                <th className="text-center">TOGGLE</th>
               </tr>
             </thead>
+            <tbody>
+              {methods.map((method) => (
+                <React.Fragment key={method.id}>
+                  <tr>
+                    <td className="pl-2 py-2">{method.name}</td>
 
-            <tbody className='bg-[#ffffff]'>
-              <tr className=''>
-                <td className='flex text-[16px]  justify-start pl-8 py-4'>Magnetic Survey</td>
-                <td className='text-center text-[16px]'>select</td>
-              </tr>
+                    {/* Clickable ACTION cell */}
+                    <td
+                      className="text-center cursor-pointer"
+                      onClick={() => handleIcon(method.id)}
+                    >
+                      {selectedRow === method.id ? (
+                        <FontAwesomeIcon icon={faCheck} className="text-green-500" />
+                      ) : (
+                        'select'
+                      )}
+                    </td>
 
-              <tr>
-                <td className='flex text-[16px] justify-start pl-8'>Gavity Survey</td>
-                <td className='text-center text-[16px]'>select</td>
-              </tr>
+                    {/* TOGGLE ICON */}
+                    <td className="text-center">
+                      <FontAwesomeIcon
+                        icon={selectedRow === method.id ? faSmileBeam : faThumbsUp}
+                        onClick={() => handleIcon(method.id)}
+                        className="cursor-pointer"
+                      />
+                    </td>
+                  </tr>
+
+                  {/* Extra details row when toggled */}
+                  {selectedRow === method.id && (
+                    <tr>
+                      <td colSpan="3" className="text-center text-gray-500 py-2">
+                        {method.details}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
             </tbody>
           </table>
         </div>
-       </div>
-    </div>
-  )
+
+        {/* BUTTONS */}
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            onClick={() => window.history.back()}
+            className="flex gap-2 items-center justify-center w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px]"
+
+          >
+            <img src={left} alt="" /> Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+
+          >
+            Next <img src={right} clas alt="" />
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 }

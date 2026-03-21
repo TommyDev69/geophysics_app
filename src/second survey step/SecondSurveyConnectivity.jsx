@@ -11,11 +11,7 @@ import range from "../Backend Component/image/range.png"
 import SecondSurveyContent from "./SecondSurveyContent";
 // import { useNavigate } from "react-router-dom";
 const SecondSurveyConnectivity = ({onNext}) => {
-  // const navigateNext = useNavigate()
-  // const handleNavigateNext = () =>{
-  //   navigateNext('../second survey step/SecondSurveyContaine.jsx')
-  // }
-    const [survey, setSurvey] = useState([
+    const [survey] = useState([
         {id:1, name:"project setup",range:range, photo: number1},
         {id:2, name:"survey area", range:range,photo: number2},
         {id:3, name:"site characterisation",range:range,photo: number3,  paddingBottom: '2px'},
@@ -83,7 +79,7 @@ const SecondSurveyConnectivity = ({onNext}) => {
     });
 };
     return (
-        <div className="w-full py-14">
+        <div className="w-full  py-14">
             <SecondSurveyContent secondSurveyForm={secondSurveyForm} error={error} handleSecondSurveyChange={handleSecondSurveyChange} handleSubmit = {handleSecondSurveySubmit}  title ="survey recommendation" survey={survey} SecondTitle = "survey area definition" />
         </div>
 

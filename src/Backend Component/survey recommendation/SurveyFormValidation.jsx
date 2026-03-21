@@ -73,7 +73,7 @@ const SurveyFormValidation = ({ onNext }) => {
         title="Project Setup"
         content={content}
         surveyForm={surveyForm}
-        error={error}
+        error={error}  
         handleSurveyChange={handleSurveyChange}
         handleSurveySubmit={handleSurveySubmit}
         handleSurveyObjective={handleSurveyObjective}

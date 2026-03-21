@@ -9,6 +9,13 @@ import ProjectPlanner from "../../Project-Planner/ProjectPlanner";
 import SurveyFormValidation from "../survey recommendation/SurveyFormValidation";
 import SecondSurveyContaine from "../../second survey step/SecondSurveyContaine";
 import ThirdSurveyContainer from "../Third Survey/ThirdSurveyContainer";
+import FourthSurveyContainer from "../../Fourth Survey/FourthSurveyContainer";
+import SecondSurveyConnectivity from "../../second survey step/SecondSurveyConnectivity";
+import ThirdSurveyValidation from "../Third Survey/ThirdSurveyValidation";
+import FifthSurveyConnectivity from "../Fifth recommendation/FifthSurveyConnectivity";
+import SixSurveyHead from "../Six survey recommendation/SixSurveyHead";
+import FourthSurveyHead from "../../Fourth Survey/FourthSurveyHead";
+import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -55,10 +62,22 @@ export default function SidebarContainer() {
             )}
 
             {surveyStep === 2 && (
-              <SecondSurveyContaine onNext={() => setSurveyStep(3)} />
+              <SecondSurveyConnectivity onNext={() => setSurveyStep(3)} />
             )}
 
-            {surveyStep === 3 && <ThirdSurveyContainer />}
+            {surveyStep === 3 && (
+              <ThirdSurveyValidation onNext={() =>setSurveyStep(4)} />
+            )}
+            {surveyStep ===4 &&(
+              <FourthSurveyConnectivity onNext = {() =>setSurveyStep(5)} />
+            )}
+
+            {surveyStep ===5 &&(
+              <FifthSurveyConnectivity onNext = {() =>setSurveyStep(6)} />
+            )}
+            {surveyStep ===6 &&(
+              <SixSurveyHead onNext = {() =>setSurveyStep(7)} />
+            ) }
           </>
         )}
         {activeMenu === "project planner" && <ProjectPlanner />}
