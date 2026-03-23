@@ -27,7 +27,7 @@
             </label>
             <input
               type="text"
-              name="projectName"
+              name="surveyName"
               value={surveyForm.projectName}
               onChange={handleSurveyChange}
               placeholder="e.g., Lagos Coastal Survey"
@@ -42,6 +42,9 @@
               </label>
               <textarea
                 rows="5"
+                name="description"
+                value={surveyForm.description || ""}
+                onChange={handleSurveyChange}
                 placeholder="Provide a brief description of the survey project..."
                 className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
               />
@@ -77,6 +80,9 @@
             <label className="font-medium text-[14px] text-[#364153]">Others</label>
             <input
               type="text"
+              name="others"
+              value={surveyForm.others || ""}
+              onChange={handleSurveyChange}
               className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2 focus:outline-none focus:ring-2 focus:ring-[#DADCE0]"
             />
 
@@ -86,13 +92,19 @@
                 <label className="font-medium text-[14px] text-[#364153]">Client Name</label>
                 <input
                   type="text"
+                  name="clientName"
+                  value={surveyForm.clientName || ""}
+                  onChange={handleSurveyChange}
                   className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
                 />
               </div>
               <div className="w-[376px]">
                 <label className="font-medium text-[14px] text-[#364153]">Client Email</label>
                 <input
-                  type="text"
+                  type="email"
+                  name="clientEmail"
+                  value={surveyForm.clientEmail || ""}
+                  onChange={handleSurveyChange}
                   className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
                 />
               </div>
@@ -102,6 +114,9 @@
             <label className="font-medium text-[14px] text-[#364153]">Target Completion Date</label>
             <input
               type="date"
+              name="targetCompletionDate"
+              value={surveyForm.targetCompletionDate || ""}
+              onChange={handleSurveyChange}
               className="w-full rounded-[10px] border border-[#DADCE0] py-[10px] px-[15px] mt-2"
             />
           </div>

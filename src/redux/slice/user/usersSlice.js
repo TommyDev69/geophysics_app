@@ -61,6 +61,35 @@ export const loginUserAction = createAsyncThunk(
     }
 );
 
+// get user profile Action
+export const getUserProfileAction = createAsyncThunk("users/profile",
+    async (payload, { rejectWithValue, getState, dispatch }) => {
+        try {
+            // token authenticated
+            const token = getState()?.users?.userAuth?.userInfo?.message?.token;
+            console.log(token, "profile");
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            // console.log(config);
+
+            // make the http request
+            const res = await axios.get(`${baseUrl}/users/profile`, config);
+            console.log(res.data);
+
+            // save user to local storage
+            return res.data
+        } catch (error) {
+            console.log(error);
+
+            return rejectWithValue(error?.response?.data);
+        }
+    }
+);
+
 const usersSlice = createSlice({
     name: "users",
     initialState,
@@ -109,11 +138,26 @@ const usersSlice = createSlice({
 
         builder.addCase(resetSuccessAction.pending, (state) => {
             state.error = null
-        })
+        });
 
+        // get user profile
+        builder.addCase(getUserProfileAction.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        });
+
+        builder.addCase(getUserProfileAction.fulfilled, (state, action) => {
+            state.profile = action.payload;
+            state.loading = false;
+            state.error = null;
+        });
+
+        builder.addCase(getUserProfileAction.rejected, (state, action) => {
+            state.error = action.payload || action.error.message;
+            state.loading = false;
+        });
     }
-});
-
+})
 // generate reducers
 const usersReducers = usersSlice.reducer;
 

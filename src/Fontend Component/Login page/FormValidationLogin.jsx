@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUserAction } from "../../redux/slice/user/usersSlice";
+import Swal from 'sweetalert2';
 
 
 
@@ -36,6 +37,14 @@ const FormValidationLogin = () => {
         if (!formData.email) newErrors.email = "Enter your email";
         if (!formData.password) newErrors.password = "Enter your password";
 
+        if (!formData.agreeTerms) {
+            Swal.fire({
+                icon: "warning",
+                title: "Terms Required",
+                text: "You must agree to the terms and conditions"
+            });
+        }
+
         setError(newErrors);
         const hasError = Object.values(newErrors).some(err => err !== "");
         if (hasError) return;
@@ -46,11 +55,41 @@ const FormValidationLogin = () => {
     const { userAuth } = useSelector((state) => state?.users)
 
 
+    // useEffect(() => {
+    //     if (userAuth.success) {
+    //         navigate("/dashboard")
+    //     }
+    // }, [userAuth.success])
+
     useEffect(() => {
         if (userAuth.success) {
             navigate("/dashboard")
         }
-    }, [userAuth.success])
+    }, [userAuth.success]);
+
+    // useEffect(() => {
+    //     if (userAuth.success) {
+    //         Swal.fire({
+    //             icon: "success",
+    //             title: "You have succeesfully login",
+    //             text: "Welcome back"
+    //         });
+    //         navigate("/dashboard")
+
+    //     }
+    //     // if (userAuth.success) {
+    //     // }
+    // }, [userAuth.success]);
+
+    useEffect(() => {
+        if (userAuth.error) {
+            Swal.fire({
+                icon: "error",
+                title: "Login Failed",
+                text: userAuth.error
+            });
+        }
+    }, [userAuth.error]);
 
     return (
         <div>
