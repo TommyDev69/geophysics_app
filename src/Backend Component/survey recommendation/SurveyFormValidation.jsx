@@ -91,7 +91,7 @@ const SurveyFormValidation = ({ onNext }) => {
       }).then(() => {
         dispatch(resetSuccessAction());
         setSurveyForm({
-          projectName: "",
+          surveyName: "",
           description: "",
           surveyObjective: "",
           others: "",

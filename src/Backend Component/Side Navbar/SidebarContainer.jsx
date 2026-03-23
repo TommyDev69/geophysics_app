@@ -85,8 +85,8 @@ export default function SidebarContainer() {
             {surveyStep === 5 &&(
               <FifthSurveyConnectivity onNext = {() =>setSurveyStep(6)} />
             )}
-            {surveyStep ===6 &&(
-              <SixSurveyContainer />
+            {surveyStep === 6 &&(
+              <SixSurveyContainer onNext = {() =>setSurveyStep(1)}/>
             ) }
           </>
         )}
