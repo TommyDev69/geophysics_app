@@ -46,7 +46,6 @@ function App() {
 
           </Routes>
        </Router>
-<ProjectPlanner />
 
         
     </div>
