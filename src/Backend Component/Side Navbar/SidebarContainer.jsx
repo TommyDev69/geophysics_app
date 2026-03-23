@@ -16,22 +16,31 @@ import FifthSurveyConnectivity from "../Fifth recommendation/FifthSurveyConnecti
 import SixSurveyHead from "../Six survey recommendation/SixSurveyHead";
 import FourthSurveyHead from "../../Fourth Survey/FourthSurveyHead";
 import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
+import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
+import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("dashboard"); // Track active page
   const [surveyStep, setSurveyStep] = useState(1); // Track survey step
+  const [projectPlanner, setProjectPanner] = useState(1); // Track survey step
+
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const handleMenuClick = (menuName) => {
     setActiveMenu(menuName);
     setSurveyStep(1); // Reset survey step if sidebar menu changes
+    setProjectPanner(1)
     setIsSidebarOpen(false);
   };
 
   const handleSurveyNext = () => {
     setSurveyStep(2); // Move to next survey step
+  };
+
+  const handleProjectNext = () => {
+    setProjectPanner(2); // Move to next project step
   };
 
   return (
@@ -68,7 +77,7 @@ export default function SidebarContainer() {
             {surveyStep === 3 && (
               <ThirdSurveyValidation onNext={() =>setSurveyStep(4)} />
             )}
-            {surveyStep ===4 &&(
+            {surveyStep === 4 &&(
               <FourthSurveyConnectivity onNext = {() =>setSurveyStep(5)} />
             )}
 
@@ -80,9 +89,20 @@ export default function SidebarContainer() {
             ) }
           </>
         )}
-        {activeMenu === "project planner" && <ProjectPlanner />}
+        {activeMenu === "project planner" && (
+          <>
+          {projectPlanner === 1 &&(
 
-        {/* Mobile Sidebar Modal */}
+           <ProjectPlannerValidation onNext = {() => setProjectPanner(2)} />
+          )}
+
+          {projectPlanner === 2 && (
+              <ProjectPlanner2 />
+    )}
+        </>
+        )}
+
+        {/* /* Mobile Sidebar Modal */}
         {isSidebarOpen && (
           <>
             {/* Overlay */}

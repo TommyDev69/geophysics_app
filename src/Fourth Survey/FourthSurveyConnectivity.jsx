@@ -11,21 +11,21 @@ export default function FourthSurveyConnectivity({onNext}) {
 
   const handleSelect = () => {
      if (!setSelectedRow) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Fill all required fields (*) before continuing",
-                });
-                return;
-            }
-    
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: "Survey setup completed",
-            }).then(() => {
-                if (onNext) onNext();
-            });
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Fill all required fields (*) before continuing",
+        });
+        return;
+    }
+
+    Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Survey setup completed",
+    }).then(() => {
+        if (onNext) onNext();
+    });
   };
 
   return (

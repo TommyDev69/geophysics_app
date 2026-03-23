@@ -19,11 +19,13 @@ import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 // import ThirdSurveySideBar from './Backend Component/Third Survey/ThirdSurveySideBar';
  import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
  import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
+import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
+import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
 
 function App() {
   return (
     <div className='app'>
-
+{/* <ProjectPlanner /> */}
         <Router>
           <Routes> 
             {/* Public Pages */}
@@ -39,14 +41,14 @@ function App() {
             <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
             <Route path = "/survey/step-5" element={<FifthSurveyContainer />} />
             <Route path = "/survey/step-6" element={<SixSurveyContainer />} />
+            <Route path='/project_planner_2' element= {<ProjectPlanner />} />
 
 
           </Routes>
        </Router>
+<ProjectPlanner />
 
-
-        {/* <FifthSurveyContainer /> 
-        <SixSurveyContainer /> */}
+        
     </div>
   );
 }
