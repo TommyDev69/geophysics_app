@@ -1,14 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import Swal from "sweetalert2";
 import ProjectPlanner from "./ProjectPlanner";
 
 const ProjectPlannerValidation = ({onNext}) => {
-    // const navigate = useNavigate();
-
-    // const HandleNextPage = () => {
-    //     navigate("./ProjectPlanner2");
-    // };
 
     const [projectDetails, setProjectDetails] = useState({
         projectName: ""

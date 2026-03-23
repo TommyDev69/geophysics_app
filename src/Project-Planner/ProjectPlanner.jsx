@@ -158,24 +158,24 @@ export default function ProjectPlanner({
                     </div>
                 </div>
                 {/* BUTTONS */}
-                                <div className="flex justify-between px-6 py-8">
-                                    <button
-                                        type="button"
-                                        onClick={() => window.history.back()}
-                                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
-                                    >
-                                        <img src={left} alt="" />
-                                        Cancel
-                                    </button>
-                
-                                    <button
-                                        type="submit"
-                                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
-                                    >
-                                        Next
-                                        <img src={right} alt="" />
-                                    </button>
-                                </div>
+                <div className="flex justify-between px-6 py-8">
+                    <button
+                        type="button"
+                        onClick={() => window.history.back()}
+                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
+                    >
+                        <img src={left} alt="" />
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                    >
+                        Next
+                        <img src={right} alt="" />
+                    </button>
+                </div>
             </div>
 
         </form>

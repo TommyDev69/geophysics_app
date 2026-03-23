@@ -1,12 +1,18 @@
 import save from "./Save.jpg";
 import plusIcon from "./Plus.jpg";
-import back from "./back.jpg";
-import forward from "./forward.jpg"
 import trash from "./Trash2.jpg"
+import left from '../Backend Component/image/ChevronLeft.png';
+import right from '../Backend Component/image/ChevronRight.png';
 
-
-export default function ProjectPlanner2() {
+export default function ProjectPlanner2({
+      error = {},
+    HandleSubmit = () => {},
+    HandleChange = () => {},
+    userInput = { projectName: "" }
+}) {
     return (
+         <form onSubmit={HandleSubmit}>
+
         <div className=" flex flex-col w-[967px] h-[1046px] mt-[41px] mx-auto gap-[22px]">
             <div className="flex w-[967px] h-[64px] justify-between">
                 <div className="flex flex-col gap-[4px] w-[314px] h-[36px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
@@ -81,7 +87,8 @@ export default function ProjectPlanner2() {
                                 <label htmlFor="" className="font-instrument mt-[0.5px] font-medium text-[14px] leading-[20px] tracking-[0.15px]">Project Name</label>
                                 <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                             </div>
-                            <input className="flex w-[768px] h-[42px] rounded-[10px] text-[#0A0A0A] border px-[16px] py-[8px] border-[#DADCEO]" placeholder="e.g Lagos Survey Execution" />
+                            <input value={userInput?.projectName ?? ""} onChange={HandleChange} className="flex w-[768px] h-[42px] rounded-[10px] text-[#0A0A0A] border px-[16px] py-[8px] border-[#DADCEO]" placeholder="e.g Lagos Survey Execution" />
+                                <p className="text-red-600">{error.projectName}</p>
 
                         </div>
                         <div className="flex flex-col h-[148px] gap-[8px]">
@@ -166,21 +173,25 @@ export default function ProjectPlanner2() {
 
                 </div>
             </div>
-            <div className="flex w-=[967px] h-[44px] justify-between m-[9.5px]">
-                <button className="w-[96px] h-[44px] font-instrument font-medium gap-2 text-[16px] leading-[24px] tracking-[-0.31px] flex items-center justify-center text-[#364153] rounded-[10px] border-2 opacity-[50%] bg-[#FFFFFF] border-[#DADCEO]">
-                    <img src={back} alt="back" className="w-[8px] h-[8px] ml-[6px] border" />
-
-                    <span>Back</span>
-
+           <div className="flex justify-between px-6 py-8">
+                <button
+                    type="button"
+                    onClick={() => window.history.back()}
+                    className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
+                >
+                    <img src={left} alt="" />
+                    Cancel
                 </button>
-                <button className="w-[91px] bg-[#585858] h-[40px] font-instrument font-medium gap-2 text-[16px] leading-[24px] tracking-[-0.31px] flex items-center justify-center text-[#FFFFFF] rounded-[10px] border-2 opacity-50 border-[#DADCEO]">
 
-                    {/* <span className="">Next</span> */}
+                <button
+                    type="submit"
+                    className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                >
                     Next
-                    <img src={forward} alt="forward" className="w-[8px] h-[8px] ml-[6px] border" />
-
+                    <img src={right} alt="" />
                 </button>
             </div>
         </div>
+         </form>
     )
 }
