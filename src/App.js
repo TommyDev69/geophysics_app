@@ -40,7 +40,7 @@ function App() {
             <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
             <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
             <Route path = "/survey/step-5" element={<FifthSurveyContainer />} />
-            <Route path = "/survey/step-6" element={<SixSurveyContainer />} />
+            {/* <Route path = "/survey/step-6" element={<SixSurveyContainer />} /> */}
             <Route path='/project_planner_2' element= {<ProjectPlanner />} />
 
 

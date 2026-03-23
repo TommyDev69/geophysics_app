@@ -18,6 +18,7 @@ import FourthSurveyHead from "../../Fourth Survey/FourthSurveyHead";
 import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
 import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
 import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
+import SixSurveyContainer from "../Six survey recommendation/SixSurveyContainer";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -81,11 +82,11 @@ export default function SidebarContainer() {
               <FourthSurveyConnectivity onNext = {() =>setSurveyStep(5)} />
             )}
 
-            {surveyStep ===5 &&(
+            {surveyStep === 5 &&(
               <FifthSurveyConnectivity onNext = {() =>setSurveyStep(6)} />
             )}
             {surveyStep ===6 &&(
-              <SixSurveyHead onNext = {() =>setSurveyStep(7)} />
+              <SixSurveyContainer />
             ) }
           </>
         )}
