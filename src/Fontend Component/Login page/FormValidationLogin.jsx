@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUserAction } from "../../redux/slice/user/usersSlice";
-// import FormLogin from "./FormLogin";
-// import { loginUserAction } from "../../redux/slice/user/userSlice";
+
 
 
 const FormValidationLogin = () => {
@@ -43,25 +42,25 @@ const FormValidationLogin = () => {
 
         // --- Dispatch login action ---
         dispatch(loginUserAction(formData))
-        // .unwrap()
-        // .then(() => {
-        //     navigate("/Dashboard"); // go to dashboard after success
-        // })
-        // .catch(err => {
-        //     console.log(err); // show error from API if needed
-        // });
     };
-    // get data from store
-      const { user, loading, success } = useSelector((state) => state?.users)
-    
+    const { userAuth } = useSelector((state) => state?.users)
+
+
     useEffect(() => {
-        if (success) {
+        if (userAuth.success) {
             navigate("/dashboard")
         }
-    }, [success])
+    }, [userAuth.success])
+
     return (
         <div>
-            <FormLogin />
+
+            <FormLogin
+                handleSubmit={handleSubmit}
+                formData={formData}
+                handleChange={handleChange}
+                error={error}
+            />
         </div>
     );
 }
