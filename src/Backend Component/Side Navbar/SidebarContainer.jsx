@@ -25,6 +25,7 @@ export default function SidebarContainer() {
   const [activeMenu, setActiveMenu] = useState("dashboard"); // Track active page
   const [surveyStep, setSurveyStep] = useState(1); // Track survey step
   const [projectPlanner, setProjectPanner] = useState(1); // Track survey step
+  const [secondSurveyData, setSecondSurveyData] = useState(null); // Save lat/long data from step 2
 
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -72,35 +73,43 @@ export default function SidebarContainer() {
             )}
 
             {surveyStep === 2 && (
-              <SecondSurveyConnectivity onNext={() => setSurveyStep(3)} />
+              <SecondSurveyConnectivity
+                onNext={(latLongData) => {
+                  setSecondSurveyData(latLongData);
+                  setSurveyStep(3);
+                }}
+              />
             )}
 
             {surveyStep === 3 && (
-              <ThirdSurveyValidation onNext={() =>setSurveyStep(4)} />
+              <ThirdSurveyValidation
+                secondSurveyData={secondSurveyData}
+                onNext={() => setSurveyStep(4)}
+              />
             )}
-            {surveyStep === 4 &&(
-              <FourthSurveyConnectivity onNext = {() =>setSurveyStep(5)} />
+            {surveyStep === 4 && (
+              <FourthSurveyConnectivity onNext={() => setSurveyStep(5)} />
             )}
 
-            {surveyStep === 5 &&(
-              <FifthSurveyConnectivity onNext = {() =>setSurveyStep(6)} />
+            {surveyStep === 5 && (
+              <FifthSurveyConnectivity onNext={() => setSurveyStep(6)} />
             )}
-            {surveyStep === 6 &&(
-              <SixSurveyContainer onNext = {() =>setSurveyStep(1)}/>
-            ) }
+            {surveyStep === 6 && (
+              <SixSurveyContainer onNext={() => setSurveyStep(1)} />
+            )}
           </>
         )}
         {activeMenu === "project planner" && (
           <>
-          {projectPlanner === 1 &&(
+            {projectPlanner === 1 && (
 
-           <ProjectPlannerValidation onNext = {() => setProjectPanner(2)} />
-          )}
+              <ProjectPlannerValidation onNext={() => setProjectPanner(2)} />
+            )}
 
-          {projectPlanner === 2 && (
+            {projectPlanner === 2 && (
               <ProjectPlanner2 />
-    )}
-        </>
+            )}
+          </>
         )}
 
         {/* /* Mobile Sidebar Modal */}

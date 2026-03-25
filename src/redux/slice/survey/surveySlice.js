@@ -74,8 +74,20 @@ export const getSurveyAction = createAsyncThunk(
 // Update Survey Action
 export const updateSurveyAction = createAsyncThunk(
     "surveys/update",
-    async ({ id, surveyData }, { rejectWithValue, getState }) => {
+    async (payload, { rejectWithValue, getState }) => {
         try {
+            const { id, surveyData } = payload;
+            const {
+                latitude,
+                longitude,
+                vegetationDensity,
+                ambientNoise,
+                targetDepthRange,
+                layoutPattern,
+                stationSpacing,
+                lineSpacing,
+            } = surveyData;
+
             const token = getState()?.users?.userAuth?.userInfo?.message?.token;
             const config = {
                 headers: {
@@ -83,8 +95,20 @@ export const updateSurveyAction = createAsyncThunk(
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const res = await axios.put(`${baseUrl}/surveys/${id}`, surveyData, config);
-            return res.data;
+            const res = await axios.put(`${baseUrl}/surveys/update/${id}`, {
+                latitude,
+                longitude,
+                vegetationDensity,
+                ambientNoise,
+                targetDepthRange,
+                layoutPattern,
+                stationSpacing,
+                lineSpacing,
+            }, config);
+            console.log(res.data.survey);
+
+
+            return res.data.survey;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
@@ -169,11 +193,13 @@ const surveySlice = createSlice({
             state.loading = false;
             state.success = true;
             state.successMessage = action.payload.message;
-            state.survey = action.payload.survey;
-            // Update in surveys array
-            const index = state.surveys.findIndex(s => s._id === action.payload.survey._id);
-            if (index !== -1) {
-                state.surveys[index] = action.payload.survey;
+            if (action.payload.survey) {
+                state.survey = action.payload.survey;
+                // Update in surveys array
+                const index = state.surveys.findIndex(s => s._id === action.payload.survey._id);
+                if (index !== -1) {
+                    state.surveys[index] = action.payload.survey;
+                }
             }
         });
         builder.addCase(updateSurveyAction.rejected, (state, action) => {

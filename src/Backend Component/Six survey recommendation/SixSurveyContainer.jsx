@@ -1,12 +1,12 @@
 import React from 'react'
 import SixSurveyHead from './SixSurveyHead'
-import SixSurveyContent from './SixSurveyContent'
+import SixSurveyConnectivity from './SixSurveyConnectivity'
 
-export default function SixSurveyContainer() {
+export default function SixSurveyContainer({ selectedMethod, onNext }) {
   return (
     <div className='w-[1280px] mx-auto'> 
       <SixSurveyHead />
-      <SixSurveyContent />
+      <SixSurveyConnectivity selectedMethod={selectedMethod} onNext={onNext} />
     </div>
   )
 }

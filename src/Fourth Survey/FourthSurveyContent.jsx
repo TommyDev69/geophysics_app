@@ -13,18 +13,23 @@ export default function FourthSurveyContent({ handleSelect, selectedRow, handleI
     { id: 'gravity', name: 'Gravity Survey', details: 'Gravity survey extra details here' },
   ];
 
+  const selectedMethod = methods.find((method) => method.id === selectedRow);
+  const primaryName = selectedMethod ? selectedMethod.name : 'Electrical Resistivity Tomography (ERT)';
+  const primaryDetails = selectedMethod ? selectedMethod.details : 'Electrical Resistivity Tomography (ERT) is recommended based on current inputs.';
+
   return (
     <form onSubmit={handleSelect}>
 
       <div className="w-full border px-6 py-4 rounded-lg border-gray-300">
 
-        {/* HEADER */}
+        {/* HEADER */}selectedMethod
         <h2 className="text-xl font-semibold mb-4">Method Recommendation</h2>
 
         {/* PRIMARY CARD */}
         <div className="border rounded-lg p-4 bg-gray-100 mb-6">
           <h3 className="text-lg font-semibold mb-2">Primary Recommendation</h3>
-          <p>Electrical Resistivity Tomography (ERT)</p>
+          <p>{primaryName}</p>
+          <p className="text-sm text-gray-500 mt-1">{primaryDetails}</p>
 
           <div className="flex mt-4">
             {/* LEFT */}

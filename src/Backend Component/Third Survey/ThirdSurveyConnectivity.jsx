@@ -1,11 +1,10 @@
 import React from 'react'
-// import SidebarConnectivity from '../Side Navbar/SidebarConnectivity'
-import ThirdSurveySideBar from './ThirdSurveySideBar'
+import ThirdSurveyValidation from './ThirdSurveyValidation'
 
-export default function ThirdSurveyConnectivity() {
+export default function ThirdSurveyConnectivity({ secondSurveyData, onNext }) {
   return (
     <>
-      <ThirdSurveySideBar />
+      <ThirdSurveyValidation secondSurveyData={secondSurveyData} onNext={onNext} />
     </>
   )
 }

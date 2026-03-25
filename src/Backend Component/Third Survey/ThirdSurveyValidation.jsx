@@ -1,8 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import ThirdSurveyContent from './ThirdSurveyContent';
 import Swal from "sweetalert2";
+import { getUserProfileAction } from '../../redux/slice/user/usersSlice';
+import { updateSurveyAction } from '../../redux/slice/survey/surveySlice';
+import { resetSuccessAction, resetErrAction } from '../../redux/slice/globalActions/globalActions';
 
-export default function ThirdSurveyValidation({ onNext }) {
+export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
+    const dispatch = useDispatch();
+    const { profile } = useSelector((state) => state.users);
+    const { loading, error: reduxError, success, successMessage } = useSelector((state) => state.surveys);
+
+    useEffect(() => {
+        dispatch(getUserProfileAction());
+    }, [dispatch]);
+
+    const dataFromProfileLatitude = profile?.message?.survey?.[0]?.latitude || '';
+    const dataFromProfileLongitude = profile?.message?.survey?.[0]?.longitude || '';
+
+    const lengthValue = secondSurveyData?.latitude || dataFromProfileLatitude || '0';
+    const breadthValue = secondSurveyData?.longitude || dataFromProfileLongitude || '0';
 
     const [userInput, setUserInput] = useState({
         vegetation: '',
@@ -17,6 +34,7 @@ export default function ThirdSurveyValidation({ onNext }) {
         dept: "",
         check: ""
     });
+    const [submitted, setSubmitted] = useState(false);
 
     // ✅ FIXED
      const handleChanges = (e) => {
@@ -70,7 +88,7 @@ export default function ThirdSurveyValidation({ onNext }) {
             newErrors.dept = 'Depth range is required';
         }
 
-        if (!userInput.checker) {
+        if (!userInput.checker.length) {
             newErrors.check = 'Pick at least one checked field';
         }
 
@@ -86,14 +104,57 @@ export default function ThirdSurveyValidation({ onNext }) {
             return;
         }
 
-        Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Survey setup completed",
-        }).then(() => {
-            if (onNext) onNext();
-        });
+        // Get survey ID from profile
+        const surveyId = profile?.message?.survey?.[0]?._id;
+        if (!surveyId) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Survey ID not found. Please ensure a survey exists.",
+            });
+            return;
+        }
+
+        // Prepare data to update
+        const surveyData = {
+            latitude: lengthValue,
+            longitude: breadthValue,
+            vegetationDensity: userInput.vegetation,
+            ambientNoise: userInput.ambient,
+            targetDepthRange: userInput.depthRange,
+        };
+
+        // Dispatch update action
+        dispatch(updateSurveyAction({ id: surveyId, surveyData }));
+        setSubmitted(true);
     };
+
+    // Handle Redux success and error
+    useEffect(() => {
+        if (submitted && success) {
+            Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: successMessage || "Site characterisation data saved successfully",
+            }).then(() => {
+                setSubmitted(false);
+                dispatch(resetSuccessAction());
+                if (onNext) onNext();
+            });
+        }
+    }, [submitted, success, successMessage, dispatch, onNext]);
+
+    useEffect(() => {
+        if (reduxError) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: reduxError,
+            }).then(() => {
+                dispatch(resetErrAction());
+            });
+        }
+    }, [reduxError, dispatch]);
 
     return (
         <div>
@@ -101,6 +162,8 @@ export default function ThirdSurveyValidation({ onNext }) {
                 HandleSubmit={handleSubmitSurvey}
                 SurveyChange={handleChanges}
                 error={error}
+                length={lengthValue}
+                breadth={breadthValue}
             />
         </div>
     );
