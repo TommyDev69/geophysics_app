@@ -1,6 +1,6 @@
 import React from 'react'
 import FifthSurveyHead from './FifthSurveyHead'
-import FifthSurveyContent from './FifthSurveyContent'
+// import FifthSurveyContent from './FifthSurveyContent'
 import FifthSurveyConnectivity from './FifthSurveyConnectivity'
 
 export default function FifthSurveyContainer() {
