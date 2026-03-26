@@ -1,4 +1,10 @@
-const SixSurveyContent = () => {
+const SixSurveyContent = ({ selectedMethod, projectName, clientName, projectObjective, clientEmail, onNext }) => {
+    const methodName = selectedMethod || 'Electrical Resistivity Tomography (ERT)';
+
+    const handleNext = () => {
+        if (onNext) onNext();
+    };
+
     return ( 
          <div className="w-[967px] mx-auto border border-[#D7D7D7] rounded-[10px]">
             <div className="w-[917px]  text-[#101828] mx-auto">
@@ -16,14 +22,14 @@ const SixSurveyContent = () => {
                                             Project Name
                                         </p>
 
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Project Lagos</p>
+                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{projectName}</p>
                                     </div>
                                     <div className="w-1/2 ">
                                         <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
                                             Client Name
                                         </p>
 
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Tola</p>
+                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{clientName}</p>
                                     </div>
                                 </div>
 
@@ -33,14 +39,14 @@ const SixSurveyContent = () => {
                                             Project Objective
                                         </p>
 
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Project Lagos</p>
+                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{projectObjective}</p>
                                     </div>
                                     <div className="w-1/2">
                                         <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
                                             Client Email
                                         </p>
 
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">tola@gmail.com</p>
+                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{clientEmail}</p>
                                     </div>
                                  </div>
 
@@ -53,46 +59,31 @@ const SixSurveyContent = () => {
 
                            <p className="w-[800px] font-instrument font-semibold text-[22px] leading-[28px] tracking-[-0.45px] py-6 ">Recommended Method</p>
                              <div className="w-[800px] bg-[#F9F9F9] mx-auto  py-10 flex justify-center">
-                                <p className="font-instrument font-bold  text-[18px] leading-6 tracking-[-0.31px] text-[#101828]">Electrical Resistivity Tomography (ERT)</p>
-
-                                {/* <div className="flex items-center">
-                                    <div className="w-1/2 py-6">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Project Name
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Project Lagos</p>
-                                    </div>
-                                    <div className="w-1/2 ">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Client Name
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Tola</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <div className="w-1/2 py-6">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Project Objective
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">Project Lagos</p>
-                                    </div>
-                                    <div className="w-1/2">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Client Email
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">tola@gmail.com</p>
-                                    </div>
-                                 </div> */}
+                                <p className="font-instrument font-bold  text-[18px] leading-6 tracking-[-0.31px] text-[#101828]">{methodName}</p>
 
                               
                             </div>
                 
                     </div>
+                </div>
+
+                {/* Navigation Buttons */}
+                <div className="flex justify-end gap-4 px-6 py-8">
+                    <button
+                        type="button"
+                        onClick={() => window.history.back()}
+                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleNext}
+                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                    >
+                        Next
+                    </button>
                 </div>  
                 </div>  
 

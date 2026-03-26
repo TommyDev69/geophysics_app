@@ -5,7 +5,9 @@ const ThirdSurveyContent = ({
     HandleSubmit,
     SurveyChange,
     error = {},
-    userInput = {}   // ✅ prevents undefined crash
+    userInput = {},   // ✅ prevents undefined crash
+    length = '0',
+    breadth = '0',
 }) => {
 
     const constraints = [
@@ -38,12 +40,12 @@ const ThirdSurveyContent = ({
 
                         <div className="bg-gray-200 p-4 rounded mb-4">
                             <p>Length</p>
-                            <h2>0</h2>
+                            <h2>{length}</h2>
                         </div>
 
                         <div className="bg-gray-200 p-4 rounded">
                             <p>Breadth</p>
-                            <h2>0</h2>
+                            <h2>{breadth}</h2>
                         </div>
                     </div>
 
@@ -59,14 +61,14 @@ const ThirdSurveyContent = ({
                         <p className="text-red-500">{error.veg}</p>
                         <select
                             name="vegetation"
-                            value={userInput?.vegetation }
+                            value={userInput?.vegetation}
                             onChange={SurveyChange}
                             className="w-full border p-3 rounded mb-4"
                         >
                             <option value="">Select</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
                         </select>
 
                         {/* Ambient */}
@@ -74,14 +76,14 @@ const ThirdSurveyContent = ({
                         <p className="text-red-500">{error.amb}</p>
                         <select
                             name="ambient"
-                            value={userInput?.ambient }
+                            value={userInput?.ambient}
                             onChange={SurveyChange}
                             className="w-full border p-3 rounded mb-4"
                         >
                             <option value="">Select</option>
-                            <option value="low">Low</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="high">High</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Moderate</option>
+                            <option value="High">High</option>
                         </select>
 
                         {/* Depth */}
@@ -89,14 +91,16 @@ const ThirdSurveyContent = ({
                         <p className="text-red-500">{error.dept}</p>
                         <select
                             name="depthRange"
-                            value={userInput?.depthRange }
+                            value={userInput?.depthRange}
                             onChange={SurveyChange}
                             className="w-full border p-3 rounded mb-4"
                         >
                             <option value="">Select</option>
-                            <option value="10-20">10–20m</option>
-                            <option value="20-50">20–50m</option>
-                            <option value="50-100">50–100m</option>
+                            <option value="0-5m">0–5m</option>
+                            <option value="5-10m">5–10m</option>
+                            <option value="10-20m">10–20m</option>
+                            <option value="20-50m">20–50m</option>
+                            <option value="50m+">50m+</option>
                         </select>
 
                         {/* CHECKBOX */}
@@ -110,7 +114,7 @@ const ThirdSurveyContent = ({
                                         type="checkbox"
                                         name="checker"
                                         value={item}
-                                        checked={userInput?.checker?.includes(item) }
+                                        checked={userInput?.checker?.includes(item)}
                                         onChange={SurveyChange}
                                     />
                                     {item}

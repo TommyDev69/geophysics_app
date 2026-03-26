@@ -2,38 +2,46 @@ import React, { useState } from 'react';
 import FourthSurveyContent from './FourthSurveyContent';
 import Swal from "sweetalert2";
 
-export default function FourthSurveyConnectivity({onNext}) {
+export default function FourthSurveyConnectivity({ onNext }) {
   const [selectedRow, setSelectedRow] = useState(null);
 
-  const handleIcon = (row) =>{
-     setSelectedRow(prev => (prev === row ? null : row));
+  const methods = [
+    { id: 'magnetic', name: 'Magnetic Survey' },
+    { id: 'gravity', name: 'Gravity Survey' },
+  ];
+
+  const handleIcon = (row) => {
+    setSelectedRow(prev => (prev === row ? null : row));
   }
 
-  const handleSelect = () => {
-     if (!setSelectedRow) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Fill all required fields (*) before continuing",
-        });
-        return;
+  const handleSelect = (e) => {
+    e.preventDefault();
+    if (!selectedRow) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please select a method before continuing",
+      });
+      return;
     }
 
+    const selectedMethod = methods.find(m => m.id === selectedRow);
+
     Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Survey setup completed",
+      icon: "success",
+      title: "Success",
+      text: "Survey setup completed",
     }).then(() => {
-        if (onNext) onNext();
+      if (onNext) onNext(selectedMethod.name);
     });
   };
 
   return (
     <div className='w-[967px] mx-auto pt-16'>
-      <FourthSurveyContent 
+      <FourthSurveyContent
         handleSelect={handleSelect}  // lowercase h
         selectedRow={selectedRow}
-        handleIcon = {handleIcon}
+        handleIcon={handleIcon}
       />
     </div>
   );
