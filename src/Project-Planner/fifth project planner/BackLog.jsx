@@ -11,6 +11,7 @@ const BackLog = () => {
     }
 
     return (  
+        
         <div className="border border-[#DADCE0] rounded-[10px]">
 
             <div className="py-2  w-[917px] border items-center rounded-[10px] border-[#DADCE0] bg-[#F9FAFB] flex gap-4">
@@ -38,6 +39,8 @@ const BackLog = () => {
      
               <BackLogContent />
             )}
+
+            
         </div>
     );
 }
