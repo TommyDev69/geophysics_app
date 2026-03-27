@@ -32,7 +32,7 @@ export default function FifthProjectPlannerContainer() {
                         Cancel
                   </button>
 
-                   <button className=" w-[117px] bg-[#585858] text-#ffffff border-2 flex justify-center items-center  border-[#DADCE0] rounded-[10px] py-[8px] px-[16px]">
+                   <button className=" w-[117px] bg-[#585858] text-[#ffffff] border-2 flex justify-center items-center  border-[#DADCE0] rounded-[10px] py-[8px] px-[16px]">
                         Create Epic
                   </button>
                 </div>
