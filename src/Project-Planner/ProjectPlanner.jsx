@@ -6,7 +6,12 @@ export default function ProjectPlanner({
     error = {},
     HandleSubmit = () => {},
     HandleChange = () => {},
-    userInput = { projectName: "" }
+    userInput = { projectName: "" },
+    availableUsers = [],
+    selectedTeamMemberId = "",
+    onSelectTeamMember = () => {},
+    onAddTeamMember = () => {},
+    teamMembers = [],
 }) {
     return (
         <form onSubmit={HandleSubmit}>
@@ -92,25 +97,31 @@ export default function ProjectPlanner({
                             <div className="flex flex-col h-[148px] gap-[8px]">
                                 <label className="w-[768px] h-[20px] mt-[0.5px] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-[#364153]">
                                     Description
+                                    <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                 </label>
-                                <textarea name="" id="" className="flex py-[8px] px-[18px] rounded-[10px] text-[16px] border border-[#DADCEO] resize-none outline-none" placeholder="Provide a brief description of the project...">
+                                <textarea name="description" id="" className="flex py-[8px] px-[18px] rounded-[10px] text-[16px] border border-[#DADCEO] resize-none outline-none" placeholder="Provide a brief description of the project..." value={userInput?.description ?? ""} onChange={HandleChange}>
                                 </textarea>
+                                <p className="text-red-600">{error.description}</p>
                             </div>
                             <div className="container grid grid-cols-2 w-[768px] h-[70px] gap-[16px]">
                                 <div className="">
                                     <div className="w-full max-w-[376px] h-[70px] grid gap-2 row-start-1 col-start-1 row-span-1 col-span-1">
-                                        <label htmlFor="" className="mt-[0.5px] fonst -instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
+                                        <label htmlFor="" className="mt-[0.5px] font-instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
                                             Start Date
+                                            <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                         </label>
-                                        <input type="text" className="h-[42px] rounded-[10px] border border-[#DADCEO]" />
+                                        <input type="date" name="startDate" className="h-[42px] rounded-[10px] border border-[#DADCEO] px-2" value={userInput?.startDate ?? ""} onChange={HandleChange} />
+                                        <p className="text-red-600 text-sm">{error.startDate}</p>
                                     </div>
                                 </div>
                                 <div className="">
                                     <div className="w-full max-w-[376px] h-[70px] ml-[px] grid gap-2 row-start-1 col-start-2 row-span-1 col-span-1">
-                                        <label htmlFor="" className="">
+                                        <label htmlFor="" className="mt-[0.5px] font-instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
                                             End Date
+                                            <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                         </label>
-                                        <input type="text" className="h-[42px] rounded-[10px] border border-[#DADCEO]" />
+                                        <input type="date" name="endDate" className="h-[42px] rounded-[10px] border border-[#DADCEO] px-2" value={userInput?.endDate ?? ""} onChange={HandleChange} />
+                                        <p className="text-red-600 text-sm">{error.endDate}</p>
                                     </div>
                                 </div>
 
@@ -137,10 +148,41 @@ export default function ProjectPlanner({
                                     <label htmlFor="w-[100px] h-[20px] font-instrument font-medium leading-[20px] tracking-[-0.15px] text-[#364553]">
                                         Team Members
                                     </label>
-                                    <button className=" h-[36px] rounded-[10px] border-2 border-[#DADCEO] flex items-center justify-center gap-2 px-2">
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    {/* <select
+                                        name="selectedTeamMember"
+                                        className="h-[36px] rounded-[10px] border border-[#DADCEO] px-3"
+                                        value={selectedTeamMemberId}
+                                        onChange={onSelectTeamMember}
+                                    >
+                                        <option value="">Select team member</option>
+                                        {availableUsers?.map((user) => (
+                                            <option key={user._id} value={user._id}>
+                                                {user.fullName || user.email}
+                                            </option>
+                                        ))}
+                                    </select> */}
+                                    <button
+                                        type="button"
+                                        onClick={onAddTeamMember}
+                                        className="h-[36px] rounded-[10px] border-2 border-[#DADCEO] flex items-center justify-center gap-2 px-2"
+                                    >
                                         <img src={plusIcon} alt="plus" className="w-[16px] h-[16px]" />
                                         <span>Add Member</span>
                                     </button>
+                                </div>
+                                <div className="max-h-[140px] overflow-auto border border-[#DADCEO] rounded-[10px] p-2">
+                                    {teamMembers?.length > 0 ? (
+                                        teamMembers.map((member) => (
+                                            <div key={member._id || member.email} className="flex justify-between py-1 px-2 border-b last:border-b-0">
+                                                <span>{member.fullName || member.email}</span>
+                                                <span className="text-xs text-gray-500">{member.role || 'user'}</span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="text-gray-400">No team member added yet</p>
+                                    )}
                                 </div>
                             </div>
 

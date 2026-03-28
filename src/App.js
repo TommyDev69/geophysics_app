@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
+import ProjectPlannerValidation from './Project-Planner/ProjectPlannerValidation';
 import ProjectPlanner from './Project-Planner/ProjectPlanner';
 // import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
 
