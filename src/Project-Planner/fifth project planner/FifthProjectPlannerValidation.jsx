@@ -12,7 +12,7 @@ const FifthProjectPlannerValidation = () => {
     ];
 
     return (  
-        <div className="w-[967px] mx-auto rounded-[10px] border border-[rgb(218,220,224)]">
+        <div className="w-[967px] mx-auto ">
             <FifthProjectPlannerContent 
                 Result={dataItems}
                 activeId={activeId}

@@ -5,7 +5,7 @@ export default function FifthProjectPlannerContainer() {
   return (
     <div className='container-fluid'>
       <FifthProjectPlannerValidation />
-          <div className="w-[700px]  my-12 mx-auto p-[24px] bg-[#FFFFFF] border rounded-[10px]">
+          {/* <div className="w-[700px]  my-12 mx-auto p-[24px] bg-[#FFFFFF] border rounded-[10px]">
             <div className="w-[400px] ">
                 <p className="text-[#101828] font-instrument font-semibold text-[24px] leading-[28px] tracking-[-0.45px]">Create New Epic</p>
             </div>
@@ -36,7 +36,7 @@ export default function FifthProjectPlannerContainer() {
                         Create Epic
                   </button>
                 </div>
-          </div>
+          </div> */}
     </div>
   )
 }

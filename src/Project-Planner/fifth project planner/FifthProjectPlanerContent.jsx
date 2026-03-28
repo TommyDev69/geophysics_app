@@ -1,7 +1,8 @@
 import save from "../../Backend Component/image/Save.png"
-import BackLog from "./BackLog";
-import Plus from '../../Backend Component/image/Plus.jpg'
+import BoardValidation from "./BoardValidation";
 
+ import right from "../../Backend Component/image/ChevronRight.png";
+  import left from "../../Backend Component/image/ChevronLeft.png";
 
 const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
     return ( 
@@ -21,7 +22,7 @@ const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col w-[967px] rounded-[10px] py-[10px] px-[25px] text-[#FFFFFF] items-center  ">
+            <div className="flex flex-col w-[967px] pb-40 rounded-[10px] py-[10px] px-[25px] text-[#FFFFFF] items-center  ">
                 <div className="flex w-[917px] py-[20px] justify-between pr-[0.01px] rounded-[10px] border border-[#DADCEO]">
                     <div className="flex w-[306px]  mt-3">
                         <div className="md:container flex flex-col w-[145px] gap-[8px] items-center justify-center">
@@ -65,7 +66,9 @@ const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
                         </div> */}
                     </div>
                 </div>
-                <div className="flex w-[912px] py-2  my-[20px] border-3  mx-auto bg-[#F9FAFB] ">
+                <div className="rounded-[10px] mt-20 pb-20 border border-[rgb(218,220,224)]">
+
+                <div className="flex w-[912px] py-2 border-3  mx-auto bg-[#F9FAFB] ">
                      {Result.map((item) => (
                         <div key={item.id}>
                             <button
@@ -82,22 +85,32 @@ const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-between items-center w-[917px] mx-auto pb-12">
-                    <p className="text-[#364153] font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">Product Backlog</p>
+              
+                {/* <BackLog /> */}
 
-                    <button className="border-[2px]  bg-[#585858] py-3 border-[#DADCE0] text-[#364153Add story] w-[116px] gap-2 flex items-center rounded-[10px]">
-                            <div className="w-[16px] mx-2 ">
-                            <img src={Plus} alt="plus" />
-                            </div>
-                        <div className='w-[64px]'>
-                            <p className="text-[#ffffff] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-center capitalize">new epic</p>
-                        </div>
-                    </button>
+                <BoardValidation />
+                
                 </div>
-                <BackLog />
                     
             </div>
-
+            <div className="flex justify-between mx-auto pb-8">
+                <button
+                type="button"
+                onClick={() => window.history.back()}
+                className="flex gap-2 items-center justify-center w-[120px] py-[10px] px-[15px] rounded-[10px] border border-[#DADCE0] text-[#364153] font-medium text-[14px]"
+                >
+                <img src={left} alt="" />
+                Cancel
+                </button>
+    
+                <button
+                type="submit"
+                className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                >
+                Next
+                <img src={right} alt="" />
+                </button>
+            </div>
         </div>
      );
 }
