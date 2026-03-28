@@ -3,6 +3,9 @@ import BoardValidation from "./BoardValidation";
 
  import right from "../../Backend Component/image/ChevronRight.png";
   import left from "../../Backend Component/image/ChevronLeft.png";
+import BackLog from "./BackLog";
+import SprintView from "./SprintView";
+import Burndown from "./Burndown";
 
 const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
     return ( 
@@ -86,9 +89,11 @@ const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
                     ))}
                 </div>
               
-                {/* <BackLog /> */}
+                {/* <BackLog />
 
-                <BoardValidation />
+                <BoardValidation /> */}
+                {/* <SprintView /> */}
+                <Burndown />
                 
                 </div>
                     
