@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-
+import { Navigate } from "react-router-dom";
 import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
@@ -23,12 +23,16 @@ import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
 import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
 import FifthProjectPlannerContainer from './Project-Planner/fifth project planner/FifthProjectPlannerContainer';
+import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
+import BackLogProduct from './Project-Planner/fifth project planner/BackLogProduct';
+import BackLogProductValidation from './Project-Planner/fifth project planner/BackLogProductValidation';
 
 function App() {
   return (
     <div className='app'>
       <FifthProjectPlannerContainer />
-{/* <ProjectPlanner /> */}
+      {/* <BackLogProductValidation /> */}
+      
         {/* <Router>
           <Routes>  */}
             {/* Public Pages */}
@@ -42,8 +46,11 @@ function App() {
             <Route path="/survey/step-2" element={<SecondSurveyContaine />} />
             <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
             <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
-            <Route path = "/survey/step-5" element={<FifthSurveyContainer />} /> */}
-            {/* <Route path='/project_planner_2' element= {<ProjectPlanner />} /> */}
+            <Route path = "/survey/step-5" element={<FifthSurveyContainer />} />
+            <Route path='/project_planner_2' element= {<ProjectPlanner />} />
+             
+
+            <Route path="/planner" element={<Navigate to="/planner/backlog" />} /> */}
 
 
           {/* </Routes>

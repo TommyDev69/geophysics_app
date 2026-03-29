@@ -1,5 +1,5 @@
 import save from "./Save.jpg"
-import plusIcon from "./plusIcon1.png"
+import Plus from "../Backend Component/image/Plus.png"
 import back from "./back.jpg"
 import forward from "./forward1.png"
 import svg from "./svg.png"
@@ -8,16 +8,16 @@ import svg from "./svg.png"
 // import { Tabs, TabsList, TabsTrigger, TabsContent } from "@shadcn/ui";
 export default function ProjectPlanner3() {
     return (
-        <div className=" flex flex-col -w-[967px] h-[1046px] mt-[81px] ml-[8px] gap-[22px]">
-            <div className="flex w-[967px] h-[64px] justify-between">
-                <div className="flex flex-col gap-[4px] w-[314px] h-[36px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
+        <div className=" flex flex-col w-full md:w-[967px] bg-red-800 md:mx-auto h-[1046px] mt-[81px] ml-[8px] gap-[22px]">
+            <div className="flex w-[967px]  justify-between">
+                <div className="flex flex-col gap-[4px] w-[314px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
                     <h1 className="">Agile Project Planner</h1>
                     <p className="W-[72px] h-[24px] mt-[0.5px] font-instrument font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#4A5565]">Step 1 of 3</p>
                 </div>
                 <div className="relative w-[158px] h-[44px] rounded-[10px] border-[2px] border-[#DADCEO] flex gap-2 items-center justify-center">
                     <img src={save}
                         alt="save"
-                        className="absolute left-[18px] top-[14p] top-1/2 -translate-y-1/2 w-[16px] h-[16px]"
+                        className="absolute left-[18px]  top-1/2 -translate-y-1/2 w-[16px] h-[16px]"
                     />
                     <button className="ml-[44px] font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
                         Save as Draft
@@ -83,7 +83,7 @@ export default function ProjectPlanner3() {
                         <h3>Product Backlog</h3>
                     </div>
                     <div className="w-[107px] h-[32px] rounded-[10px] bg-[#585858] flex items-center justify-center gap-2">
-                        <img src={plusIcon} className="w-[16px] h-[16px]" alt="PlusIcon" />
+                        <img src={Plus} className="w-[16px] h-[16px]" alt="PlusIcon" />
                         <p className="font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-white">
                             New Epic
                         </p>
@@ -102,7 +102,7 @@ export default function ProjectPlanner3() {
                             </p>
                     </div>
                     <div className="flex w-[187px] h-[50px] mt-[12px] ml-[369px] text-[#FFFFFF] rounded-[10px] py-[15px] px-[25px] gap-[8px] bg-[#585858] items-center justify-center">
-                        <img src={plusIcon} className="w-[16px] h-[16px]" alt="plusIcon" />
+                        <img src={Plus} className="w-[16px] h-[16px]" alt="plusIcon" />
                         <button>Create First Epic</button>
                     </div>
 

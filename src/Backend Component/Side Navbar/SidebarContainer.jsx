@@ -109,6 +109,9 @@ export default function SidebarContainer() {
             {projectPlanner === 2 && (
               <ProjectPlanner2 />
             )}
+            {/* {projectPlanner == 1 &&(
+              <Pro
+            )} */}
           </>
         )}
 
