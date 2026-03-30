@@ -18,8 +18,8 @@ import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 // import FourthSurveyHead from './Fourth Survey/FourthSurveyHead';
 // import FourthSurveyContainer from './Fourth Survey/FourthSurveyContainer';
 // import ThirdSurveySideBar from './Backend Component/Third Survey/ThirdSurveySideBar';
- import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
- import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
+import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
+import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
 import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
 import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
 import FifthProjectPlannerContainer from './Project-Planner/fifth project planner/FifthProjectPlannerContainer';
@@ -27,29 +27,29 @@ import FifthProjectPlannerContainer from './Project-Planner/fifth project planne
 function App() {
   return (
     <div className='app'>
-      <FifthProjectPlannerContainer />
-{/* <ProjectPlanner /> */}
-        {/* <Router>
-          <Routes>  */}
-            {/* Public Pages */}
-            {/* <Route path="/" element={<LandingPage />} />
-            <Route path="/register" element={<SignUpApp />} />
-            <Route path="/login" element={<MainLogin />} />
-            <Route path="/planner" element={<ProjectPlanner />} />
-    
-            <Route path="/dashboard" element={<Sidebar />}/>
-            <Route path="/survey" element={<SurveyContainer />} />
-            <Route path="/survey/step-2" element={<SecondSurveyContaine />} />
-            <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
-            <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
-            <Route path = "/survey/step-5" element={<FifthSurveyContainer />} /> */}
-            {/* <Route path='/project_planner_2' element= {<ProjectPlanner />} /> */}
+      {/* <FifthProjectPlannerContainer /> */}
+      {/* <ProjectPlanner />` */}
+      <Router>
+        <Routes>
+          {/* Public Pages */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<SignUpApp />} />
+          <Route path="/login" element={<MainLogin />} />
+          <Route path="/planner" element={<ProjectPlanner />} />
+
+          <Route path="/dashboard" element={<Sidebar />} />
+          <Route path="/survey" element={<SurveyContainer />} />
+          <Route path="/survey/step-2" element={<SecondSurveyContaine />} />
+          <Route path="/survey/step-3" element={<ThirdSurveyContainer />} />
+          <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
+          <Route path="/survey/step-5" element={<FifthSurveyContainer />} />
+          <Route path='/project_planner_2' element={<ProjectPlanner />} />
 
 
-          {/* </Routes>
-       </Router> */}
+        </Routes>
+      </Router>
 
-        
+
     </div>
   );
 }
