@@ -26,17 +26,19 @@ import FifthProjectPlannerContainer from './Project-Planner/fifth project planne
 import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
 import BackLogProduct from './Project-Planner/fifth project planner/BackLogProduct';
 import BackLogProductValidation from './Project-Planner/fifth project planner/BackLogProductValidation';
+import BurndownUserStory from './Project-Planner/fifth project planner/BurndownUserStory';
+import BackLog from './Project-Planner/fifth project planner/BackLog';
 
 function App() {
   return (
     <div className='app'>
-      <FifthProjectPlannerContainer />
       {/* <BackLogProductValidation /> */}
+      {/* <BurndownUserStory /> */}
       
-        {/* <Router>
-          <Routes>  */}
+         <Router>
+          <Routes> 
             {/* Public Pages */}
-            {/* <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/register" element={<SignUpApp />} />
             <Route path="/login" element={<MainLogin />} />
             <Route path="/planner" element={<ProjectPlanner />} />
@@ -48,13 +50,13 @@ function App() {
             <Route path="/survey/step-4" element={<FourthSurveyContainer />} />
             <Route path = "/survey/step-5" element={<FifthSurveyContainer />} />
             <Route path='/project_planner_2' element= {<ProjectPlanner />} />
-             
+            
+            <Route path="/planner" element={<FifthProjectPlannerContainer /> } />
+             <Route path="/backLog" element={<BackLog/>} />
 
-            <Route path="/planner" element={<Navigate to="/planner/backlog" />} /> */}
 
-
-          {/* </Routes>
-       </Router> */}
+          </Routes>
+       </Router>
 
         
     </div>

@@ -1,8 +1,12 @@
 import React from 'react';
 
-export default function BackLogModal({ closeModal }) {
+export default function BackLogModal({ closeModal, onSubmit}){
   return (
-    // Full screen overlay
+    <form onSubmit={onSubmit}>
+      console.log('====================================');
+      console.log(onSubmit)
+      console.log('====================================');
+    {/* // Full screen overlay */}
     <div
       className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
     >
@@ -15,7 +19,7 @@ export default function BackLogModal({ closeModal }) {
         </div>
 
         {/* Form content here */}
-        <div className="">
+        <div className="text-[#101828]">
           <div className="flex flex-col pt-[18px] pb-[12px]">
             <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
               Title
@@ -53,16 +57,17 @@ export default function BackLogModal({ closeModal }) {
         {/* Buttons */}
         <div className="flex gap-6 justify-end mt-6">
           <button
-            onClick={closeModal}
+            onClick={closeModal} type='button'
             className="w-[87px] border-2 flex justify-center items-center text-[#364153] border-[#DADCE0] rounded-[10px] py-[8px] px-[16px]"
           >
             Cancel
           </button>
-          <button className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]">
+          <button  type='submit' className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]">
             Create Epic
           </button>
         </div>
       </div>
     </div>
+    </form>
   );
 }

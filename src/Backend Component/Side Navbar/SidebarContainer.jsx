@@ -19,6 +19,9 @@ import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivi
 import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
 import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
 import SixSurveyContainer from "../Six survey recommendation/SixSurveyContainer";
+import BackLogProductValidation from "../../Project-Planner/fifth project planner/BackLogProductValidation";
+import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
+import FifthProjectPlannerValidation from "../../Project-Planner/fifth project planner/FifthProjectPlannerValidation";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -107,11 +110,11 @@ export default function SidebarContainer() {
             )}
 
             {projectPlanner === 2 && (
-              <ProjectPlanner2 />
+              <SecondProjectPlannerValidation  onNext={() => setProjectPanner(3)}/>
             )}
-            {/* {projectPlanner == 1 &&(
-              <Pro
-            )} */}
+            {projectPlanner === 3 &&(
+              <FifthProjectPlannerValidation/>
+            )}
           </>
         )}
 
