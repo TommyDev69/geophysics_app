@@ -1,5 +1,5 @@
 import save from "./Save.jpg";
-import plusIcon from "./Plus.jpg";
+import plusIcon from "./plus1.png";
 import left from '../Backend Component/image/ChevronLeft.png';
 import right from '../Backend Component/image/ChevronRight.png';
 export default function ProjectPlanner({
@@ -12,6 +12,7 @@ export default function ProjectPlanner({
     onSelectTeamMember = () => {},
     onAddTeamMember = () => {},
     teamMembers = [],
+    onAddMemberNavigate = () => {},
 }) {
     return (
         <form onSubmit={HandleSubmit}>
@@ -143,36 +144,23 @@ export default function ProjectPlanner({
                                     <option value=""></option>
                                 </select>
                             </div>
-                            <div className="flex flex-col w-[768px] h-[188px] gap-[12px]">
+                            <div className="flex w-[768px] h-[188px] gap-[12px]">
                                 <div className="flex w-[768px] h-[36px] justify-between mt-[6px]">
                                     <label htmlFor="w-[100px] h-[20px] font-instrument font-medium leading-[20px] tracking-[-0.15px] text-[#364553]">
                                         Team Members
                                     </label>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    {/* <select
-                                        name="selectedTeamMember"
-                                        className="h-[36px] rounded-[10px] border border-[#DADCEO] px-3"
-                                        value={selectedTeamMemberId}
-                                        onChange={onSelectTeamMember}
-                                    >
-                                        <option value="">Select team member</option>
-                                        {availableUsers?.map((user) => (
-                                            <option key={user._id} value={user._id}>
-                                                {user.fullName || user.email}
-                                            </option>
-                                        ))}
-                                    </select> */}
+                                <div className="flex w-[170px] h-[36px] rounded-[10px] border-[2px] border-[#DADCEO] bg-[#FFFFFF] items-center justify-center gap-2">
                                     <button
                                         type="button"
-                                        onClick={onAddTeamMember}
-                                        className="h-[36px] rounded-[10px] border-2 border-[#DADCEO] flex items-center justify-center gap-2 px-2"
+                                        onClick={onAddMemberNavigate}
+                                        className="h-[36px] flex items-center justify-center gap-2 px-2"
                                     >
                                         <img src={plusIcon} alt="plus" className="w-[16px] h-[16px]" />
-                                        <span>Add Member</span>
+                                        <span className="text-[14px] leading-[20px] tracking-[-0.15px] ">Add Member</span>
                                     </button>
                                 </div>
-                                <div className="max-h-[140px] overflow-auto border border-[#DADCEO] rounded-[10px] p-2">
+                                {/* <div className="max-h-[140px] overflow-auto border border-[#DADCEO] rounded-[10px] p-2">
                                     {teamMembers?.length > 0 ? (
                                         teamMembers.map((member) => (
                                             <div key={member._id || member.email} className="flex justify-between py-1 px-2 border-b last:border-b-0">
@@ -183,7 +171,7 @@ export default function ProjectPlanner({
                                     ) : (
                                         <p className="text-gray-400">No team member added yet</p>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className="w-[768px] h-[340px] rounded-[10px] border-2 border-[#D1D5DC] flex flex-col items-center justify-center gap-4 mb-[20px]">

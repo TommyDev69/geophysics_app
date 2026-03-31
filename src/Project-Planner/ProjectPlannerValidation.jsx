@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 
@@ -9,6 +10,7 @@ import { createProjectAction } from "../redux/slice/project/projectSlice";
 
 const ProjectPlannerValidation = ({ onNext }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [projectDetails, setProjectDetails] = useState({
         projectName: "",
@@ -51,6 +53,10 @@ const ProjectPlannerValidation = ({ onNext }) => {
         if (member && !teamMembers.some((m) => m._id === member._id)) {
             setTeamMembers((prev) => [...prev, member]);
         }
+    };
+
+    const onAddMemberNavigate = () => {
+        navigate("/planner/step-2");
     };
 
     // ✅ Handle input change
@@ -141,6 +147,7 @@ const ProjectPlannerValidation = ({ onNext }) => {
                             icon: "success"
                         }).then(() => {
                             if (onNext) onNext();
+                            navigate("/planner/step-3");
                         });
                     } else {
                         swalWithBootstrapButtons.fire({
@@ -181,6 +188,7 @@ const ProjectPlannerValidation = ({ onNext }) => {
                 onSelectTeamMember={onSelectTeamMember}
                 onAddTeamMember={onAddTeamMember}
                 teamMembers={teamMembers}
+                onAddMemberNavigate={onAddMemberNavigate}
             />
         </>
     );

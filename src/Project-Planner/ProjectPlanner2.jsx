@@ -1,5 +1,5 @@
 import save from "./Save.jpg";
-import plusIcon from "./Plus.jpg";
+import plusIcon from "./plusIcon1.png";
 import trash from "./Trash2.jpg"
 import left from '../Backend Component/image/ChevronLeft.png';
 import right from '../Backend Component/image/ChevronRight.png';

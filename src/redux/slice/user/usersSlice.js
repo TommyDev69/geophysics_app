@@ -78,7 +78,7 @@ export const getUserProfileAction = createAsyncThunk("users/profile",
 
             // make the http request
             const res = await axios.get(`${baseUrl}/users/profile`, config);
-            console.log(res.data);
+            // console.log(res.data);
 
             // save user to local storage
             return res.data

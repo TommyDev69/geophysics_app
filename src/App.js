@@ -6,7 +6,7 @@ import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
 import ProjectPlannerValidation from './Project-Planner/ProjectPlannerValidation';
 import ProjectPlanner from './Project-Planner/ProjectPlanner';
-// import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
+import SecondProjectPlannerValidation from './Project-Planner/SecondProjectPlannerValidation';
 
 // Dashboard / Sidebar Components
 import Sidebar from './Backend Component/Side Navbar/Sidebar';
@@ -22,6 +22,7 @@ import FifthSurveyContainer from './Backend Component/Fifth recommendation/Fifth
 import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
 import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
 import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
+import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
 import FifthProjectPlannerContainer from './Project-Planner/fifth project planner/FifthProjectPlannerContainer';
 
 function App() {
@@ -35,7 +36,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<SignUpApp />} />
           <Route path="/login" element={<MainLogin />} />
-          <Route path="/planner" element={<ProjectPlanner />} />
+          <Route path="/planner" element={<ProjectPlannerValidation />} />
+          <Route path="/planner/step-2" element={<SecondProjectPlannerValidation />} />
+          <Route path="/planner/step-3" element={<ProjectPlanner3 />} />
 
           <Route path="/dashboard" element={<Sidebar />} />
           <Route path="/survey" element={<SurveyContainer />} />

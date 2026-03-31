@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import ProjectPlanner2 from './ProjectPlanner2';
 import Swal from "sweetalert2";
 export default function SecondProjectPlannerValidation({onNext}) {
+    const navigate = useNavigate();
     const [projectDetails, setProjectDetails] = useState({
             projectName: ""
         });
@@ -77,6 +79,7 @@ export default function SecondProjectPlannerValidation({onNext}) {
                         text: "Your project has been created successfully.",
                         icon: "success"
                     }).then(() => {
+                        navigate("/planner/step-3");
                         if (onNext) onNext();
                     });
                 } 

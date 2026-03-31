@@ -18,6 +18,7 @@ import FourthSurveyHead from "../../Fourth Survey/FourthSurveyHead";
 import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
 import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
 import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
+import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
 import SixSurveyContainer from "../Six survey recommendation/SixSurveyContainer";
 
 export default function SidebarContainer() {
@@ -107,7 +108,7 @@ export default function SidebarContainer() {
             )}
 
             {projectPlanner === 2 && (
-              <ProjectPlanner2 />
+              <SecondProjectPlannerValidation onNext={() => setProjectPanner(3)} />
             )}
           </>
         )}
