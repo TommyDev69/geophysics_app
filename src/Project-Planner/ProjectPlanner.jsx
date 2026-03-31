@@ -12,6 +12,8 @@ export default function ProjectPlanner({
     onSelectTeamMember = () => {},
     onAddTeamMember = () => {},
     teamMembers = [],
+    onNext
+     
 }) {
     return (
         <form onSubmit={HandleSubmit}>
@@ -163,11 +165,11 @@ export default function ProjectPlanner({
                                             </option>
                                         ))}
                                     </select> */}
-                                    <button
+                                   <button
                                         type="button"
-                                        onClick={onAddTeamMember}
-                                        className="h-[36px] rounded-[10px] border-2 border-[#DADCEO] flex items-center justify-center gap-2 px-2"
-                                    >
+                                        onClick={() => onAddTeamMember(selectedTeamMemberId)}
+                                        className="w-[168px] h-[36px] rounded-[10px] flex items-center justify-center border-2 border-[#DADCEO] gap-2 px-2"
+                                        >
                                         <img src={plusIcon} alt="plus" className="w-[16px] h-[16px]" />
                                         <span>Add Member</span>
                                     </button>
@@ -212,9 +214,9 @@ export default function ProjectPlanner({
 
                     <button
                         type="submit"
-                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                        className="flex capitalize gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
                     >
-                        Next
+                        create project
                         <img src={right} alt="" />
                     </button>
                 </div>

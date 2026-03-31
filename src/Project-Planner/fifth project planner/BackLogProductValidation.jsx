@@ -38,6 +38,7 @@ const BackLogProductValidation = () => {
         closeModal={closeModal}
         toggleModal={toggleModal}  // optional for convenience inside BackLogProduct
         submitData = { handleSubmitFomModal}
+        
       />
     </div>
   );

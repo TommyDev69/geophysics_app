@@ -1,63 +1,53 @@
 import React, { useState } from "react";
 import SidebarConnectivity from "./SidebarConnectivity";
 import DashboardContainer from "../asset/DashboardContainer";
-import Survey from "../survey recommendation/Survey";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import MyProject from "../../Fontend Component/MyProject/MyProject";
-import ProjectPlanner from "../../Project-Planner/ProjectPlanner";
 import SurveyFormValidation from "../survey recommendation/SurveyFormValidation";
-import SecondSurveyContaine from "../../second survey step/SecondSurveyContaine";
-import ThirdSurveyContainer from "../Third Survey/ThirdSurveyContainer";
-import FourthSurveyContainer from "../../Fourth Survey/FourthSurveyContainer";
 import SecondSurveyConnectivity from "../../second survey step/SecondSurveyConnectivity";
 import ThirdSurveyValidation from "../Third Survey/ThirdSurveyValidation";
-import FifthSurveyConnectivity from "../Fifth recommendation/FifthSurveyConnectivity";
-import SixSurveyHead from "../Six survey recommendation/SixSurveyHead";
-import FourthSurveyHead from "../../Fourth Survey/FourthSurveyHead";
 import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
-import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
-import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
+import FifthSurveyConnectivity from "../Fifth recommendation/FifthSurveyConnectivity";
 import SixSurveyContainer from "../Six survey recommendation/SixSurveyContainer";
-import BackLogProductValidation from "../../Project-Planner/fifth project planner/BackLogProductValidation";
+
+import MyProject from "../../Fontend Component/MyProject/MyProject";
+
+import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
 import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
 import FifthProjectPlannerValidation from "../../Project-Planner/fifth project planner/FifthProjectPlannerValidation";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("dashboard"); // Track active page
-  const [surveyStep, setSurveyStep] = useState(1); // Track survey step
-  const [projectPlanner, setProjectPanner] = useState(1); // Track survey step
-  const [secondSurveyData, setSecondSurveyData] = useState(null); // Save lat/long data from step 2
+  const [activeMenu, setActiveMenu] = useState("dashboard");
 
+  const [surveyStep, setSurveyStep] = useState(1);
+  const [projectPlanner, setProjectPlanner] = useState(1);
+
+  const [secondSurveyData, setSecondSurveyData] = useState(null);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const handleMenuClick = (menuName) => {
     setActiveMenu(menuName);
-    setSurveyStep(1); // Reset survey step if sidebar menu changes
-    setProjectPanner(1)
+    setSurveyStep(1);
+    setProjectPlanner(1);
     setIsSidebarOpen(false);
-  };
-
-  const handleSurveyNext = () => {
-    setSurveyStep(2); // Move to next survey step
-  };
-
-  const handleProjectNext = () => {
-    setProjectPanner(2); // Move to next project step
   };
 
   return (
     <div className="flex w-full min-h-screen relative">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:block  bg-[#EBEBEB] w-[310px] pt-[32px] md:pl-[13px] pr-[1px] border border-[#DADCE0] ">
-        <SidebarConnectivity onMenuClick={handleMenuClick} activeMenu={activeMenu} />
+      {/* Sidebar */}
+      <div className="hidden md:block bg-[#EBEBEB] w-[310px] pt-[32px] md:pl-[13px] pr-[1px] border border-[#DADCE0]">
+        <SidebarConnectivity
+          onMenuClick={handleMenuClick}
+          activeMenu={activeMenu}
+        />
       </div>
 
-      {/* Main Content */}
+      {/* Main */}
       <div className="flex-1 relative">
-        {/* Mobile Menu Button */}
+        {/* Mobile button */}
         <div className="md:hidden pl-4 border-b">
           <FontAwesomeIcon
             icon={faBars}
@@ -66,19 +56,23 @@ export default function SidebarContainer() {
           />
         </div>
 
-        {/* Conditional rendering */}
+        {/* DASHBOARD */}
         {activeMenu === "dashboard" && <DashboardContainer />}
+
+        {/* MY PROJECT */}
         {activeMenu === "my project" && <MyProject />}
+
+        {/* SURVEY FLOW */}
         {activeMenu === "survey recommendation" && (
           <>
             {surveyStep === 1 && (
-              <SurveyFormValidation onNext={() => setSurveyStep(2)} />
+              <SurveyFormValidation onNext={setSurveyStep} />
             )}
 
             {surveyStep === 2 && (
               <SecondSurveyConnectivity
-                onNext={(latLongData) => {
-                  setSecondSurveyData(latLongData);
+                onNext={(data) => {
+                  setSecondSurveyData(data);
                   setSurveyStep(3);
                 }}
               />
@@ -87,47 +81,49 @@ export default function SidebarContainer() {
             {surveyStep === 3 && (
               <ThirdSurveyValidation
                 secondSurveyData={secondSurveyData}
-                onNext={() => setSurveyStep(4)}
+                onNext={setSurveyStep}
               />
             )}
+
             {surveyStep === 4 && (
-              <FourthSurveyConnectivity onNext={() => setSurveyStep(5)} />
+              <FourthSurveyConnectivity onNext={setSurveyStep} />
             )}
 
             {surveyStep === 5 && (
-              <FifthSurveyConnectivity onNext={() => setSurveyStep(6)} />
+              <FifthSurveyConnectivity onNext={setSurveyStep} />
             )}
+
             {surveyStep === 6 && (
               <SixSurveyContainer onNext={() => setSurveyStep(1)} />
             )}
           </>
         )}
+
+        {/* PROJECT PLANNER FLOW */}
         {activeMenu === "project planner" && (
           <>
             {projectPlanner === 1 && (
-
-              <ProjectPlannerValidation onNext={() => setProjectPanner(2)} />
+              <ProjectPlannerValidation onNext={setProjectPlanner} />
             )}
 
             {projectPlanner === 2 && (
-              <SecondProjectPlannerValidation  onNext={() => setProjectPanner(3)}/>
+              <SecondProjectPlannerValidation onNext={setProjectPlanner(2)} />
             )}
-            {projectPlanner === 3 &&(
-              <FifthProjectPlannerValidation/>
+
+            {projectPlanner === 3 && (
+              <FifthProjectPlannerValidation onNext={setProjectPlanner} />
             )}
           </>
         )}
 
-        {/* /* Mobile Sidebar Modal */}
+        {/* Mobile Sidebar */}
         {isSidebarOpen && (
           <>
-            {/* Overlay */}
             <div
               onClick={toggleSidebar}
               className="fixed inset-0 bg-black/40 z-40 md:hidden"
             />
 
-            {/* Mobile Sidebar */}
             <div className="fixed top-0 left-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg md:hidden">
               <div className="flex pl-4 mb-4 border-b">
                 <FontAwesomeIcon
@@ -137,7 +133,10 @@ export default function SidebarContainer() {
                 />
               </div>
 
-              <SidebarConnectivity onMenuClick={handleMenuClick} activeMenu={activeMenu} />
+              <SidebarConnectivity
+                onMenuClick={handleMenuClick}
+                activeMenu={activeMenu}
+              />
             </div>
           </>
         )}

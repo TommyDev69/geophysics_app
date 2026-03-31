@@ -89,13 +89,13 @@ import BackLogProductValidation from "./BackLogProductValidation";
                             </div>
                         ))}
                     </div>
-   {/* Content */}
-        <div className="mt-6 w-full">
-          {activeId === 1 && <BackLogProductValidation />}
-          {activeId === 2 && <BoardValidation />}
-          {activeId === 3 && <SprintView />}
-          {activeId === 4 && <Burndown />}
-        </div>
+                    {/* Content */}
+                    <div className="mt-6 w-full">
+                        {activeId === 1 && <BackLogProductValidation />}
+                        {activeId === 2 && <BoardValidation />}
+                        {activeId === 3 && <SprintView />}
+                        {activeId === 4 && <Burndown />}
+                    </div>
                     {/* {<BackLog />} */}
 
                     {/* <BoardValidation />  */}
