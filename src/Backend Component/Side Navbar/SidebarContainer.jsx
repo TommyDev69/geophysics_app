@@ -21,7 +21,6 @@ import ProjectPlanner2 from "../../Project-Planner/ProjectPlanner2";
 import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
 import SixSurveyContainer from "../Six survey recommendation/SixSurveyContainer";
 import BackLogProductValidation from "../../Project-Planner/fifth project planner/BackLogProductValidation";
-import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
 import FifthProjectPlannerValidation from "../../Project-Planner/fifth project planner/FifthProjectPlannerValidation";
 
 export default function SidebarContainer() {
@@ -111,14 +110,14 @@ export default function SidebarContainer() {
             )}
 
             {projectPlanner === 2 && (
-<<<<<<< HEAD
-              <SecondProjectPlannerValidation onNext={() => setProjectPanner(3)} />
-=======
+// <<<<<<< HEAD
+              // <SecondProjectPlannerValidation onNext={() => setProjectPanner(3)} />
+// =======
               <SecondProjectPlannerValidation  onNext={() => setProjectPanner(3)}/>
             )}
             {projectPlanner === 3 &&(
               <FifthProjectPlannerValidation/>
->>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
+// >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
             )}
           </>
         )}

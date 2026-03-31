@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import ProjectPlanner2 from './ProjectPlanner2';
-import Swal from "sweetalert2";
-export default function SecondProjectPlannerValidation({onNext}) {
-    const navigate = useNavigate();
-    const [projectDetails, setProjectDetails] = useState({
-            projectName: ""
-        });
-=======
 import React, { useState } from 'react';
 import ProjectPlanner2 from './ProjectPlanner2';
 import Swal from 'sweetalert2';
@@ -58,7 +47,7 @@ export default function SecondProjectPlannerValidation({ onNext }) {
     if (!projectDetails.projectName.trim()) {
       formError.projectName = 'Project name is required';
     }
->>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
+// >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
     
 
     // Validate team members
@@ -129,52 +118,6 @@ export default function SecondProjectPlannerValidation({ onNext }) {
             .then(() => {
               if (onNext) onNext();
             });
-<<<<<<< HEAD
-    
-            swalWithBootstrapButtons.fire({
-                title: "Are you sure?",
-                text: "Do you want to submit this project?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Yes, submit!",
-                cancelButtonText: "No, cancel!",
-                reverseButtons: true
-            }).then((result) => {
-    
-                if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire({
-                        title: "Submitted!",
-                        text: "Your project has been created successfully.",
-                        icon: "success"
-                    }).then(() => {
-                        navigate("/planner/step-3");
-                        if (onNext) onNext();
-                    });
-                } 
-                
-                else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire({
-                        title: "Cancelled",
-                        text: "Submission cancelled",
-                        icon: "info"
-                    });
-                }
-            });
-        };
-    
-        return (
-            <>
-            <ProjectPlanner2
-                error={error}
-                HandleSubmit={HandleSubmit}
-                HandleChange={handleVarChange}
-                userInput={projectDetails}
-            />
-            </>
-        );
-  
-}
-=======
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
             title: 'Cancelled',
@@ -195,4 +138,3 @@ export default function SecondProjectPlannerValidation({ onNext }) {
     />
   );
 }
->>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
