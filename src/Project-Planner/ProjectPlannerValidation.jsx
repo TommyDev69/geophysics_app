@@ -47,13 +47,19 @@ const ProjectPlannerValidation = ({ onNext }) => {
     };
 
     const onAddTeamMember = () => {
-        if (!selectedTeamMemberId) return;
-        const member = availableUsers.find((user) => user._id === selectedTeamMemberId);
-        if (member && !teamMembers.some((m) => m._id === member._id)) {
-            setTeamMembers((prev) => [...prev, member]);
-        }
-        
-    };
+    if (!selectedTeamMemberId) return;
+
+    const member = availableUsers.find(
+        (user) => user._id === selectedTeamMemberId
+    );
+
+    if (member && !teamMembers.some((m) => m._id === member._id)) {
+        setTeamMembers((prev) => [...prev, member]);
+    }
+
+    // ✅ Move to next step when button is clicked
+    if (onNext) onNext(2);
+};
 
     // ✅ Handle input change
     const handleVarChange = (e) => {
@@ -183,6 +189,7 @@ const ProjectPlannerValidation = ({ onNext }) => {
                 onSelectTeamMember={onSelectTeamMember}
                 onAddTeamMember={onAddTeamMember}
                 teamMembers={teamMembers}
+                onNext={onNext}
                 
             />
         </>

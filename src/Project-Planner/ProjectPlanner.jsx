@@ -7,12 +7,12 @@ export default function ProjectPlanner({
     HandleSubmit = () => {},
     HandleChange = () => {},
     userInput = { projectName: "" },
-    availableUsers = [],
-    selectedTeamMemberId = "",
+    // availableUsers = [],
+    // selectedTeamMemberId = "",
     onSelectTeamMember = () => {},
     onAddTeamMember = () => {},
-    teamMembers = [],
-    onNext
+        // teamMembers = [],
+        onNext =() =>[],
      
 }) {
     return (
@@ -86,17 +86,17 @@ export default function ProjectPlanner({
                                 <h2>Project Setup</h2>
                             </div>
                         </div>
-                        <div className="flex flex-col w-[768px] h-[693px] mt-[px] ml-[100px] gap-[16px]">
-                            <div className="flex flex-col w-[768px] h-[70px] gap-[8px]">
+                        <div className="flex flex-col w-[768px]  mt-[px] ml-[100px] gap-[16px]">
+                            <div className="flex flex-col w-[768px] gap-[8px]">
                                 <div className="w-[768px] h-[20px]">
                                     <label htmlFor="" className="font-instrument mt-[0.5px] font-medium text-[14px] leading-[20px] tracking-[0.15px]">Project Name</label>
                                     <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                 </div>
 
-                                <input name="projectName" className=" rounded-[10px] border border-[#DADCEO] py-[8px] px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution"/>
+                                <input name="projectName" className=" rounded-[10px] border border-[#DADCEO] py-[12px] px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution"/>
                                 <p className="text-red-600">{error.projectName}</p>
                             </div>
-                            <div className="flex flex-col h-[148px] gap-[8px]">
+                            <div className="flex flex-col  gap-[8px]">
                                 <label className="w-[768px] h-[20px] mt-[0.5px] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-[#364153]">
                                     Description
                                     <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
@@ -105,7 +105,7 @@ export default function ProjectPlanner({
                                 </textarea>
                                 <p className="text-red-600">{error.description}</p>
                             </div>
-                            <div className="container grid grid-cols-2 w-[768px] h-[70px] gap-[16px]">
+                            <div className="container grid grid-cols-2 w-[768px]  gap-[16px]">
                                 <div className="">
                                     <div className="w-full max-w-[376px] h-[70px] grid gap-2 row-start-1 col-start-1 row-span-1 col-span-1">
                                         <label htmlFor="" className="mt-[0.5px] font-instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
@@ -145,15 +145,16 @@ export default function ProjectPlanner({
                                     <option value=""></option>
                                 </select>
                             </div>
-                            <div className="flex  w-[768px]  gap-[12px]">
-                                <div className="flex w-[768px] justify-between mt-[6px]">
-                                    <label htmlFor="w-[100px] h-[20px] font-instrument font-medium leading-[20px] tracking-[-0.15px] text-[#364553]">
+                            <div className="flex w-[768px] justify-between gap-[12px]">
+                                <div className="flex   mt-[6px]">
+                                    <label htmlFor="w-[100px] font-instrument font-medium leading-[20px] tracking-[-0.15px] text-[#364553]">
                                         Team Members
                                     </label>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                   <button type="button" onClick={() => { onAddTeamMember();
-                                        if (onNext) onNext(2)}}
+                                   <button type="button" onClick={() => {
+        onAddTeamMember();   // keep your logic
+        onNext(2);        }}
                                         className=" w-[120px] py-4 rounded-[10px] border-2 border-[#DADCE0] flex items-center justify-center gap-2 px-2">
                                         <img src={plusIcon} alt="plus" className="w-[16px] " />
                                         <span>Add Member</span>
@@ -179,7 +180,7 @@ export default function ProjectPlanner({
                                 </p>
                                 <button className="rounded-[10px] flex items-center justify-center border-2 border-[#DADCEO] gap-2 px-2 py-4">
                                     <img src={plusIcon} alt="plus" className="w-[16px] h-[16px]" />
-                                    <span>Add Member</span>
+                                    <span>Add First Member</span>
                                 </button>
                             </div>
                         </div>
@@ -191,7 +192,7 @@ export default function ProjectPlanner({
                     <button
                         type="button"
                         onClick={() => window.history.back()}
-                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
+                        className="flex gap-2 border-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
                     >
                         <img src={left} alt="" />
                         Cancel
@@ -199,7 +200,7 @@ export default function ProjectPlanner({
 
                     <button
                         type="submit"
-                        className="flex capitalize gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                        className="flex capitalize gap-2 justify-center items-center  py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
                     >
                         create project
                         <img src={right} alt="" />
