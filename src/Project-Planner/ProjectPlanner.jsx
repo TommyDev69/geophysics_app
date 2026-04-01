@@ -4,16 +4,16 @@ import left from '../Backend Component/image/ChevronLeft.png';
 import right from '../Backend Component/image/ChevronRight.png';
 export default function ProjectPlanner({
     error = {},
-    HandleSubmit = () => {},
-    HandleChange = () => {},
+    HandleSubmit = () => { },
+    HandleChange = () => { },
     userInput = { projectName: "" },
     // availableUsers = [],
     // selectedTeamMemberId = "",
-    onSelectTeamMember = () => {},
-    onAddTeamMember = () => {},
-        // teamMembers = [],
-        onNext =() =>[],
-     
+    onSelectTeamMember = () => { },
+    onAddTeamMember = () => { },
+    // teamMembers = [],
+    onNext = () => [],
+
 }) {
     return (
         <form onSubmit={HandleSubmit}>
@@ -93,7 +93,7 @@ export default function ProjectPlanner({
                                     <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                 </div>
 
-                                <input name="projectName" className=" rounded-[10px] border border-[#DADCEO] py-[12px] px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution"/>
+                                <input name="projectName" className=" rounded-[10px] border border-[#DADCEO] py-[12px] px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution" />
                                 <p className="text-red-600">{error.projectName}</p>
                             </div>
                             <div className="flex flex-col  gap-[8px]">
@@ -152,10 +152,11 @@ export default function ProjectPlanner({
                                     </label>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                   <button type="button" onClick={() => {
-        onAddTeamMember();   // keep your logic
-        onNext(2);        }}
-                                        className=" w-[120px] py-4 rounded-[10px] border-2 border-[#DADCE0] flex items-center justify-center gap-2 px-2">
+                                    <button type="button" onClick={() => {
+                                        onAddTeamMember();   // keep your logic
+                                        onNext(2);
+                                    }}
+                                        className=" w-[138px] h-[36px] py-4 rounded-[10px] border-2 border-[#DADCE0] flex items-center justify-center gap-2 px-2">
                                         <img src={plusIcon} alt="plus" className="w-[16px] " />
                                         <span>Add Member</span>
                                     </button>
@@ -169,8 +170,7 @@ export default function ProjectPlanner({
                                             </div>
                                         ))
                                     ) : (
-                                        <p className="text-gray-400">No team member added yet</p>
-                                    )}
+                                        <p35 className="text-gray-400">No team member added yet</p35    h-[36px]                                 )}
                                 </div> */}
                             </div>
 
