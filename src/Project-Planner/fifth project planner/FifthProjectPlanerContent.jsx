@@ -3,10 +3,10 @@
 
     import right from "../../Backend Component/image/ChevronRight.png";
     import left from "../../Backend Component/image/ChevronLeft.png";
-    import BackLog from "./BackLog";
+    // import BackLog from "./BackLog";
     import SprintView from "./SprintView";
     import Burndown from "./Burndown";
-import BackLogProductValidation from "./BackLogProductValidation";
+    import BackLogProductValidation from "./BackLogProductValidation";
 
     const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
         return ( 
