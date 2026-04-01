@@ -47,6 +47,7 @@ export default function SecondProjectPlannerValidation({ onNext }) {
     if (!projectDetails.projectName.trim()) {
       formError.projectName = 'Project name is required';
     }
+// >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
     
 
     // Validate team members

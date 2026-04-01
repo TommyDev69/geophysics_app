@@ -1,9 +1,13 @@
 import React from "react";
 import save from "./Save.jpg";
-import plusIcon from "./Plus.jpg";
-import trash from "./Trash2.jpg";
-import left from "../Backend Component/image/ChevronLeft.png";
-import right from "../Backend Component/image/ChevronRight.png";
+// <<<<<<< HEAD
+import plusIcon from "./plusIcon1.png";
+import trash from "./Trash2.jpg"
+import left from '../Backend Component/image/ChevronLeft.png';
+import right from '../Backend Component/image/ChevronRight.png';
+// =======
+
+// >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931
 
 export default function ProjectPlanner2({
   HandleSubmit = () => {},

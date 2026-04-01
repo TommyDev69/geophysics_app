@@ -6,7 +6,7 @@ import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
 import ProjectPlannerValidation from './Project-Planner/ProjectPlannerValidation';
 import ProjectPlanner from './Project-Planner/ProjectPlanner';
-// import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
+import SecondProjectPlannerValidation from './Project-Planner/SecondProjectPlannerValidation';
 
 // Dashboard / Sidebar Components
 import Sidebar from './Backend Component/Side Navbar/Sidebar';
@@ -18,20 +18,26 @@ import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 // import FourthSurveyHead from './Fourth Survey/FourthSurveyHead';
 // import FourthSurveyContainer from './Fourth Survey/FourthSurveyContainer';
 // import ThirdSurveySideBar from './Backend Component/Third Survey/ThirdSurveySideBar';
- import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
- import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
-import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
-import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
+import FifthSurveyContainer from './Backend Component/Fifth recommendation/FifthSurveyContainer';
+// import SixSurveyContainer from './Backend Component/Six survey recommendation/SixSurveyContainer';
+// import FifthSurveyConnectivity from './Backend Component/Fifth recommendation/FifthSurveyConnectivity';
+// import ProjectPlanner2 from './Project-Planner/ProjectPlanner2';
+// import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
 import FifthProjectPlannerContainer from './Project-Planner/fifth project planner/FifthProjectPlannerContainer';
-import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
-import BackLogProduct from './Project-Planner/fifth project planner/BackLogProduct';
-import BackLogProductValidation from './Project-Planner/fifth project planner/BackLogProductValidation';
-import BurndownUserStory from './Project-Planner/fifth project planner/BurndownUserStory';
+// import ProjectPlanner3 from './Project-Planner/ProjectPlanner3';
+// import BackLogProduct from './Project-Planner/fifth project planner/BackLogProduct';
+// import BackLogProductValidation from './Project-Planner/fifth project planner/BackLogProductValidation';
+// import BurndownUserStory from './Project-Planner/fifth project planner/BurndownUserStory';
 import BackLog from './Project-Planner/fifth project planner/BackLog';
 
 function App() {
   return (
     <div className='app'>
+{/* <<<<<<< HEAD */}
+      {/* <FifthProjectPlannerContainer /> */}
+      {/* <ProjectPlanner />` */}
+
+{/* ======= */}
       {/* <BackLogProductValidation /> */}
       {/* <BurndownUserStory /> */}
       
@@ -58,8 +64,8 @@ function App() {
 
           </Routes>
        </Router>
+{/* >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931 */}
 
-        
     </div>
   );
 }
