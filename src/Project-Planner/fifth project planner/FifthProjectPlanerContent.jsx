@@ -3,10 +3,10 @@
 
     import right from "../../Backend Component/image/ChevronRight.png";
     import left from "../../Backend Component/image/ChevronLeft.png";
-    import BackLog from "./BackLog";
+    // import BackLog from "./BackLog";
     import SprintView from "./SprintView";
     import Burndown from "./Burndown";
-import BackLogProductValidation from "./BackLogProductValidation";
+    import BackLogProductValidation from "./BackLogProductValidation";
 
     const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
         return ( 
@@ -89,13 +89,13 @@ import BackLogProductValidation from "./BackLogProductValidation";
                             </div>
                         ))}
                     </div>
-   {/* Content */}
-        <div className="mt-6 w-full">
-          {activeId === 1 && <BackLogProductValidation />}
-          {activeId === 2 && <BoardValidation />}
-          {activeId === 3 && <SprintView />}
-          {activeId === 4 && <Burndown />}
-        </div>
+                    {/* Content */}
+                    <div className="mt-6 w-full">
+                        {activeId === 1 && <BackLogProductValidation />}
+                        {activeId === 2 && <BoardValidation />}
+                        {activeId === 3 && <SprintView />}
+                        {activeId === 4 && <Burndown />}
+                    </div>
                     {/* {<BackLog />} */}
 
                     {/* <BoardValidation />  */}

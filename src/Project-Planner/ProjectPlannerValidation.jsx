@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
 
@@ -9,8 +8,8 @@ import ProjectPlanner from "./ProjectPlanner";
 import { createProjectAction } from "../redux/slice/project/projectSlice";
 
 const ProjectPlannerValidation = ({ onNext }) => {
+
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [projectDetails, setProjectDetails] = useState({
         projectName: "",
@@ -48,16 +47,19 @@ const ProjectPlannerValidation = ({ onNext }) => {
     };
 
     const onAddTeamMember = () => {
-        if (!selectedTeamMemberId) return;
-        const member = availableUsers.find((user) => user._id === selectedTeamMemberId);
-        if (member && !teamMembers.some((m) => m._id === member._id)) {
-            setTeamMembers((prev) => [...prev, member]);
-        }
-    };
+    if (!selectedTeamMemberId) return;
 
-    const onAddMemberNavigate = () => {
-        navigate("/planner/step-2");
-    };
+    const member = availableUsers.find(
+        (user) => user._id === selectedTeamMemberId
+    );
+
+    if (member && !teamMembers.some((m) => m._id === member._id)) {
+        setTeamMembers((prev) => [...prev, member]);
+    }
+
+    // ✅ Move to next step when button is clicked
+    if (onNext) onNext(2);
+};
 
     // ✅ Handle input change
     const handleVarChange = (e) => {
@@ -146,8 +148,7 @@ const ProjectPlannerValidation = ({ onNext }) => {
                             text: "Your project has been created successfully.",
                             icon: "success"
                         }).then(() => {
-                            if (onNext) onNext();
-                            navigate("/planner/step-3");
+                            if (onNext) onNext(3);
                         });
                     } else {
                         swalWithBootstrapButtons.fire({
@@ -188,7 +189,8 @@ const ProjectPlannerValidation = ({ onNext }) => {
                 onSelectTeamMember={onSelectTeamMember}
                 onAddTeamMember={onAddTeamMember}
                 teamMembers={teamMembers}
-                onAddMemberNavigate={onAddMemberNavigate}
+                onNext={onNext}
+                
             />
         </>
     );

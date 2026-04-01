@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
-import ProjectPlannerValidation from './Project-Planner/ProjectPlannerValidation';
+// import ProjectPlannerValidation from './Project-Planner/ProjectPlannerValidation';
 import ProjectPlanner from './Project-Planner/ProjectPlanner';
-import SecondProjectPlannerValidation from './Project-Planner/SecondProjectPlannerValidation';
+// import SecondProjectPlannerValidation from './Project-Planner/SecondProjectPlannerValidation';
 
 // Dashboard / Sidebar Components
 import Sidebar from './Backend Component/Side Navbar/Sidebar';
@@ -14,7 +14,7 @@ import SurveyContainer from './Backend Component/survey recommendation/SurveyCon
 import SecondSurveyContaine from './second survey step/SecondSurveyContaine';
 import ThirdSurveyContainer from './Backend Component/Third Survey/ThirdSurveyContainer';
 import FourthSurveyContainer from './Fourth Survey/FourthSurveyContainer';
-import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
+// import SidebarContainer from './Backend Component/Side Navbar/SidebarContainer';
 // import FourthSurveyHead from './Fourth Survey/FourthSurveyHead';
 // import FourthSurveyContainer from './Fourth Survey/FourthSurveyContainer';
 // import ThirdSurveySideBar from './Backend Component/Third Survey/ThirdSurveySideBar';
@@ -34,12 +34,14 @@ function App() {
   return (
     <div className='app'>
       {/* <<<<<<< HEAD */}
+{/*HEAD */}
       {/* <FifthProjectPlannerContainer /> */}
       {/* <ProjectPlanner />` */}
 
       {/* ======= */}
       {/* <BackLogProductValidation /> */}
       {/* <BurndownUserStory /> */}
+      
       
          <Router>
           <Routes> 
@@ -63,7 +65,7 @@ function App() {
 
           </Routes>
        </Router>
-{/* >>>>>>> 8364e957c2df7980eaa3fe566794c4717d441931 */}
+
 
     </div>
   );

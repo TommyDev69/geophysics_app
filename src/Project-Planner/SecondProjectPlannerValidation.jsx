@@ -116,7 +116,7 @@ export default function SecondProjectPlannerValidation({ onNext }) {
               icon: 'success'
             })
             .then(() => {
-              if (onNext) onNext();
+              if (onNext) onNext(3);
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({

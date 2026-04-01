@@ -46,7 +46,7 @@ const BackLogProduct = ({
         </div>
          
           {/* Modal */}
-          {isModalOpen && <BackLogModal closeModal={closeModal} onSubmit={submitData}/> }
+          {isModalOpen && <BackLogModal closeModal={closeModal} onSubmit={submitData} /> }
 
     </div>
         
