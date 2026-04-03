@@ -1,4 +1,4 @@
-const BurndownUserStory = (closeModal) => {
+const UserStoryModal = (closeModal) => {
     return ( 
         <div
       className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
@@ -96,4 +96,4 @@ const BurndownUserStory = (closeModal) => {
      );
 }
  
-export default BurndownUserStory;
+export default UserStoryModal;
