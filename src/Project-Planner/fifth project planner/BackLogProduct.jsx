@@ -3,7 +3,6 @@ import Plus from '../../Backend Component/image/Plus.png';
 import SaveIcon from "../../Backend Component/image/Save.png";
 import RightArrow from "../../Backend Component/image/ChevronRight.png";
 import LeftArrow from "../../Backend Component/image/ChevronLeft.png";
-import BackLogModal from './BackLogModal';
 
 const BackLogProduct = ({
   items = [],
@@ -44,10 +43,6 @@ const BackLogProduct = ({
                 </p>
             </button>
         </div>
-         
-          {/* Modal */}
-          {isModalOpen && <BackLogModal closeModal={closeModal} onSubmit={submitData} /> }
-
     </div>
         
 
