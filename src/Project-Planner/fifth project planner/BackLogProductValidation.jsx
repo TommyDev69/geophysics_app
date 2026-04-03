@@ -27,13 +27,13 @@ const BackLogProductValidation = ({ onNext }) => {
   });
 
   const handleEpicChange = (e) => {
-  const { name, value } = e.target;
+    const { name, value } = e.target;
 
-  setEpicForm((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
-};
+    setEpicForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const navigatingModalToSubmit = useNavigate();
   const handleSubmitFomModal = (e) => {
@@ -51,7 +51,7 @@ const BackLogProductValidation = ({ onNext }) => {
   const closeModal = () => setIsModalOpen(false);
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
- 
+
 
   const handleChange = (e) => {
     setEpicForm({
