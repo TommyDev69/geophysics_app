@@ -52,14 +52,6 @@ const BackLogProductValidation = ({ onNext }) => {
   const toggleModal = () => setIsModalOpen(prev => !prev);
 
 
-
-  const handleChange = (e) => {
-    setEpicForm({
-      ...epicForm,
-      [e.target.name]: e.target.value
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createEpicAction(epicForm));

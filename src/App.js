@@ -29,6 +29,7 @@ import FifthProjectPlannerContainer from './Project-Planner/fifth project planne
 // import BackLogProductValidation from './Project-Planner/fifth project planner/BackLogProductValidation';
 // import BurndownUserStory from './Project-Planner/fifth project planner/BurndownUserStory';
 import BackLog from './Project-Planner/fifth project planner/BackLog';
+import Setting from './Setting/Setting';
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
       {/* <BackLogProductValidation /> */}
       {/* <BurndownUserStory /> */}
       
-      
+      {/* <Setting /> */}
          <Router>
           <Routes> 
             {/* Public Pages */}
