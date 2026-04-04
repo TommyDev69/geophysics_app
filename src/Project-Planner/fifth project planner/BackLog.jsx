@@ -60,3 +60,23 @@ const BackLog = () => {
 }
  
 export default BackLog;
+
+// const dispatch = useDispatch();
+//   const [formData, setFormData] = useState({
+//     title: '',
+//     description: '',
+//     priority: ''
+//   });
+
+//   const handleChange = (e) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     dispatch(createEpicAction(formData));
+//     closeModal();
+//   };
