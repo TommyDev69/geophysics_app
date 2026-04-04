@@ -19,9 +19,6 @@
                     activeId={activeId}
                     setActiveId={setActiveId}
                 />
-
-            
-        
             </div>
         );
     }
