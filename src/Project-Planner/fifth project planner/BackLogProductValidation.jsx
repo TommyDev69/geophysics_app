@@ -1,17 +1,18 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { createEpicAction } from "../../redux/slice/epic/epicSlice";
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createEpicAction } from "../../redux/slice/epic/epicSlice";
 
-
-
-// Move static data outside the component to avoid recreating it on every render
-const BackLogProductValidation = ({ onNext }) => {
-  // dispatch
+const BackLogProductValidation = ({onNext}) => {
   const dispatch = useDispatch();
-  const { loading, error: reduxError, success, successMessage } = useSelector((state) => state.epics);
+  const navigate = useNavigate();
+
+  const { loading, error: reduxError, success } = useSelector(
+    (state) => state.epics
+  );
 
   const dataItems = [
     { id: 1, topic: "backlog" },
@@ -26,60 +27,81 @@ const BackLogProductValidation = ({ onNext }) => {
     priority: "",
   });
 
-  const handleEpicChange = (e) => {
-    const { name, value } = e.target;
+  const [errors, setErrors] = useState({
+    title: "",
+    description: "",
+    priority: "",
+  });
 
-    setEpicForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const navigatingModalToSubmit = useNavigate();
-  const handleSubmitFomModal = (e) => {
-    e.preventDefault()
-    navigatingModalToSubmit('/BackLog')
-
-    dispatch(createEpicAction(epicForm))
-
-  }
   const [activeId, setActiveId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Modal handlers
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const toggleModal = () => setIsModalOpen(prev => !prev);
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createEpicAction(epicForm));
-    closeModal();
+  // Handle input change
+  const handleEpicChange = (e) => {
+    const { name, value } = e.target;
+    setEpicForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" })); // clear error on typing
   };
 
+  // Submit handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validation
+    const newErrors = {};
+    if (!epicForm.title.trim()) newErrors.title = "Title is required";
+    if (!epicForm.description.trim()) newErrors.description = "Description is required";
+    if (!epicForm.priority.trim()) newErrors.priority = "Priority is required";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Dispatch Redux action
+    dispatch(createEpicAction(epicForm));
+
+    // Show success alert
+    Swal.fire({
+      icon: "success",
+      title: "Epic Created!",
+      text: "Your new epic has been added",
+      timer: 1500,
+      showConfirmButton: false,
+    }).then(() => {
+      if (onNext) onNext(3);
+    });
+
+    // Close modal
+    closeModal();
+
+     setActiveId(1);
+  };
 
   return (
     <div>
       <BackLogProduct
-        items={dataItems}          // renamed from Result to items for clarity
+        items={dataItems}
         activeId={activeId}
         setActiveId={setActiveId}
-        isModalOpen={isModalOpen}  // renamed from showModal
+        isModalOpen={isModalOpen}
         openModal={openModal}
         closeModal={closeModal}
-        toggleModal={toggleModal}  // optional for convenience inside BackLogProduct
-        submitData={handleSubmitFomModal}
-        handleEpicChange={handleEpicChange}
-        handleSubmit={handleSubmit}
-
+        submitData={handleSubmit}
       />
+
       {isModalOpen && (
         <BackLogModal
           closeModal={closeModal}
           epicForm={epicForm}
           handleEpicChange={handleEpicChange}
           handleSubmit={handleSubmit}
+          errors={errors}
+          onNext={onNext}
         />
       )}
     </div>

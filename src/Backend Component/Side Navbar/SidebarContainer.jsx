@@ -67,21 +67,11 @@ export default function SidebarContainer() {
         {activeMenu === "survey recommendation" && (
           <>
             {surveyStep === 1 && <SurveyFormValidation onNext={setSurveyStep} />}
-
-            {surveyStep === 2 && (
-              <SecondSurveyConnectivity
-                onNext={(data) => {
-                  setSecondSurveyData(data);
-                  setSurveyStep(3);
-                }}
-              />
+            {surveyStep === 2 && (<SecondSurveyConnectivity onNext={(data) => { setSecondSurveyData(data)
+              setSurveyStep(3)}}/>
             )}
 
-            {surveyStep === 3 && (
-              <ThirdSurveyValidation
-                secondSurveyData={secondSurveyData}
-                onNext={setSurveyStep}
-              />
+            {surveyStep === 3 && ( <ThirdSurveyValidation secondSurveyData={secondSurveyData} onNext={setSurveyStep} />
             )}
 
             {surveyStep === 4 && <FourthSurveyConnectivity onNext={setSurveyStep} />}
@@ -91,7 +81,6 @@ export default function SidebarContainer() {
             {surveyStep === 6 && <SixSurveyContainer onNext={() => setSurveyStep(1)} />}
           </>
         )}
-
         {/* PROJECT PLANNER FLOW */}
         {activeMenu === "project planner" && (
           <>

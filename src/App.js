@@ -61,7 +61,7 @@ function App() {
             <Route path='/project_planner_2' element= {<ProjectPlanner />} />
             
             <Route path="/planner" element={<FifthProjectPlannerContainer /> } />
-             <Route path="/backLog" element={<BackLog/>} />
+             {/* <Route path="/backLog" element={<BackLog/>} /> */}
 
 
           </Routes>

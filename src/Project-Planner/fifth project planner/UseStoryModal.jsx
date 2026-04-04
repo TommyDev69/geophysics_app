@@ -1,8 +1,6 @@
 const UseStoryModal = ({closeModal}) => {
     return ( 
-        <div
-      className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
-    >
+        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       {/* Modal box */}
       <div className="w-[600px] p-[24px] bg-white border rounded-[10px] relative">
         <div className="w-[400px]">
@@ -92,7 +90,7 @@ const UseStoryModal = ({closeModal}) => {
           </button>
         </div>
       </div>
-    </div>
+        </div>
      );
 }
  

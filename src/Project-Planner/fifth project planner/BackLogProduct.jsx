@@ -4,15 +4,7 @@ import SaveIcon from "../../Backend Component/image/Save.png";
 import RightArrow from "../../Backend Component/image/ChevronRight.png";
 import LeftArrow from "../../Backend Component/image/ChevronLeft.png";
 
-const BackLogProduct = ({
-  items = [],
-  activeId,
-  setActiveId,
-  isModalOpen,
-  closeModal,
-  openModal,
-  submitData
-}) => {
+const BackLogProduct = ({openModal}) => {
   return (
     <div>
         <div className="flex justify-between pb-24 items-center mx-8 text-[#101828]">

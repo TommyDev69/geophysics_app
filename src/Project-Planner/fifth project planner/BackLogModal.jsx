@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BackLogModal({ closeModal, epicForm, handleEpicChange, handleSubmit }){
+export default function BackLogModal({ closeModal, errors, epicForm, handleEpicChange, handleSubmit }){
   return (
     <form onSubmit={handleSubmit}>
     {/* // Full screen overlay */}
@@ -29,6 +29,8 @@ export default function BackLogModal({ closeModal, epicForm, handleEpicChange, h
               className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
               placeholder="e.g Field Data Collection"
             />
+            <p className="text-red-600">{errors.title}</p>
+
           </div>
 
           <div className="flex flex-col pt-[18px] pb-[12px]">
@@ -44,6 +46,7 @@ export default function BackLogModal({ closeModal, epicForm, handleEpicChange, h
               className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
               placeholder="Describe the epic"
             />
+            <p className="text-red-600">{errors.description}</p>
           </div>
 
           <div className="flex flex-col pt-[18px] pb-[12px]">
@@ -57,6 +60,8 @@ export default function BackLogModal({ closeModal, epicForm, handleEpicChange, h
               onChange={handleEpicChange}
               className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
             />
+            <p className="text-red-600">{errors.priority}</p>
+
           </div>
         </div>
 
