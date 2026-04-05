@@ -6,8 +6,8 @@ import star from '../../Backend Component/image/Star 1.png';
 
 const ProjectFinalPlanner = () => {
     return (  
-         <div className=" flex flex-col w-[967px]  mt-[41px] mx-auto gap-[22px]">
-            <div className="flex w-[967px] justify-between">
+         <div className=" flex flex-col min-w-[967px]  mt-[41px] px-12  gap-[22px]">
+            <div className="flex min-w-[917px]  justify-between">
                     <div className="flex flex-col gap-[4px] w-[314px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
                         <h1 className="">Agile Project Planner</h1>
                         <p className="w-[72px] mt-[0.5px] font-instrument font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#4A5565]">Step 1 of 3</p>
@@ -21,55 +21,57 @@ const ProjectFinalPlanner = () => {
                             Save as Draft
                         </button>
                     </div>
-                </div>
-                <div className="flex flex-col w-[967px] rounded-[10px] border py-[28px] px-[25px] text-[#FFFFFF] border-[#DADCEO] ">
-                    <div className="flex w-[917px] h-[64px] justify-between pr-[0.01px]">
-                        <div className="flex w-[306px]  mt-3">
-                            <div className="md:container flex flex-col w-[145px] h-[64px] gap-[8px] items-center justify-center">
-                                <div className="container flex w-[40px] h-[40px] rounded-[16777200px] bg-[#585858] items-center justify-center">
-                                    <h1 >1</h1>
-                                </div>
-                                <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
-                                    Project Setup
-                                </span>
+            </div>
+            <div className="flex flex-col min-w-[917px] rounded-[10px] border py-[28px] text-[#FFFFFF] border-[#DADCEO] ">
+                <div className="flex min-w-[917px] ">
+                    <div className="flex min-w-[306px]  mt-3">
+                        <div className="md:container flex flex-col  gap-[8px] items-center justify-ce nter">
+                            <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
+                                <h1 >1</h1>
                             </div>
-                            <div className="w-[145px] h-[4px] mt-[18px] bg-[#E5E7EB] ml-[8px]">
-
-                            </div>
+                            <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
+                                Project Setup
+                            </span>
                         </div>
+                        <div className="w-[345px] h-[4px] mt-[18px] bg-[#E5E7EB] ">
 
-
-                        <div className="flex w-[306px] h-[64px] mt-3 ">
-                            <div className="md:container flex flex-col w-[145px] gap-[8px] items-center justify-center">
-                                <div className="container flex w-[40px] h-[40px] text-[#4A5565] rounded-[16777200px] bg-[#E5E7EB] items-center justify-center">
-                                    <h1 className="">2</h1>
-                                </div>
-                                <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
-                                    Project Management
-                                </span>
-                            </div>
-                            <div className="w-[145px] h-[4px] mt-[18px] bg-[#E5E7EB] ml-[8px]"></div>
-                        </div>
-
-
-                        <div className="flex w-[306px] h-[64px] mt-3">
-                            <div className="md:container flex flex-col w-[145px] h-[64px] gap-[8px] items-center justify-center">
-                                <div className="container flex w-[40px] h-[40px] rounded-[16777200px] text-[#4A5565] bg-[#E5E7EB] items-center justify-center">
-                                    <h1 >3</h1>
-                                </div>
-                                <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
-                                    Completion
-                                </span>
-                            </div>
-                            {/* <div className="w-[145px] h-[4px] mt-[18px] bg-[#E5E7EB] ml-[8px]">
-
-                            </div> */}
                         </div>
                     </div>
+
+
+                    <div className="flex min-w-[306px]  mt-3">
+                        <div className="md:container flex flex-col  items-center justwify-center">
+                            <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
+                                <h1 >2</h1>
+                            </div>
+                            <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
+                                Project Management
+                            </span>
+                        </div>
+                        <div className="w-[345px] h-[4px] mt-[18px] bg-[#E5E7EB] ">
+
+                        </div>
+                    </div>
+
+
+                    <div className="flex min-w-[306px]  mx-4 mt-3 ">
+                        <div className="md:container flex flex-col  gap-[8px] items-center justify-center">
+                            <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
+                                <h1 >3</h1>
+                            </div>
+                            <span className="mt-[1px] ml-[1px] font-instrument font-medium text-[12px] leading-[16px] tracking-[0px] text-[#585858]">
+                                Completion
+                            </span>
+                        </div>
+                        
+
+                        
+                    </div>
                 </div>
+            </div>
 
             <div className="rounded-[10px]  border border-[#DADCEO] ">
-                <div className="w-[917px] my-8 mx-auto flex gap-2 justify-between">
+                <div className="w-a[917px] my-8 mx-auto flex gap-2 justify-between">
                      <div className="flex flex-col">
                         <div className="w-[488px] rounded-[10px] bg-[#F9FAFB]  py-12">
                             <div className="w-[424px] mx-auto flex flex-col">

@@ -97,9 +97,9 @@ export default function SidebarContainer() {
             {projectPlannerStep === 3 && (
               <FifthProjectPlannerValidation onNext={setProjectPlannerStep} />
             )}
-            {projectPlannerStep === 4 && (
+            {/* {projectPlannerStep === 4 && (
               < ProjectFinalPlanner onNext={setProjectPlannerStep} />
-            )}
+            )} */}
           </>
         )}
 

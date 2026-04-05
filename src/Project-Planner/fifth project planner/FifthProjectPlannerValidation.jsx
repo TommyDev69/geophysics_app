@@ -17,20 +17,20 @@ import Swal from "sweetalert2";
             // Validation
            
         
-            // Show success alert
-            Swal.fire({
-              icon: "success",
-              title: "project submitted",
-              text: "Your new epic has been added",
-              timer: 1500,
-              showConfirmButton: false,
-            }).then(() => {
-              if (onNext) onNext(4);
-            });
+            // // Show success alert
+            // Swal.fire({
+            //   icon: "success",
+            //   title: "project submitted",
+            //   text: "Your new epic has been added",
+            //   timer: 1500,
+            //   showConfirmButton: false,
+            // }).then(() => {
+            //   if (onNext) onNext(4);
+            // });
         
           };
         return (  
-            <div className="w-[967px] mx-auto ">
+            <div className="min-w-[967px] mx-auto ">
                 <FifthProjectPlannerContent 
                     Result={dataItems}
                     activeId={activeId}

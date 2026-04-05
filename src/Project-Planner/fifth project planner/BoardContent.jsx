@@ -5,18 +5,18 @@ import BoardCompleteValidation from "./BoardCompleteValidation";
 
 const BoardContent = ({ content, title  }) => {
   return (
-    <div className="flex flex-col w-[917px]">
+    <div className="flex flex-col min-w-[917px]">
       {/* Header */}
-      <h3 className="text-[#101828] font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">
+      <h3 className="text-[#101828] px-6 font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">
         Board
       </h3>
-      <p className="font-instrument text-[#4A5565] leading-5 tracking-[-0.15px] text-[14px]">
+      <p className="font-instrument text-[#4A5565] px-6 leading-5 tracking-[-0.15px] text-[14px]">
         Drag and drop stories between columns
       </p>
 
       {/* Columns */}
-      <div className="grid grid-cols-3  gap-3 rounded-[10px] mt-4">
-        <div className="flex flex-col w-[295px] bg-[#F3F4F6] border-2 py-6 px-4 rounded-[10px] border-[#D1D5DC]">
+      <div className="grid grid-cols-3  px-6  gap-3 rounded-[10px] mt-4">
+        <div className="flex flex-col w-[e295px] bg-[#F3F4F6] border-2 py-6 px-4 rounded-[10px] border-[#D1D5DC]">
           {/* Column Header */}
           <div className="flex justify-between items-center mb-4">
             <p className="text-[#101828] font-instrument font-semibold text-[18px] leading-[27px] tracking-[-0.44px]">

@@ -1,7 +1,7 @@
 const SprintViewTable = () => {
   return ( 
-    <div className="text-black py-6">
-        <table className="w-[917px] border-2  ">
+    <div className="text-black px-4 py-6">
+        <table className="w-full border-2  ">
             <thead className="border-2">
                 <tr className=" text-center">
                     <th className=" border-2" rowSpan="2">S/N</th>

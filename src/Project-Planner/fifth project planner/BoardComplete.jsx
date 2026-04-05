@@ -5,7 +5,7 @@ export default function BoardComplete({Complete,HeadTitle}) {
       <div className="flex flex-col  bg-[#F3F4F6] rounded-[10px] border-2">
     
       <div className="">
-        <div className="flex flex-col w-[295px]  py-6 px-4 rounded-[10px] border-[#D1D5DC]">
+        <div className="flex flex-col   py-6 px-4 rounded-[10px] border-[#D1D5DC]">
           {/* Column Header */}
           <div className="flex justify-between items-center mb-4">
             <p className="text-[#101828] capitalize font-instrument font-semibold text-[18px] leading-[27px] tracking-[-0.44px]">

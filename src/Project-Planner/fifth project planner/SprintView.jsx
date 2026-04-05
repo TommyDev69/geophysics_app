@@ -63,7 +63,7 @@ export default function SprintView() {
 
   return (
     <div className="flex flex-col">
-      <div className="w-[917px] flex justify-between items-center">
+      <div className="min-w-[917px] flex justify-between items-center">
         <div className="w-[200px] flex flex-col items-center">
           <h3 className="font-instrument font-semibold text-[18px] text-[#101828]">Sprint Management</h3>
           <p className="font-instrument font-normal text-[14px] text-[#101828]">Manage your agile sprints</p>
@@ -81,9 +81,9 @@ export default function SprintView() {
         <p className="font-instrument font-semibold text-[16px] text-[#101828]">Planned Sprints</p>
       </div>
 
-      <div>
+      <>
         <SprintViewTable />
-      </div>
+      </>
 
       {isModalOpen && (
         <SprintViewModal
