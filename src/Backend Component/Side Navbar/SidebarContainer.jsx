@@ -42,7 +42,7 @@ export default function SidebarContainer() {
   };
 
   return (
-    <div className="flex w-full min-h-screen relative">
+    <div className="flex w-full min-h-screen  relative">
       {/* Sidebar */}
       <div className="hidden md:block bg-[#EBEBEB] w-[340px] pt-[32px] md:pl-[13px] pr-[1px] border border-[#DADCE0]">
         <SidebarConnectivity onMenuClick={handleMenuClick} activeMenu={activeMenu} />
