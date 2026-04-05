@@ -10,7 +10,7 @@ import number5 from "../image/num5.png"
 import number6 from "../image/num6.png"
 import range from "../image/range.png"
 const SurveyConnectivity = () => {
-    const [survey, setSurvey] = useState([
+    const [survey] = useState([
         {id:1, name:"project setup",range:range, photo: number1},
         {id:2, name:"survey area", range:range,photo: number2},
         {id:3, name:"site characterisation",range:range,photo: number3,  paddingBottom: '2px'},

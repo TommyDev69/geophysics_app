@@ -3,10 +3,14 @@ import frame from "../../Backend Component/image/Frame.png";
 import basil from '../../Backend Component/image/basil_document-solid.png';
 import archive from '../../Backend Component/image/archive.png';
 import star from '../../Backend Component/image/Star 1.png';
+import left from '../../Backend Component/image/ChevronLeft.png';
+import right from '../../Backend Component/image/ChevronRight.png';
+
+
 
 const ProjectFinalPlanner = () => {
     return (  
-         <div className=" flex flex-col min-w-[967px]  mt-[41px] px-12  gap-[22px]">
+        <div className=" flex flex-col min-w-[967px]  mt-[41px] px-12  gap-[22px]">
             <div className="flex min-w-[917px]  justify-between">
                     <div className="flex flex-col gap-[4px] w-[314px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
                         <h1 className="">Agile Project Planner</h1>
@@ -71,9 +75,9 @@ const ProjectFinalPlanner = () => {
             </div>
 
             <div className="rounded-[10px]  border border-[#DADCEO] ">
-                <div className="w-a[917px] my-8 mx-auto flex gap-2 justify-between">
+                <div className="min-w-[967px] my-8 mwx-auto px-8 flex space-x-6 justify-between">
                      <div className="flex flex-col">
-                        <div className="w-[488px] rounded-[10px] bg-[#F9FAFB]  py-12">
+                        <div className="min-w-[708px] rounded-[10px] bg-[#F9FAFB]  py-12">
                             <div className="w-[424px] mx-auto flex flex-col">
                                 <div className="flex justify-center items-center">
                                     <img src={frame} alt="frame" className="w-[80px]" />
@@ -109,11 +113,11 @@ const ProjectFinalPlanner = () => {
                         <div className="bg-[#F9FAFB] rounded-[10px] border px-10 border-[#D8D8D8] my-6">
                                     <p className="text-[#101828] font-instrument font-semibold text-[18px] py-4 leading-[28px] tracking-[-0.44px]">Key Metrics</p>
                                     <div className="w-[420px] flex gap-4 mx-sauto items-cxenter ">
-                                        <div className="w-[302px] py-6 border-[#D8D8D8] rounded-[10px] px-12 border bg-[#F2F2F2] flex flex-col">
+                                        <div className="min-w-[315px] py-6 border-[#D8D8D8] rounded-[10px] px-12 border bg-[#F2F2F2] flex flex-col">
                                             <p className="text-[#4A5565] font-instrument font-normal text-[14x] leading-[28px] tracking-[-0.44px]"> Total Stories</p>
                                             <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">12</p>
                                         </div>
-                                        <div className="w-[302px] py-6 border-[#D8D8D8] border rounded-[10px] px-12 bg-[#F2F2F2] flex flex-col ">
+                                        <div className="min-w-[315px] py-6 border-[#D8D8D8] border rounded-[10px] px-12 bg-[#F2F2F2] flex flex-col ">
                                             <p className="text-[#4A5565] font-instrument font-normal text-[14x] leading-[28px] tracking-[-0.44px]"> Total Points</p>
                                             <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">12</p>
                                         </div>
@@ -125,7 +129,7 @@ const ProjectFinalPlanner = () => {
                         </div>
                      </div>
                      
-                    <div className="w-[409px] rounded-[10px] bg-[#F9FAFB] py-[16px] pl-10 pr-4 flex flex-col">
+                    <div className="w-[509px] rounded-[10px] bg-[#F9FAFB] py-[16px] pl-10 pr-4 flex flex-col">
                             <p className="text-[#101828]  font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">Project Retrospective</p>
                                 <div className="my-6">
                                     <div className="w-[348px] text-[#364153]">
@@ -152,9 +156,28 @@ const ProjectFinalPlanner = () => {
                                 </div>
 
                     </div>
+
                 </div>
 
             </div>
+            <div className="flex justify-between px-6 py-8">
+                      <button
+                          type="button"
+                          onClick={() => window.history.back()}
+                          className="flex gap-2 border-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] text-[#364153] font-medium text-[14px]"
+                      >
+                          <img src={left} alt="" />
+                          Cancel
+                      </button>
+            
+                      <button
+                          type="submit"
+                          className="flex capitalize gap-2 justify-center items-center  py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                      >
+                          back to dashboard
+                          <img src={right} alt="" />
+                      </button>
+                    </div>
          </div>
     );
 }

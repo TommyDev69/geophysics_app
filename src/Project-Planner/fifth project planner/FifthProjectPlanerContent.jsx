@@ -10,7 +10,7 @@
 
     const FifthProjectPlannerContent = ({Result, activeId, setActiveId, handleSubmit}) => {
         return ( 
-            <form  onSubmit={handleSubmit}>
+            <form>
 
            <div className=" flex flex-col   mt-[41px] px-12  gap-[22px]">
                    <div className="flex min-w-[917px]  justify-between">
@@ -75,6 +75,7 @@
                         {Result.map((item) => (
                             <div key={item.id}>
                                 <button
+                                type="button"
                                     onClick={() => setActiveId(item.id)}
                                     className={`min-w-[308px] text-black text-[18px] capitalize py-4 transition-all duration-200
                                         
@@ -115,13 +116,14 @@
                     Cancel
                     </button>
         
-                    <button
-                    type="submit"
-                    className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
-                    >
-                    Next
-                    <img src={right} alt="" />
-                    </button>
+                   <button
+  type="button"
+  onClick={handleSubmit}
+  className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+>
+  Next
+  <img src={right} alt="" />
+</button>
                 </div>
             
             </form>

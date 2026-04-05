@@ -13,20 +13,19 @@ import Swal from "sweetalert2";
 
          const handleSubmit = (e) => {
             e.preventDefault();
-        
             // Validation
            
         
-            // // Show success alert
-            // Swal.fire({
-            //   icon: "success",
-            //   title: "project submitted",
-            //   text: "Your new epic has been added",
-            //   timer: 1500,
-            //   showConfirmButton: false,
-            // }).then(() => {
-            //   if (onNext) onNext(4);
-            // });
+            // Show success alert
+            Swal.fire({
+              icon: "success",
+              title: "project submitted",
+              text: "Your new epic has been added",
+              timer: 1500,
+              showConfirmButton: false,
+            }).then(() => {
+            if (onNext) onNext(4);
+    });
         
           };
         return (  

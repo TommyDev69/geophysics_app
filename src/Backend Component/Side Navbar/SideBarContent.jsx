@@ -4,7 +4,7 @@ const SideBarContent = ( {data, onMenuClick, activeMenu}) => {
       {data.map((item) => {
         const isActive = activeMenu === item.name; // compute before returning JSX
         return (
-          <div
+          <button type="button"
             key={item.id}
             className={`w-[287px] flex gap-4 items-center rounded-[10px] md:pl-[18px] pl-[14px] py-[16px] cursor-pointer ${
               isActive ? "bg-blue-100" : "hover:bg-gray-200"
@@ -19,7 +19,7 @@ const SideBarContent = ( {data, onMenuClick, activeMenu}) => {
                 {item.name}
               </p>
             </div>
-          </div>
+          </button>
         );
       })}
     </>
