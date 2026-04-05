@@ -139,7 +139,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             }).then(() => {
                 setSubmitted(false);
                 dispatch(resetSuccessAction());
-                if (onNext) onNext();
+                if (onNext) onNext(4);
             });
         }
     }, [submitted, success, successMessage, dispatch, onNext]);

@@ -111,7 +111,7 @@ const SecondSurveyConnectivity = ({ onNext }) => {
         dispatch(resetSuccessAction());
         dispatch(getUserProfileAction()); // Refresh profile to get updated survey
 
-        if (onNext) onNext(secondSurveyForm);
+        if (onNext) onNext();
       });
     }
   }, [submitted, success, successMessage, dispatch, onNext, secondSurveyForm]);
