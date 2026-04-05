@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function BackLogModal({ closeModal, errors, epicForm, handleEpicChange, handleSubmit }){
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
     {/* // Full screen overlay */}
     <div
       className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
@@ -73,12 +73,12 @@ export default function BackLogModal({ closeModal, errors, epicForm, handleEpicC
           >
             Cancel
           </button>
-          <button  type='submit' className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]">
+          <button onClick={handleSubmit} type='button' className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]">
             Create Epic
           </button>
         </div>
       </div>
     </div>
-    </form>
+    </div>
   );
 }
