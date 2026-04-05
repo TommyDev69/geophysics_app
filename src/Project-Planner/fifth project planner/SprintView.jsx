@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Plus from '../../Backend Component/image/Plus.png';
 import SprintViewTable from './SprintViewTable';
 import Swal from 'sweetalert2';
 import SprintViewModal from './SprintViewModal';
+import baseUrl from '../../utils/baseUrl';
 
 export default function SprintView() {
   const [sprintForm, setSprintForm] = useState({
@@ -15,6 +17,8 @@ export default function SprintView() {
 
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sprints, setSprints] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Modal handlers
   const openModal = () => setIsModalOpen(true);
@@ -28,8 +32,30 @@ export default function SprintView() {
   };
 
   // Handle submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const fetchSprints = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`${baseUrl}/sprints/all-sprints`);
+      console.log("Fecth sprint", data);
+      
+      if (data?.status === 'Success') {
+        setSprints(data.message || []);
+      } else {
+        setSprints([]);
+      }
+    } catch (error) {
+      console.error('Failed to fetch sprints:', error);
+      setSprints([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSprints();
+  }, []);
+
+  const handleSubmit = async () => {
 
     const newErrors = {};
     if (!sprintForm.title.trim()) newErrors.title = "Title is required";
@@ -43,22 +69,57 @@ export default function SprintView() {
       return;
     }
 
-    Swal.fire({
-      icon: "success",
-      title: "Sprint Created!",
-      text: "Your sprint has been added",
-      timer: 1500,
-      showConfirmButton: false,
-    });
+    try {
+      const token = JSON.parse(localStorage.getItem('userInfo'))?.message?.token;
 
-    setSprintForm({
+      if (!token) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Authentication Required',
+          text: 'Please login to create a sprint.',
+        });
+        return;
+      }
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = await axios.post(`${baseUrl}/sprints/create-sprint`, sprintForm, config);
+      console.log("Create sprint response", data);
+      if (data?.status !== 'Success') {
+        throw new Error(data?.message || 'Sprint creation failed');
+      }
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Sprint Created!',
+        text: 'Your sprint has been added',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      setSprintForm({
         title: "",
         description: "",
         startDate: "",
         endDate: "",
         priority: "",
-    });
-    closeModal();
+      });
+      setErrors({});
+      closeModal();
+      fetchSprints();
+    } catch (error) {
+      console.error('Sprint creation failed:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Unable to create sprint',
+        text: error.response?.data?.message || error.message || 'Please login and try again',
+      });
+    }
   };
 
   return (
@@ -82,7 +143,7 @@ export default function SprintView() {
       </div>
 
       <>
-        <SprintViewTable />
+        <SprintViewTable sprints={sprints} loading={loading} />
       </>
 
       {isModalOpen && (

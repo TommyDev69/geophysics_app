@@ -9,7 +9,7 @@ export default function SprintViewModal({
   epics // optional: list of existing epics
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
         <div className="w-[600px] p-[24px] bg-[#ffffff] border rounded-[10px] relative">
           <h2 className="text-[#101828] font-instrument font-semibold text-[24px] leading-[28px] tracking-[-0.45px]">
@@ -59,12 +59,12 @@ export default function SprintViewModal({
               </label>
               <input
                 type="date"
-                name="start"
-                value={sprintForm.start}
+                name="startDate"
+                value={sprintForm.startDate}
                 onChange={handleSprintChange}
                 className="border py-[14px] px-[16px] text-[#364153] rounded-[10px] border-[#DADCE0]"
               />
-              <p className="text-red-600">{errors.start}</p>
+              <p className="text-red-600">{errors.startDate}</p>
             </div>
 
             <div className="flex flex-col w-1/2">
@@ -108,7 +108,8 @@ export default function SprintViewModal({
               Cancel
             </button>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]"
             >
               Add Sprint
@@ -116,6 +117,6 @@ export default function SprintViewModal({
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 }

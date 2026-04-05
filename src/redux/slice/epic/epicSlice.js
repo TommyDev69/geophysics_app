@@ -30,6 +30,10 @@ export const createEpicAction = createAsyncThunk(
                 }, config);
             console.log(res.data, "epic data");
             
+            if (res.data.status !== "Success") {
+                throw new Error(res.data.message || "Failed to create epic");
+            }
+            
             return res.data;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.message || error.message);
@@ -49,11 +53,11 @@ const epicSlice = createSlice({
         builder.addCase(createEpicAction.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            state.successMessage = action.payload?.message || "Epic created";
-            // Backend returns response with 'data' field
-            state.epic = action.payload?.data || null;
-            if (action.payload?.data) {
-                state.epics.push(action.payload.data);
+            state.successMessage = action.payload?.message || action.payload?.messsage || "Epic created";
+            const epicData = action.payload?.data || action.payload?.messsage || action.payload?.message || null;
+            state.epic = epicData;
+            if (epicData) {
+                state.epics.push(epicData);
             }
         });
         builder.addCase(createEpicAction.rejected, (state, action) => {

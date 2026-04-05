@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createEpicAction } from "../../redux/slice/epic/epicSlice";
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const BackLogProductValidation = ({onNext}) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { loading, error: reduxError, success } = useSelector(
-    (state) => state.epics
-  );
+  // const { loading, error: reduxError, success } = useSelector(
+  //   (state) => state.epics
+  // );
 
   const dataItems = [
     { id: 1, topic: "backlog" },
@@ -48,8 +48,8 @@ const BackLogProductValidation = ({onNext}) => {
   };
 
   // Submit handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // ✅ VERY IMPORTANT
 
     // Validation
     const newErrors = {};
@@ -62,22 +62,39 @@ const BackLogProductValidation = ({onNext}) => {
       return;
     }
 
-    // Dispatch Redux action
-    dispatch(createEpicAction(epicForm));
+    try {
+      // Dispatch Redux action and await result
+      const result = await dispatch(createEpicAction(epicForm)).unwrap();
+      console.log("Epic created successfully:", result);
 
-    // Show success alert
-    Swal.fire({
-      icon: "success",
-      title: "Epic Created!",
-      text: "Your new epic has been added",
-      timer: 1500,
-      showConfirmButton: false,
-    })
+      // Show success alert
+      Swal.fire({
+        icon: "success",
+        title: "Epic Created!",
+        text: "Your new epic has been added",
+        timer: 1500,
+        showConfirmButton: false,
+      });
 
-    // Close modal
-    closeModal();
+      // Reset form
+      setEpicForm({
+        title: "",
+        description: "",
+        priority: "",
+      });
 
-     setActiveId(1);
+      // Close modal
+      closeModal();
+
+      setActiveId(1);
+    } catch (error) {
+      console.error("Failed to create epic:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message || "Failed to create epic",
+      });
+    }
   };
 
   return (
