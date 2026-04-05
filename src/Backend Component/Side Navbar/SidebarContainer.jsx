@@ -42,9 +42,9 @@ export default function SidebarContainer() {
   };
 
   return (
-    <div className="flex w-full min-h-screen relative">
+    <div className="flex w-full min-h-screen  relative">
       {/* Sidebar */}
-      <div className="hidden md:block bg-[#EBEBEB] w-[310px] pt-[32px] md:pl-[13px] pr-[1px] border border-[#DADCE0]">
+      <div className="hidden md:block bg-[#EBEBEB] w-[340px] pt-[32px] md:pl-[13px] pr-[1px] border border-[#DADCE0]">
         <SidebarConnectivity onMenuClick={handleMenuClick} activeMenu={activeMenu} />
       </div>
 
@@ -113,7 +113,7 @@ export default function SidebarContainer() {
               className="fixed inset-0 bg-black/40 z-40 md:hidden"
             />
 
-            <div className="fixed top-0 left-0 bottom-0 w-64 bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg md:hidden">
+            <div className="fixed top-0 left-0 bottom-0  bg-[#EBEBEB] z-50 pt-4 pl-4 pr-2 border border-[#DADCE0] shadow-lg md:hidden">
               <div className="flex pl-4 mb-4 border-b">
                 <FontAwesomeIcon
                   icon={faXmark}

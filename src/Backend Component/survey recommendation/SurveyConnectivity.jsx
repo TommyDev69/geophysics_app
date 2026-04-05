@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import SurveyContent from "./SurveyContent";
 import number1 from "../image/num1.png"

@@ -9,7 +9,8 @@
     import BackLogProductValidation from "./BackLogProductValidation";
 
     const FifthProjectPlannerContent = ({Result, activeId, setActiveId, handleSubmit}) => {
-        return ( 
+      // const [showBacklog, setShowBacklog] = useState(false);  
+      return ( 
             <form>
 
            <div className=" flex flex-col   mt-[41px] px-12  gap-[22px]">
@@ -90,7 +91,7 @@
                         ))}
                     </div>
                     {/* Content */}
-                    <div className="mt-6 w-full">
+                    <div className="mt-6 w-full">    
                         {activeId === 1 && <BackLogProductValidation />}
                         {activeId === 2 && <BoardValidation />}
                         {activeId === 3 && <SprintView />}
