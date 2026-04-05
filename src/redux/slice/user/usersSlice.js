@@ -61,6 +61,58 @@ export const loginUserAction = createAsyncThunk(
     }
 );
 
+export const userProfileUpdateAction = createAsyncThunk(
+    "updateUser/profile",
+    async (payload, { rejectWithValue, getState, dispatch }) => {
+        try {
+            const state = getState();
+            console.log("Full Redux state:", state);
+            
+            // Get token and userId from Redux state
+            const userInfo = state?.users?.userAuth?.userInfo;
+            const token = userInfo?.message?.token;
+            const userId = userInfo?.message?.id;
+            
+            console.log("User Info:", userInfo);
+            console.log("Token:", token);
+            console.log("UserId:", userId);
+            console.log("Payload:", payload);
+            
+            if (!userInfo) {
+                return rejectWithValue("❌ User not logged in. Please login first.");
+            }
+            
+            if (!token) {
+                return rejectWithValue("❌ Authentication token not found. Please login again.");
+            }
+            
+            if (!userId) {
+                return rejectWithValue("❌ User ID not found. Please login again.");
+            }
+            
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            
+            // Make PUT request to update user profile
+            const res = await axios.put(
+                `${baseUrl}/users/update/profile/${userId}`,
+                payload,
+                config
+            );
+            
+            console.log("✅ API Response:", res.data);
+            return res.data;
+        } catch (error) {
+            console.error("❌ Update Error:", error);
+            return rejectWithValue(error?.response?.data?.message || error.message);
+        }
+    }
+);
+
 // get user profile Action
 export const getUserProfileAction = createAsyncThunk("users/profile",
     async (payload, { rejectWithValue, getState, dispatch }) => {
@@ -155,6 +207,27 @@ const usersSlice = createSlice({
         builder.addCase(getUserProfileAction.rejected, (state, action) => {
             state.error = action.payload || action.error.message;
             state.loading = false;
+        });
+
+        // update user profile
+        builder.addCase(userProfileUpdateAction.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+        });
+
+        builder.addCase(userProfileUpdateAction.fulfilled, (state, action) => {
+            state.profile = action.payload.message;
+            state.loading = false;
+            state.error = null;
+            state.success = true;
+            state.successMessage = action.payload.message || "Profile updated successfully";
+        });
+
+        builder.addCase(userProfileUpdateAction.rejected, (state, action) => {
+            state.error = action.payload || action.error.message;
+            state.loading = false;
+            state.success = false;
         });
     }
 })
