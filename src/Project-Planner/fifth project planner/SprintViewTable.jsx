@@ -8,6 +8,7 @@ const SprintViewTable = ({ sprints = [], loading = false }) => {
             <th className="border-2" rowSpan="2">Title</th>
             <th className="border-2" rowSpan="2">Description</th>
             <th className="border-2" colSpan="2">Dates</th>
+            {/* <th className="border-2" colSpan="2">Dates</th> */}
             <th className="border-2" rowSpan="2">Priority</th>
           </tr>
           <tr>
