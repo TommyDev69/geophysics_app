@@ -19,6 +19,8 @@ import FifthProjectPlannerValidation from "../../Project-Planner/fifth project p
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Setting from "../../Setting/Setting";
+import ProjectFinalPlanner from "../../Project-Planner/fifth project planner/ProjectFinalPlanner";
+import FifthProjectPlannerContent from "../../Project-Planner/fifth project planner/FifthProjectPlanerContent";
 
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -94,6 +96,9 @@ export default function SidebarContainer() {
 
             {projectPlannerStep === 3 && (
               <FifthProjectPlannerValidation onNext={setProjectPlannerStep} />
+            )}
+            {projectPlannerStep === 4 && (
+              < ProjectFinalPlanner onNext={setProjectPlannerStep} />
             )}
           </>
         )}

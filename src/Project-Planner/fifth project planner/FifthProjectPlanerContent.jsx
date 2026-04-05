@@ -8,8 +8,10 @@
     import Burndown from "./Burndown";
     import BackLogProductValidation from "./BackLogProductValidation";
 
-    const FifthProjectPlannerContent = ({Result, activeId, setActiveId}) => {
+    const FifthProjectPlannerContent = ({Result, activeId, setActiveId, handleSubmit}) => {
         return ( 
+            <form  onSubmit={handleSubmit}>
+
             <div className="">
                 <div className="flex  items-center justify-between">
                     <div className="flex flex-col gap-[4px] w-[314px]  font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
@@ -124,6 +126,7 @@
                     </button>
                 </div>
             </div>
+            </form>
         );
     }
     

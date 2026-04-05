@@ -30,6 +30,7 @@ import FifthProjectPlannerContainer from './Project-Planner/fifth project planne
 // import BurndownUserStory from './Project-Planner/fifth project planner/BurndownUserStory';
 import BackLog from './Project-Planner/fifth project planner/BackLog';
 import Setting from './Setting/Setting';
+import ProjectFinalPlanner from './Project-Planner/fifth project planner/ProjectFinalPlanner';
 
 function App() {
   return (
@@ -61,6 +62,9 @@ function App() {
             <Route path='/project_planner_2' element= {<ProjectPlanner />} />
             
             <Route path="/planner" element={<FifthProjectPlannerContainer /> } />
+            <Route path="/final" element={<ProjectFinalPlanner/> } />
+
+
              {/* <Route path="/backLog" element={<BackLog/>} /> */}
 
 

@@ -73,7 +73,7 @@ const BackLogProductValidation = ({onNext}) => {
       timer: 1500,
       showConfirmButton: false,
     }).then(() => {
-      if (onNext) onNext(3);
+      if (onNext) onNext();
     });
 
     // Close modal
