@@ -99,7 +99,7 @@ const SurveyFormValidation = ({ onNext }) => {
           clientEmail: "",
           targetCompletionDate: "",
         });
-        if (onNext) onNext();
+        if (onNext) onNext(2);
       });
     }
   }, [success, successMessage, dispatch, onNext]);

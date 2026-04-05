@@ -10,12 +10,12 @@ import SideBarContent from "./SideBarContent";
 
 const SidebarConnectivity = ({ onMenuClick, activeMenu }) => {
   const [content] = useState([
-    { id: 1, name: "dashboard", icon: DashImage },
-    { id: 2, name: "my project", icon: MyProject },
-    { id: 3, name: "survey recommendation", icon: SurveyIcon },
-    { id: 4, name: "project planner", icon: Planner },
-    { id: 5, name: "setting", icon: Setting },
-    { id: 6, name: "logout", icon: LogOut },
+    { id: 1, name: "dashboard", path:'/dashboard', icon: DashImage },
+    { id: 2, name: "my project", path:'/dashboard/my project', icon: MyProject },
+    { id: 3, name: "survey recommendation", path:'/dashboard/survey', icon: SurveyIcon },
+    { id: 4, name: "project planner", path:'/dashboard/project_planner', icon: Planner },
+    { id: 5, name: "setting", path:'/dashboard/setting', icon: Setting },
+    { id: 6, name: "logout", path:'/dashboard/my project/logout', icon: LogOut },
     // { id: 6, name: "logout", icon: LogOut },/
 
 
