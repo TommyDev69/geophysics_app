@@ -14,7 +14,7 @@ const SideBarContent = ({ data, activeMenu, onMenuClick }) => {
       {data.map((item) => {
         const isActive = activeMenu === item.name;
         return (
-          <button
+          <button 
             key={item.id}
             className={`w-[287px] flex gap-4 items-center rounded-[10px] md:pl-[18px] pl-[14px] py-[16px] cursor-pointer ${
               isActive ? "bg-blue-100" : "hover:bg-gray-200"

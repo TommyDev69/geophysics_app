@@ -12,11 +12,19 @@ import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
 import Sidebar from "./Backend Component/Side Navbar/Sidebar";
+// <<<<<<< HEAD
 import BackLog from './Project-Planner/fifth project planner/BackLog';
+
+// function App() {
+//   return (
+    // <BackLog />
+// =======
+// import SixSurveyContainer from "./Backend Component/Six survey recommendation/SixSurveyContainer";
 
 function App() {
   return (
-    // <BackLog />
+  
+// >>>>>>> 1f660dcf16fab73d60fce588dc73199c80b8c5a6
     <Router>
       <Routes>
         {/* Public Pages */}
@@ -26,11 +34,12 @@ function App() {
 
         {/* Dashboard + Sidebar Container */}
         <Route path="/dashboard/*" element={ <Sidebar /> } />
-
+        {/* <Route path="/dashboard/survey/final_stage" element = {<SixSurveyContainer />} /> */}
         {/* Redirect unknown paths */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
+   
   );
 }
 
