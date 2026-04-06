@@ -44,7 +44,22 @@ export const createEpicAction = createAsyncThunk(
 // fetch all epics action
 export const fetchEpicsAction = createAsyncThunk(
     "epic/fetchAll",
-    
+    async (payload, { rejectWithValue, getState, dispatch }) => {
+        try {
+            const token = getState()?.users?.userAuth?.userInfo?.message?.token;
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const res = await axios.get(`${baseUrl}/epics/all-epics`, config);
+            // console.log(res.data, "Epics data");
+            
+            return res.data;
+        } catch (error) {
+            return rejectWithValue(error?.response?.data?.message || error.message);
+        }
+    }
 );
 
 const epicSlice = createSlice({
@@ -79,6 +94,21 @@ const epicSlice = createSlice({
         builder.addCase(resetSuccessAction.pending, (state) => {
             state.success = false;
             state.successMessage = null;
+        });
+
+        // Fetch all epics
+        builder.addCase(fetchEpicsAction.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        });
+        builder.addCase(fetchEpicsAction.fulfilled, (state, action) => {
+            state.loading = false;
+            state.epics = action.payload?.data || [];
+            state.error = null;
+        });
+        builder.addCase(fetchEpicsAction.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
         });
     }
 });

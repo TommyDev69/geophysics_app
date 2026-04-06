@@ -78,7 +78,7 @@ const BackLogProductValidation = ({onNext}) => {
         showConfirmButton: false,
       }); 
 
-      // Reset form
+      // Reset form`
       setEpicForm({
         title: "",
         description: "",

@@ -3,13 +3,23 @@ import BackLogContent from "./BackLogContent";
 import down from '../../Backend Component/image/ChevronDown.png'
 import Plus from '../../Backend Component/image/Plus.jpg'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEpicsAction } from "../../redux/slice/epic/epicSlice";
 const BackLog = () => {
-    const[tog, setTog] =useState(false)
-    const toggling =() =>{
-        setTog(!tog)
+    const [tog, setTog] = useState(false);
+    const toggling = () => {
+        setTog(!tog);
+    };
 
-    }
+    const dispatch = useDispatch();
+    const { epic, loading, error } = useSelector((state) => state.epics);
+    console.log("Backlog", epic.description);
+    
+
+    useEffect(() => {
+        dispatch(fetchEpicsAction());
+    }, [dispatch]);
 
     return (  
         <>
@@ -35,11 +45,11 @@ const BackLog = () => {
                         <div className="flex bg-red-600 min-w-[1083px]">
                             <div className="flex w-[100px] gap-4 flex-col">
                                 <p className="text-black font-instrument font-semibold text-[16px] leading-[24px] tracking-[-0.31px]">
-                                    data design
+                                    {epic?.title || "Epic Title"}
                                 </p>
-                                <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">food</p>
+                                <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">{epic?.description || "Epic Description"}</p>
                             </div>
-                                <div className="bg-[#F3F4F6] flex items-center justify-center w-[24px] h-[24px] border text-black rounded-full p-2 text-[10px]">low</div>
+                                <div className="bg-[#F3F4F6] flex items-center justify-center w-[24px] h-[24px] border text-black rounded-full p-2 text-[10px]">{epic?.priority || "Priority"}</div>
                         </div>
 
                         <div className="flex text-[#4A5565]  bg-blue-500 font-instrument font-normal text-[14px] ml-24 leading-[20px] flqex justify-end tracking-[-0.15px]   r-[104px]">
