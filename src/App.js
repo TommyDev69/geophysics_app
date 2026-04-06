@@ -12,10 +12,11 @@ import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
 import Sidebar from "./Backend Component/Side Navbar/Sidebar";
-import SixSurveyContainer from "./Backend Component/Six survey recommendation/SixSurveyContainer";
+// import SixSurveyContainer from "./Backend Component/Six survey recommendation/SixSurveyContainer";
 
 function App() {
   return (
+  
     <Router>
       <Routes>
         {/* Public Pages */}
@@ -30,6 +31,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
+   
   );
 }
 

@@ -74,7 +74,7 @@ const BackLogProductValidation = ({onNext}) => {
         text: "Your new epic has been added",
         timer: 1500,
         showConfirmButton: false,
-      });
+      }); 
 
       // Reset form
       setEpicForm({
