@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { createEpicAction } from "../../redux/slice/epic/epicSlice";
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
+import BackLog from "./BackLog";
 // import { useNavigate } from "react-router-dom";
 
 const BackLogProductValidation = ({onNext}) => {
@@ -35,6 +36,7 @@ const BackLogProductValidation = ({onNext}) => {
 
   const [activeId, setActiveId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [epicCreated, setEpicCreated] = useState(false);
 
   // Modal handlers
   const openModal = () => setIsModalOpen(true);
@@ -87,6 +89,7 @@ const BackLogProductValidation = ({onNext}) => {
       closeModal();
 
       setActiveId(1);
+      setEpicCreated(true);
     } catch (error) {
       console.error("Failed to create epic:", error);
       Swal.fire({
@@ -98,28 +101,32 @@ const BackLogProductValidation = ({onNext}) => {
   };
 
   return (
-    <div>
-      <BackLogProduct
-        items={dataItems}
-        activeId={activeId}
-        setActiveId={setActiveId}
-        isModalOpen={isModalOpen}
-        openModal={openModal}
-        closeModal={closeModal}
-        submitData={handleSubmit}
-      />
-
-      {isModalOpen && (
-        <BackLogModal
+    epicCreated ? (
+      <BackLog />
+    ) : (
+      <div>
+        <BackLogProduct
+          items={dataItems}
+          activeId={activeId}
+          setActiveId={setActiveId}
+          isModalOpen={isModalOpen}
+          openModal={openModal}
           closeModal={closeModal}
-          epicForm={epicForm}
-          handleEpicChange={handleEpicChange}
-          handleSubmit={handleSubmit}
-          errors={errors}
-          onNext={onNext}
+          submitData={handleSubmit}
         />
-      )}
-    </div>
+
+        {isModalOpen && (
+          <BackLogModal
+            closeModal={closeModal}
+            epicForm={epicForm}
+            handleEpicChange={handleEpicChange}
+            handleSubmit={handleSubmit}
+            errors={errors}
+            onNext={onNext}
+          />
+        )}
+      </div>
+    )
   );
 };
 

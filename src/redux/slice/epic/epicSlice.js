@@ -41,6 +41,12 @@ export const createEpicAction = createAsyncThunk(
     }
 );
 
+// fetch all epics action
+export const fetchEpicsAction = createAsyncThunk(
+    "epic/fetchAll",
+    
+);
+
 const epicSlice = createSlice({
     name: "epics",
     initialState,
