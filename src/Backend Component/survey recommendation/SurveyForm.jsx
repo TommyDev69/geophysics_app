@@ -1,5 +1,6 @@
 import right from "../image/ChevronRight.png";
 import left from "../image/ChevronLeft.png";
+// import SurveyContent from "./SurveyContent";
 
 const SurveyForm = ({
   content,
@@ -12,6 +13,7 @@ const SurveyForm = ({
 }) => {
   return (
     <form onSubmit={handleSurveySubmit}>
+    
       <div className="w-[917px] py-6 px-[12px]">
         <p className="font-semibold text-[20px] leading-7 tracking-[-0.45px] capitalize text-[#101828]">
           {title}

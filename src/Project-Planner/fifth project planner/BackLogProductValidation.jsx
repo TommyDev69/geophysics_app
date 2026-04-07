@@ -5,6 +5,7 @@ import { createEpicAction } from "../../redux/slice/epic/epicSlice";
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
 import BackLog from "./BackLog";
+import UseStoryModal from "./UseStoryModal";
 // import { useNavigate } from "react-router-dom";
 
 const BackLogProductValidation = ({onNext}) => {
@@ -36,11 +37,17 @@ const BackLogProductValidation = ({onNext}) => {
 
   const [activeId, setActiveId] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+
   const [epicCreated, setEpicCreated] = useState(false);
 
   // Modal handlers
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  // Modal handlers for user Stories
+  const openUserModal = () => setIsUserModalOpen(true);
+  const closeUserModal = () => setIsUserModalOpen(false);
 
   // Handle input change
   const handleEpicChange = (e) => {
@@ -88,6 +95,9 @@ const BackLogProductValidation = ({onNext}) => {
       // Close modal
       closeModal();
 
+      closeUserModal();
+
+
       setActiveId(1);
       setEpicCreated(true);
     } catch (error) {
@@ -99,6 +109,10 @@ const BackLogProductValidation = ({onNext}) => {
       });
     }
   };
+  const handleStoryComplete = () => {
+  closeUserModal();
+  setEpicCreated(true);
+};
 
   return (
     epicCreated ? (
@@ -125,6 +139,13 @@ const BackLogProductValidation = ({onNext}) => {
             onNext={onNext}
           />
         )}
+
+       {isUserModalOpen && (
+        <UseStoryModal
+          closeUserModal={closeUserModal}
+          onComplete={handleStoryComplete}
+        />
+      )}
       </div>
     )
   );

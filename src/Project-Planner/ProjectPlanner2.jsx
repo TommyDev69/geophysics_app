@@ -40,28 +40,28 @@ export default function ProjectPlanner2({
 
   return (
     <form onSubmit={HandleSubmit}>
-      <div className=" flex flex-col min-w-[967px]  mt-[41px] px-12  gap-[22px]">
-        <div className="flex min-w-[917px]  justify-between">
-          <div className="flex flex-col gap-[4px] w-[314px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
-            <h1 className="">Agile Project Planner</h1>
-            <p className="w-[72px] mt-[0.5px] font-instrument font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#4A5565]">
+      <div className=" flex flex-col w-[967px]  mt-[41px] px-12  gap-[22px]">
+        <div className="flex w-[917px]  justify-between">
+          <div className="flex flex-col  w-[314px] font-instrument font-bold text-[30px] leading-[36px] tracking-[0.4] text-[#101828]">
+            <h1>Agile Project Planner</h1>
+            <p className=" font-instrument font-normal text-[16px] leading-[24px] tracking-[-0.31px] text-[#4A5565]">
               Step 1 of 3
             </p>
           </div>
-          <div className="relative w-[158px] rounded-[10px] border-[2px] border-[#DADCEO] flex gap-2 items-center justify-center">
+          <div className=" px-4 rounded-[10px] border-[2px] border-[#DADCEO] flex gap-2 items-center">
             <img
               src={save}
               alt="save"
-              className="absolute left-[18px]  top-1/2 -translate-y-1/2 w-[16px] h-[16px]"
+              
             />
-            <button className="ml-[44px] font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
+            <button className=" font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
               Save as Draft
             </button>
           </div>
         </div>
-        <div className="flex flex-col min-w-[917px] rounded-[10px] border py-[28px] text-[#FFFFFF] border-[#DADCEO] ">
-          <div className="flex min-w-[917px] ">
-            <div className="flex min-w-[306px]  mt-3">
+        <div className="flex flex-col w-[917px] rounded-[10px] border py-[28px] text-[#FFFFFF] border-[#DADCEO] ">
+          <div className="flex w-[917px] ">
+            <div className="flex w-[306px]  mt-3">
               <div className="md:container flex flex-col  gap-[8px] items-center justify-ce nter">
                 <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
                   <h1>1</h1>
@@ -73,7 +73,7 @@ export default function ProjectPlanner2({
               <div className="w-[345px] h-[4px] mt-[18px] bg-[#E5E7EB] "></div>
             </div>
 
-            <div className="flex min-w-[306px]  mt-3">
+            <div className="flex w-[306px]  mt-3">
               <div className="md:container flex flex-col  items-center justwify-center">
                 <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
                   <h1>2</h1>
@@ -85,7 +85,7 @@ export default function ProjectPlanner2({
               <div className="w-[345px] h-[4px] mt-[18px] bg-[#E5E7EB] "></div>
             </div>
 
-            <div className="flex min-w-[306px]  mx-4 mt-3 ">
+            <div className="flex w-[306px]  mx-4 mt-3 ">
               <div className="md:container flex flex-col  gap-[8px] items-center justify-center">
                 <div className="container flex w-[60px] text-[18px] h-[60px] rounded-[16777200px] bg-[#585858] items-center justify-center">
                   <h1>3</h1>
@@ -98,9 +98,9 @@ export default function ProjectPlanner2({
           </div>
         </div>
         {/* Project Inputs */}
-        <div className=" flex flex-col rounded-[10px] border text[#FFFFFF] border-[#DADCEO] shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]">
+        <div className=" flex flex-col w-[917px] rounded-[10px] border text[#FFFFFF] border-[#DADCEO] shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]">
           {/* Project Name */}
-          <div className="flex flex-col  min-w-[1128px]  ml-[10s0px] gap-[4px]">
+          <div className="flex flex-col  w-[946px]  ml-[10s0px] gap-[4px]">
             <div className="min-w-[917px]   mt-[2pax] ">
               <div className=" font-instrument px-12 pt-8 pb-12 font-semiBold text-[20px] leading-[28px] tracking-[-0.45px] text-[#101828]">
                 <h2>Project Setup</h2>

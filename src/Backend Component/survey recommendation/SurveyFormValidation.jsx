@@ -4,16 +4,22 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import SurveyForm from "./SurveyForm";
 import { createSurveyAction } from "../../redux/slice/survey/surveySlice";
-import { resetSuccessAction, resetErrAction } from "../../redux/slice/globalActions/globalActions";
+import {
+  resetSuccessAction,
+  resetErrAction,
+} from "../../redux/slice/globalActions/globalActions";
 
 import first from "../image/🌿.png";
 import second from "../image/⛏️.png";
 import third from "../image/🏗️.png";
 import fourth from "../image/🏛️.png";
+import SurveyContent from "./SurveyContent";
 
 const SurveyFormValidation = ({ onNext }) => {
   const dispatch = useDispatch();
-  const { loading, error: reduxError, success, successMessage } = useSelector((state) => state.surveys);
+  const { error: reduxError, success, successMessage } = useSelector(
+    (state) => state.surveys
+  );
 
   const [content] = useState([
     { id: 1, photo: first, topic: "Environmental Assessment" },
@@ -40,7 +46,7 @@ const SurveyFormValidation = ({ onNext }) => {
   const handleSurveyChange = (e) => {
     const { name, value } = e.target;
     setSurveyForm((prev) => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
+
     if (error[name]) {
       setError((prev) => ({ ...prev, [name]: "" }));
     }
@@ -48,13 +54,13 @@ const SurveyFormValidation = ({ onNext }) => {
 
   const handleSurveyObjective = (value) => {
     setSurveyForm((prev) => ({ ...prev, surveyObjective: value }));
-    // Clear error when user selects objective
+
     if (error.surveyObjective) {
       setError((prev) => ({ ...prev, surveyObjective: "" }));
     }
   };
 
-  const handleSurveySubmit = async (e) => {
+  const handleSurveySubmit = (e) => {
     e.preventDefault();
 
     const surveyFormError = {
@@ -68,7 +74,8 @@ const SurveyFormValidation = ({ onNext }) => {
 
     setError(surveyFormError);
 
-    if (surveyFormError.projectName || surveyFormError.surveyObjective) {
+    // ✅ FIXED VALIDATION
+    if (surveyFormError.surveyName || surveyFormError.surveyObjective) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -77,42 +84,34 @@ const SurveyFormValidation = ({ onNext }) => {
       return;
     }
 
-    // Dispatch action to create survey
+    // ✅ MOVE TO NEXT STEP IMMEDIATELY
+    if (onNext) onNext(2);
+
+    // ✅ SEND TO REDUX IN BACKGROUND
     dispatch(createSurveyAction(surveyForm));
   };
 
-  // Handle Redux success and error
+  /** SUCCESS (optional feedback only) */
   useEffect(() => {
     if (success) {
       Swal.fire({
         icon: "success",
-        title: "Success",
-        text: successMessage || "Survey setup completed",
-      }).then(() => {
-        dispatch(resetSuccessAction());
-        setSurveyForm({
-          surveyName: "",
-          description: "",
-          surveyObjective: "",
-          others: "",
-          clientName: "",
-          clientEmail: "",
-          targetCompletionDate: "",
-        });
-        if (onNext) onNext(2);
+        title: "Saved",
+        text: successMessage || "Survey saved successfully",
       });
+      dispatch(resetSuccessAction());
     }
-  }, [success, successMessage, dispatch, onNext]);
+  }, [success, successMessage, dispatch]);
 
+  /** ERROR HANDLING */
   useEffect(() => {
     if (reduxError) {
       Swal.fire({
         icon: "error",
         title: "Error",
         text: reduxError,
-      }).then(() => {
-        dispatch(resetErrAction());
       });
+      dispatch(resetErrAction());
     }
   }, [reduxError, dispatch]);
 
@@ -122,7 +121,7 @@ const SurveyFormValidation = ({ onNext }) => {
         title="Project Setup"
         content={content}
         surveyForm={surveyForm}
-        error={error}  
+        error={error}
         handleSurveyChange={handleSurveyChange}
         handleSurveySubmit={handleSurveySubmit}
         handleSurveyObjective={handleSurveyObjective}

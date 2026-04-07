@@ -1,4 +1,4 @@
-const UseStoryModal = ({closeModal}) => {
+const UseStoryModal = ({ closeUserModal, onComplete }) => {
     return ( 
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       {/* Modal box */}
@@ -80,7 +80,7 @@ const UseStoryModal = ({closeModal}) => {
         {/* Buttons */}
         <div className="flex gap-6 justify-end mt-6">
           <button
-            onClick={closeModal}
+            onClick={closeUserModal}
             className="w-[87px] border-2 flex justify-center items-center text-[#364153] border-[#DADCE0] rounded-[10px] py-[8px] px-[16px]"
           >
             Cancel

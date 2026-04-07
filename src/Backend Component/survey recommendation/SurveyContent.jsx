@@ -1,6 +1,8 @@
 import save from "../image/Save.png"
+import SurveyForm from "./SurveyForm";
 const SurveyContent = ({ title, survey }) => {
     return ( 
+        <>
         <div clasdsName="flex">
             <div className="w-full flex justify-between items-center ">
                 <div className="w-[456px] text-[#364153] pb-10">
@@ -37,6 +39,8 @@ const SurveyContent = ({ title, survey }) => {
                 ))}
             </div>
         </div>
+      
+        </>
      );
 }
  

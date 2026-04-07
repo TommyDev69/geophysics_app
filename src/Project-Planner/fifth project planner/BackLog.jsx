@@ -1,72 +1,78 @@
-import Right from "../../Backend Component/image/Vector.png"
+import Right from "../../Backend Component/image/Vector.png";
 import BackLogContent from "./BackLogContent";
-import down from '../../Backend Component/image/ChevronDown.png'
-import Plus from '../../Backend Component/image/Plus.jpg'
+import down from "../../Backend Component/image/ChevronDown.png";
+import Plus from "../../Backend Component/image/Plus.jpg";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEpicsAction } from "../../redux/slice/epic/epicSlice";
-const BackLog = () => {
-    const [tog, setTog] = useState(false);
-    const toggling = () => {
-        setTog(!tog);
-    };
+const BackLog = ({onAddStory}) => {
+  const [tog, setTog] = useState(false);
+  const toggling = () => {
+    setTog(!tog);
+  };
 
-    const dispatch = useDispatch();
-    const { epic, loading, error } = useSelector((state) => state.epics);
-    console.log("Backlog", epic.description);
-    
+  const dispatch = useDispatch();
+  const { epic, loading, error } = useSelector((state) => state.epics);
+  console.log("Backlog", epic.description);
 
-    useEffect(() => {
-        dispatch(fetchEpicsAction());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchEpicsAction());
+  }, [dispatch]);
 
-    return (  
-        <>
-          <div className="flex justify-between items-center  w-[345px] px-24 mxe-auto pb-12">
-                    {/* <p className="text-[#364153] font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">Product Backlog</p>
+  return (
+    <>
+      <div className="flex justify-between items-center px-2 mx-8 py-12">
+        <p className="text-[#364153] font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">
+          Product Backlog
+        </p>
 
-                    <button className="border-[2px]  bg-[#585858] py-3 border-[#DADCE0] text-[#364153Add story] w-[116px] gap-2 flex items-center rounded-[10px]">
-                            <div className="w-[16px] mx-2 ">
-                            <img src={Plus} alt="plus" />
-                            </div>
-                        <div className='w-[64px]'>
-                            <p className="text-[#ffffff] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-center capitalize">new epic</p>
-                        </div>
-                    </button> */}
-                </div>
-                <div className="border border-[#DADCE0] rounded-[10px]">
+        <button className="border-[2px]  bg-[#585858] py-3 border-[#DADCE0] text-[#364153Add story] w-[116px] gap-2 flex items-center rounded-[10px]">
+          <div className="w-[16px] mx-2 ">
+            <img src={Plus} alt="plus" />
+          </div>
+          <div className="w-[64px]">
+            <p className="text-[#ffffff] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-center capitalize">
+              new epic
+            </p>
+          </div>
+        </button>
+      </div>
+      <div className="border mx-8 border-[#DADCE0] rounded-[10px]">
+        <div className="px-4 justify-between border items-center rounded-[10px] border-[#DADCE0] bg-[#F9FAFB] flex gap-4">
+          <div className="flex">
+            <div className="w-[30px] flex justify-center items-center">
+              <img
+                src={tog ? down : Right}
+                onClick={toggling}
+                alt="right"
+                className=" "
+              />
+            </div>
+            <div className="flex   gap-4 ">
+              <div className="flex capitalize  flex-col">
+                <p className="text-black font-instrument font-semibold text-[16px] leading-[24px] tracking-[-0.31px]">
+                  {epic?.title || "Epic Title"}
+                </p>
+                <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">
+                  {epic?.description || "Epic Description"}
+                </p>
+              </div>
+              <div className="bg-[#F3F4F6] flex items-center justify-center w-[40px] h-[30px] p-4 border text-black rounded-full p- 2 text-[7px]">
+                {epic?.priority || "Priority"}
+              </div>
+            </div>
+          </div>
 
-                    <div className="py-2 bwg-red-600  border items-center rounded-[10px] border-[#DADCE0] bg-[#F9FAFB] flex gap-4">
-                        <div className="w-[30px] flex justify-center items-center">
-                        < img src={tog ? down : Right} onClick={toggling} alt='right' className=" " />
+          <div className="flex text-[#4A5565]  font-instrument font-normal text-[14px] ml-24 leading-[20px] flqex justify-end tracking-[-0.15px]   r-[104px]">
+            <p>0 stories</p>
+          </div>
+        </div>
 
-                        </div>
-                        <div className="flex bg-red-600 min-w-[1083px]">
-                            <div className="flex w-[100px] gap-4 flex-col">
-                                <p className="text-black font-instrument font-semibold text-[16px] leading-[24px] tracking-[-0.31px]">
-                                    {epic?.title || "Epic Title"}
-                                </p>
-                                <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">{epic?.description || "Epic Description"}</p>
-                            </div>
-                                <div className="bg-[#F3F4F6] flex items-center justify-center w-[24px] h-[24px] border text-black rounded-full p-2 text-[10px]">{epic?.priority || "Priority"}</div>
-                        </div>
+        {tog && <BackLogContent  onAddStory={onAddStory} />}
+      </div>
+    </>
+  );
+};
 
-                        <div className="flex text-[#4A5565]  bg-blue-500 font-instrument font-normal text-[14px] ml-24 leading-[20px] flqex justify-end tracking-[-0.15px]   r-[104px]">
-                            <p>0 stories</p>
-                        </div>
-                        
-                    </div>
-                    
-                    {tog &&(
-            
-                    <BackLogContent />
-                    )}
-
-                    
-                </div>
-        </>
-    );
-}
- 
 export default BackLog;
