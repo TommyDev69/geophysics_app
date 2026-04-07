@@ -67,7 +67,7 @@ const BackLogProductValidation = ({onNext}) => {
     try {
       // Dispatch Redux action and await result
       const result = await dispatch(createEpicAction(epicForm)).unwrap();
-      console.log("Epic created successfully:", result);
+      console.log("Epic created successfully seen:", result);
 
       // Show success alert
       Swal.fire({
