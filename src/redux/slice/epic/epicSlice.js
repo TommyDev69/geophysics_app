@@ -87,15 +87,6 @@ const epicSlice = createSlice({
             state.success = false;
         });
 
-        // Reset error and success
-        builder.addCase(resetErrAction.pending, (state) => {
-            state.error = null;
-        });
-        builder.addCase(resetSuccessAction.pending, (state) => {
-            state.success = false;
-            state.successMessage = null;
-        });
-
         // Fetch all epics
         builder.addCase(fetchEpicsAction.pending, (state) => {
             state.loading = true;
@@ -109,6 +100,15 @@ const epicSlice = createSlice({
         builder.addCase(fetchEpicsAction.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        });
+
+        // Reset error and success
+        builder.addCase(resetErrAction.pending, (state) => {
+            state.error = null;
+        });
+        builder.addCase(resetSuccessAction.pending, (state) => {
+            state.success = false;
+            state.successMessage = null;
         });
     }
 });
