@@ -1,5 +1,5 @@
 // <<<<<<< HEAD
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { Provider } from 'react-redux';
 // import store from './redux/store/store';
 import './App.css';
@@ -8,15 +8,14 @@ import LandingPage from './Fontend Component/Landing page/LandingPage';
 import SignUpApp from './Fontend Component/Register page/SignUpApp';
 import MainLogin from './Fontend Component/Login page/MainLogin';
 import Sidebar from "./Backend Component/Side Navbar/Sidebar";
-import UseStoryModal from './Project-Planner/fifth project planner/UseStoryModal';
-import SurveyContainer from './Backend Component/survey recommendation/SurveyContainer';
 
 
 function App() {
   return (
    
     <>
-    
+    {/* <SecondSurveyContaine /> */}
+    <Router>
       <Routes>
         {/* Public Pages */}
         <Route path="/" element={<LandingPage />} />
@@ -25,11 +24,12 @@ function App() {
 
         {/* Dashboard + Sidebar Container */}
         <Route path="/dashboard/*" element={ <Sidebar /> } />
-        <Route path="/dashboard/survey/step_1" element = {<SurveyContainer/>} />
+        {/* <Route path="/dashboard/survey/step_1" element = {<SurveyContainer/>} /> */}
+         {/* <Route path="survey/:step" element={<SidebarContainer />} /> */}
         {/* Redirect unknown paths */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-  
+    </Router>
     {/* <UseStoryModal /> */}
     </>
    

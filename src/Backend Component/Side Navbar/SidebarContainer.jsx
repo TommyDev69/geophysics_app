@@ -43,10 +43,6 @@ export default function SidebarContainer() {
     if (menuName === "survey recommendation") navigate("/dashboard/survey/1");
     if (menuName === "project planner") navigate("/dashboard/project/1");
     if (menuName === "setting") navigate("/dashboard/setting");
-
-    // Reset steps when switching menus
-    setProjectPlannerStep(1);
-    setSecondSurveyData(null);
   };
 
   /*** SURVEY FLOW ***/
@@ -57,7 +53,7 @@ export default function SidebarContainer() {
     const goToNextSurveyStep = () => {
       const nextStep = surveyStep + 1;
       if (nextStep > 6) {
-        setSecondSurveyData(null);
+        setSecondSurveyData(1);
         navigate("/dashboard/survey/1");
       } else {
         navigate(`/dashboard/survey/${nextStep}`);
