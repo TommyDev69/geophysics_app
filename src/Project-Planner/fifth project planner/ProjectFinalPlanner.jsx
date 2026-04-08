@@ -76,7 +76,7 @@ const ProjectFinalPlanner = () => {
 
             <div className="rounded-[10px] w-[917px]   border border-[#DADCEO] ">
                 <div className=" w-[900px] my-8 mx-auto px- flex space-x-6 justicfy-between">
-                     <div className="flex flex-col w-[480px] mx-auto">
+                    <div className="flex flex-col w-[480px] mx-auto">
                         <div className="w-[480px] rounded-[10px] bg-[#F9FAFB]  py-12">
                             <div className="w-[424px] mx-auto flex flex-col">
                                 <div className="flex justify-center items-center">
@@ -127,7 +127,7 @@ const ProjectFinalPlanner = () => {
                                             <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">6weeks</p>
                                         </div>
                         </div>
-                     </div>
+                    </div>
                      
                     <div className="w-[409px] rounded-[10px] bg-[#F9FAFB] py-[16px] pl-10 pr-4 flex flex-col">
                             <p className="text-[#101828]  font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">Project Retrospective</p>
