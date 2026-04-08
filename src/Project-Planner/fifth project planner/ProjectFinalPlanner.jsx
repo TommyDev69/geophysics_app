@@ -140,7 +140,7 @@ const ProjectFinalPlanner = () => {
 
                                     <div className="w-c[409px] rounded-[10px] bg-[#F9FAFB] py-[16px]  flex flex-col">
 
-                                        <div className="w-[347px] text-[#364153]">
+                                        <div className="w-[348px] text-[#364153]">
                                         <p className="text-[#101828] pb- font-instrument font-semibold text-[18px] leading-[28px] tracking-[-0.44px]">Area of improvement</p>
                                             <textarea col={3} placeholder="note"  rows={4}  className=" w-full py-5  text-[16px] rounded-[10px] px-3 border border-[#DADCE0] font-instrument font-normal leading-[28px] tracking-[-0.44px]" />
                                             
