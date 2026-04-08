@@ -21,7 +21,7 @@ const ThirdSurveyContent = ({
 
     return (
         <form onSubmit={HandleSubmit}>
-            <div className="w-full rounded-[10px] border pb-8 border-[#DADCE0]">
+            <div className="w-full rounded-[10px] border pb-8 border-[#DADCE0] capitalize">
 
                 {/* TITLE */}
                 <div className="w-[917px] mx-auto py-4">
@@ -63,7 +63,7 @@ const ThirdSurveyContent = ({
                             name="vegetation"
                             value={userInput?.vegetation}
                             onChange={SurveyChange}
-                            className="w-full border p-3 rounded mb-4"
+                            className="w-full border p-3 rounded mb-4 "
                         >
                             <option value="">Select</option>
                             <option value="Low">Low</option>
@@ -71,19 +71,19 @@ const ThirdSurveyContent = ({
                             <option value="High">High</option>
                         </select>
 
-                        {/* Ambient */}
-                        <label>Ambient Noise *</label>
-                        <p className="text-red-500">{error.amb}</p>
+                        {/* geological setting  */}
+                        <label >Geological Setting *</label>
+                        <p className="text-red-500">{error.geo}</p>
                         <select
-                            name="ambient"
-                            value={userInput?.ambient}
+                            name="geologicalSetting"
+                            value={userInput?.geologicalSetting}
                             onChange={SurveyChange}
-                            className="w-full border p-3 rounded mb-4"
+                            className="w-full border p-3 rounded mb-4 capitalize"
                         >
                             <option value="">Select</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Moderate</option>
-                            <option value="High">High</option>
+                            <option value="Low">sedimentary</option>
+                            <option value="Medium">basement complex</option>
+                            {/* <option value="High">High</option> */}
                         </select>
 
                         {/* Depth */}

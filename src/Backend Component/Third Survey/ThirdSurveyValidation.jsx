@@ -23,14 +23,14 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
 
     const [userInput, setUserInput] = useState({
         vegetation: '',
-        ambient: '',
+        geologicalSetting: '',
         depthRange: "",
         checker: []
     });
 
     const [error, setError] = useState({
         veg: "",
-        amb: "",
+        geo: "",
         dept: "",
         check: ""
     });
@@ -71,7 +71,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
 
         let newErrors = {
             veg: "",
-            amb: "",
+            geo: "",
             dept: "",
             check: ""
         };
@@ -80,8 +80,8 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             newErrors.veg = 'Vegetation field is required';
         }
 
-        if (!userInput.ambient) {
-            newErrors.amb = 'Ambient field is required';
+        if (!userInput.geologicalSetting) {
+            newErrors.geo = 'Geological setting field is required';
         }
 
         if (!userInput.depthRange) {
@@ -95,7 +95,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
         setError(newErrors);
 
         // ✅ Correct validation check
-        if (newErrors.veg || newErrors.amb || newErrors.dept || newErrors.check) {
+        if (newErrors.veg || newErrors.geo || newErrors.dept || newErrors.check) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -120,7 +120,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             latitude: lengthValue,
             longitude: breadthValue,
             vegetationDensity: userInput.vegetation,
-            ambientNoise: userInput.ambient,
+            geologicalSetting: userInput.geologicalSetting,
             targetDepthRange: userInput.depthRange,
         };
 

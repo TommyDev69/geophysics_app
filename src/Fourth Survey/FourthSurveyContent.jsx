@@ -31,8 +31,8 @@ export default function FourthSurveyContent({ handleSelect, selectedRow, handleI
           <p className="text-[24px] font-semibold">{primaryName}</p>
           <p className="text-sm text-gray-500 mt-1">{primaryDetails}</p>
 
-          <div className="flex mt-4">
-            {/* LEFT */}
+          {/* <div className="flex mt-4">
+           
             <div className="w-1/2">
               <div className="flex items-center mb-2">
                 <img src={info} alt="" className="w-5 h-5" />
@@ -49,8 +49,6 @@ export default function FourthSurveyContent({ handleSelect, selectedRow, handleI
                 </div>
               ))}
             </div>
-
-            {/* RIGHT */}
             <div className="w-1/2">
               <p className="font-semibold mb-2">Field Technique Summary</p>
               <div className="border rounded-lg p-2">
@@ -68,7 +66,7 @@ export default function FourthSurveyContent({ handleSelect, selectedRow, handleI
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* ALTERNATIVE METHODS TABLE */}
