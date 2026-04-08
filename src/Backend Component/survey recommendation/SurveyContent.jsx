@@ -1,5 +1,5 @@
 import save from "../image/Save.png"
-import SurveyForm from "./SurveyForm";
+
 const SurveyContent = ({ title, survey }) => {
     return ( 
         <>

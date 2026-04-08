@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import { Routes, Route, useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useLocation, useNavigate, useParams } from "react-router-dom";
 import SidebarConnectivity from "./SidebarConnectivity";
 import DashboardContainer from "../asset/DashboardContainer";
 import Setting from "../../Setting/Setting";
 
 // Survey Components
-import SurveyFormValidation from "../survey recommendation/SurveyFormValidation";
-import SecondSurveyConnectivity from "../../second survey step/SecondSurveyConnectivity";
-import ThirdSurveyValidation from "../Third Survey/ThirdSurveyValidation";
-import FourthSurveyConnectivity from "../../Fourth Survey/FourthSurveyConnectivity";
-import FifthSurveyConnectivity from "../Fifth recommendation/FifthSurveyConnectivity";
-import SixSurveyConnectivity from "../Six survey recommendation/SixSurveyConnectivity";
+import SurveyContainer from "../survey recommendation/SurveyContainer";
 
 // Project Planner Components
 import MyProject from "../../Fontend Component/MyProject/MyProject";
@@ -26,12 +21,19 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 export default function SidebarContainer() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("dashboard");
-  const [secondSurveyData, setSecondSurveyData] = useState(null);
-
-  const [projectPlannerStep, setProjectPlannerStep] = useState(1);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.startsWith("/dashboard/survey")) setActiveMenu("survey recommendation");
+    else if (path.startsWith("/dashboard/my-project")) setActiveMenu("my project");
+    else if (path.startsWith("/dashboard/project")) setActiveMenu("project planner");
+    else if (path.startsWith("/dashboard/setting")) setActiveMenu("setting");
+    else if (path === "/dashboard") setActiveMenu("dashboard");
+  }, [location.pathname]);
 
   const handleMenuClick = (menuName) => {
     setActiveMenu(menuName);
@@ -45,65 +47,28 @@ export default function SidebarContainer() {
     if (menuName === "setting") navigate("/dashboard/setting");
   };
 
-  /*** SURVEY FLOW ***/
-  const SurveyFlow = () => {
-    const { step } = useParams();
-    const surveyStep = parseInt(step) || 1;
-
-    const goToNextSurveyStep = () => {
-      const nextStep = surveyStep + 1;
-      if (nextStep > 6) {
-        setSecondSurveyData(1);
-        navigate("/dashboard/survey/1");
-      } else {
-        navigate(`/dashboard/survey/${nextStep}`);
-      }
-    };
-
-    return (
-      <>
-        {surveyStep === 1 && <SurveyFormValidation onNext={goToNextSurveyStep} />}
-        {surveyStep === 2 && (
-          <SecondSurveyConnectivity
-            onNext={(data) => {
-              setSecondSurveyData(data);
-              goToNextSurveyStep();
-            }}
-          />
-        )}
-        {surveyStep === 3 && (
-          <ThirdSurveyValidation
-            secondSurveyData={secondSurveyData}
-            onNext={goToNextSurveyStep}
-          />
-        )}
-        {surveyStep === 4 && <FourthSurveyConnectivity onNext={goToNextSurveyStep} />}
-        {surveyStep === 5 && <FifthSurveyConnectivity onNext={goToNextSurveyStep} />}
-        {surveyStep === 6 && <SixSurveyConnectivity onNext={goToNextSurveyStep} />}
-      </>
-    );
-  };
-
   /*** PROJECT PLANNER FLOW ***/
   const ProjectPlannerFlow = () => {
-    // Accept a step from props if needed
+    const { step } = useParams();
+    const plannerStep = parseInt(step, 10) || 1;
+
     const goToNextProjectStep = (step = null) => {
-      if (step !== null) setProjectPlannerStep(step); // jump to specific step
-      else setProjectPlannerStep((prev) => prev + 1); // default +1
+      const nextStep = step !== null ? step : plannerStep + 1;
+      navigate(`/dashboard/project/${nextStep}`);
     };
 
     return (
       <>
-        {projectPlannerStep === 1 && (
+        {plannerStep === 1 && (
           <ProjectPlannerValidation onNext={goToNextProjectStep} />
         )}
-        {projectPlannerStep === 2 && (
+        {plannerStep === 2 && (
           <SecondProjectPlannerValidation onNext={goToNextProjectStep} />
         )}
-        {projectPlannerStep === 3 && (
+        {plannerStep === 3 && (
           <FifthProjectPlannerValidation onNext={goToNextProjectStep} />
         )}
-        {projectPlannerStep === 4 && (
+        {plannerStep === 4 && (
           <ProjectFinalPlanner onNext={goToNextProjectStep} />
         )}
       </>
@@ -128,12 +93,16 @@ export default function SidebarContainer() {
           />
         </div>
 
-        {/* Conditional Rendering */}
-        {activeMenu === "dashboard" && <DashboardContainer />}
-        {activeMenu === "my project" && <MyProject />}
-        {activeMenu === "setting" && <Setting />}
-        {activeMenu === "survey recommendation" && <SurveyFlow />}
-        {activeMenu === "project planner" && <ProjectPlannerFlow />}
+        <Routes>
+          <Route path="" element={<DashboardContainer />} />
+          <Route path="my-project" element={<MyProject />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="survey" element={<SurveyContainer />} />
+          <Route path="survey/:step" element={<SurveyContainer />} />
+          <Route path="project" element={<ProjectPlannerFlow />} />
+          <Route path="project/:step" element={<ProjectPlannerFlow />} />
+          <Route path="*" element={<DashboardContainer />} />
+        </Routes>
 
         {/* Mobile sidebar overlay */}
         {isSidebarOpen && (

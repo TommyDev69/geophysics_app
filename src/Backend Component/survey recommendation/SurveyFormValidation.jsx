@@ -42,6 +42,7 @@ const SurveyFormValidation = ({ onNext }) => {
     surveyName: "",
     surveyObjective: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSurveyChange = (e) => {
     const { name, value } = e.target;
@@ -84,36 +85,39 @@ const SurveyFormValidation = ({ onNext }) => {
       return;
     }
 
-    // ✅ MOVE TO NEXT STEP IMMEDIATELY
-    if (onNext) onNext(2);
-
-    // ✅ SEND TO REDUX IN BACKGROUND
+    // ✅ SEND TO REDUX AND SHOW SUCCESS ON COMPLETE
     dispatch(createSurveyAction(surveyForm));
+    setSubmitted(true);
   };
 
   /** SUCCESS (optional feedback only) */
   useEffect(() => {
-    if (success) {
+    if (submitted && success) {
       Swal.fire({
         icon: "success",
         title: "Saved",
         text: successMessage || "Survey saved successfully",
+      }).then(() => {
+        setSubmitted(false);
+        dispatch(resetSuccessAction());
+        if (onNext) onNext(2);
       });
-      dispatch(resetSuccessAction());
     }
-  }, [success, successMessage, dispatch]);
+  }, [submitted, success, successMessage, dispatch, onNext]);
 
   /** ERROR HANDLING */
   useEffect(() => {
-    if (reduxError) {
+    if (submitted && reduxError) {
       Swal.fire({
         icon: "error",
         title: "Error",
         text: reduxError,
+      }).then(() => {
+        setSubmitted(false);
+        dispatch(resetErrAction());
       });
-      dispatch(resetErrAction());
     }
-  }, [reduxError, dispatch]);
+  }, [submitted, reduxError, dispatch]);
 
   return (
     <div className="max-w-[967px] w-full border border-[#DADCE0] rounded-[10px] py-[10px] mx-auto mt-10">

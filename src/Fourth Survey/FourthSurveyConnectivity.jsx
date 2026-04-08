@@ -37,7 +37,7 @@ export default function FourthSurveyConnectivity({ onNext }) {
   };
 
   return (
-    <div className='w-[967px] mx-auto pt-16'>
+    <div className='w-[967px] mx-auto'>
       <FourthSurveyContent
         handleSelect={handleSelect}  // lowercase h
         selectedRow={selectedRow}

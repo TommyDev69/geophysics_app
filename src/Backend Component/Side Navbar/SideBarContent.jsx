@@ -1,12 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const SideBarContent = ({ data, activeMenu, onMenuClick }) => {
-  const navigate = useNavigate();
-
   const handleClick = (item) => {
-    onMenuClick(item.name); // update activeMenu state
-    if (item.path) navigate(item.path); // update URL
+    onMenuClick(item.name);
   };
 
   return (

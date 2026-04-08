@@ -20,15 +20,15 @@ export default function FourthSurveyContent({ handleSelect, selectedRow, handleI
   return (
     <form onSubmit={handleSelect}>
 
-      <div className="w-full border px-6 py-4 rounded-lg border-gray-300">
+      <div className="font-instrument w-full border px-6 py-4 rounded-lg border-gray-300">
 
-        {/* HEADER */}selectedMethod
+        {/* HEADER */}
         <h2 className="text-xl font-semibold mb-4">Method Recommendation</h2>
 
         {/* PRIMARY CARD */}
         <div className="border rounded-lg p-4 bg-gray-100 mb-6">
           <h3 className="text-lg font-semibold mb-2">Primary Recommendation</h3>
-          <p>{primaryName}</p>
+          <p className="text-[24px] font-semibold">{primaryName}</p>
           <p className="text-sm text-gray-500 mt-1">{primaryDetails}</p>
 
           <div className="flex mt-4">
