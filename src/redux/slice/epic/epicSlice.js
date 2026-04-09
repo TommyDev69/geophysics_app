@@ -15,7 +15,7 @@ const initialState = {
 
 export const createEpicAction = createAsyncThunk(
     "epic/create",
-    async ({ title, description, priority }, { rejectWithValue, getState, dispatch }) => {
+    async ({ title, description, priority, project }, { rejectWithValue, getState, dispatch }) => {
         try {
             const token = getState()?.users?.userAuth?.userInfo?.message?.token;
             const config = {
@@ -25,16 +25,17 @@ export const createEpicAction = createAsyncThunk(
                 },
             };
             const res = await axios.post(`${baseUrl}/epics/create-epic`, 
+                
                 {
-                    title, description, priority
+                    title, description, priority, project
                 }, config);
             console.log(res.data, "epic data");
             
-            if (res.data.status !== "Success") {
+            if (!res.data) {
                 throw new Error(res.data.message || "Failed to create epic");
             }
             
-            return res.data;
+            return res.data.data;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
@@ -94,7 +95,7 @@ const epicSlice = createSlice({
         });
         builder.addCase(fetchEpicsAction.fulfilled, (state, action) => {
             state.loading = false;
-            state.epics = action.payload?.data || [];
+            state.epics = action.payload?.message || [];
             state.error = null;
         });
         builder.addCase(fetchEpicsAction.rejected, (state, action) => {

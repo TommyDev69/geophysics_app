@@ -1,9 +1,16 @@
-     import { useState } from "react";
+     import { useState, useEffect } from "react";
     import FifthProjectPlannerContent from "./FifthProjectPlanerContent";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
 
     const FifthProjectPlannerValidation = ({onNext}) => {
+        const dispatch = useDispatch();
+        const { projects } = useSelector((state) => state.projects);
+        
         const [activeId, setActiveId] = useState(1);
+        const [currentProjectId, setCurrentProjectId] = useState(null);
+        
         const dataItems = [
             { id: 1, Topic: 'backlog' },
             { id: 2, Topic: 'board' },
@@ -11,7 +18,19 @@ import Swal from "sweetalert2";
             { id: 4, Topic: 'burndown' }
         ];
 
-         const handleSubmit = (e) => {
+        // Fetch projects on mount
+        useEffect(() => {
+            dispatch(getUserProjectsAction());
+        }, [dispatch]);
+
+        // Set current project to the latest one
+        useEffect(() => {
+            if (projects && projects.length > 0) {
+                setCurrentProjectId(projects[projects.length - 1]._id);
+            }
+        }, [projects]);
+
+        const handleSubmit = (e) => {
             e.preventDefault();
             // Validation
            
@@ -35,6 +54,7 @@ import Swal from "sweetalert2";
                     activeId={activeId}
                     setActiveId={setActiveId}
                     handleSubmit={handleSubmit}
+                    currentProjectId={currentProjectId}
                 />
             </div>
         );

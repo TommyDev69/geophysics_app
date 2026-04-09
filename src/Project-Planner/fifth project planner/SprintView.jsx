@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import Plus from '../../Backend Component/image/Plus.png';
 import SprintViewTable from './SprintViewTable';
 import Swal from 'sweetalert2';
 import SprintViewModal from './SprintViewModal';
-import baseUrl from '../../utils/baseUrl';
+import { createSprintAction, fetchSprintsByProjectAction } from '../../redux/slice/sprint/sprintSlice';
 
-export default function SprintView() {
+export default function SprintView({ currentProjectId }) {
+  const dispatch = useDispatch();
+  const { sprints, loading } = useSelector((state) => state.sprints);
+  
   const [sprintForm, setSprintForm] = useState({
     title: "",
     description: "",
@@ -17,8 +20,6 @@ export default function SprintView() {
 
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [sprints, setSprints] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   // Modal handlers
   const openModal = () => setIsModalOpen(true);
@@ -31,32 +32,15 @@ export default function SprintView() {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // Handle submit
-  const fetchSprints = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(`${baseUrl}/sprints/all-sprints`);
-      console.log("Fecth sprint", data);
-      
-      if (data?.status === 'Success') {
-        setSprints(data.message || []);
-      } else {
-        setSprints([]);
-      }
-    } catch (error) {
-      console.error('Failed to fetch sprints:', error);
-      setSprints([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Fetch sprints whenever currentProjectId changes
   useEffect(() => {
-    fetchSprints();
-  }, []);
+    if (currentProjectId) {
+      dispatch(fetchSprintsByProjectAction(currentProjectId));
+    }
+  }, [dispatch, currentProjectId]);
 
+  // Handle sprint creation
   const handleSubmit = async () => {
-
     const newErrors = {};
     if (!sprintForm.title.trim()) newErrors.title = "Title is required";
     if (!sprintForm.startDate.trim()) newErrors.startDate = "Start Date is required";
@@ -70,29 +54,17 @@ export default function SprintView() {
     }
 
     try {
-      const token = JSON.parse(localStorage.getItem('userInfo'))?.message?.token;
+      // Create sprint with project ID
+      const result = await dispatch(createSprintAction({
+        title: sprintForm.title,
+        description: sprintForm.description,
+        priority: sprintForm.priority,
+        startDate: sprintForm.startDate,
+        endDate: sprintForm.endDate,
+        project: currentProjectId,
+      })).unwrap();
 
-      if (!token) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Authentication Required',
-          text: 'Please login to create a sprint.',
-        });
-        return;
-      }
-
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      const { data } = await axios.post(`${baseUrl}/sprints/create-sprint`, sprintForm, config);
-      console.log("Create sprint response", data);
-      if (data?.status !== 'Success') {
-        throw new Error(data?.message || 'Sprint creation failed');
-      }
+      console.log("Sprint created:", result);
 
       Swal.fire({
         icon: 'success',
@@ -102,6 +74,7 @@ export default function SprintView() {
         showConfirmButton: false,
       });
 
+      // Reset form
       setSprintForm({
         title: "",
         description: "",
@@ -111,13 +84,15 @@ export default function SprintView() {
       });
       setErrors({});
       closeModal();
-      fetchSprints();
+
+      // Fetch updated sprints for this project
+      dispatch(fetchSprintsByProjectAction(currentProjectId));
     } catch (error) {
       console.error('Sprint creation failed:', error);
       Swal.fire({
         icon: 'error',
         title: 'Unable to create sprint',
-        text: error.response?.data?.message || error.message || 'Please login and try again',
+        text: error || 'Please try again',
       });
     }
   };
@@ -131,7 +106,12 @@ export default function SprintView() {
         </div>
 
         <div className="px-10 py-14">
-          <button type="button" onClick={openModal} className="font-instrument py-4 px-6 font-medium text-[14px] bg-[#585858] rounded-[10px] text-white flex gap-2 items-center">
+          <button 
+            type="button" 
+            onClick={openModal} 
+            className="font-instrument py-4 px-6 font-medium text-[14px] bg-[#585858] rounded-[10px] text-white flex gap-2 items-center"
+            disabled={!currentProjectId}
+          >
             <img src={Plus} alt="plus" />
             <p>Create Sprint</p>
           </button>

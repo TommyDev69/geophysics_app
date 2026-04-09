@@ -13,6 +13,7 @@ const FifthProjectPlannerContent = ({
   activeId,
   setActiveId,
   handleSubmit,
+  currentProjectId,
 }) => {
   const epics = useSelector((state) => state.epics.items || []); // adjust slice name
 
@@ -97,12 +98,12 @@ const FifthProjectPlannerContent = ({
           <div className="mt-6 ">
             {activeId === 1 &&
               (epics.length > 0 ? (
-                <BackLog epics={epics} />
+                <BackLog epics={epics} currentProjectId={currentProjectId} />
               ) : (
                 <BackLogProductValidation />
               ))}
             {activeId === 2 && <BoardValidation />}
-            {activeId === 3 && <SprintView />}
+            {activeId === 3 && <SprintView currentProjectId={currentProjectId} />}
             {activeId === 4 && <Burndown />}
           </div>
         </div>
