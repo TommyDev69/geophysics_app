@@ -83,7 +83,7 @@ const ThirdSurveyContent = ({
                             <option value="">Select</option>
                             <option value="Low">sedimentary</option>
                             <option value="Medium">basement complex</option>
-                            {/* <option value="High">High</option> */}
+                            
                         </select>
 
                         {/* Depth */}
@@ -102,7 +102,7 @@ const ThirdSurveyContent = ({
                                 <input type="text" value={userInput?.depthRange} readOnly placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                        </div>
-                        {/* <select
+                        <select
                             name="depthRange"
                             value={userInput?.depthRange}
                             onChange={SurveyChange}
@@ -114,7 +114,7 @@ const ThirdSurveyContent = ({
                             <option value="10-20m">10–20m</option>
                             <option value="20-50m">20–50m</option>
                             <option value="50m+">50m+</option>
-                        </select> */}
+                        </select>
 
                         {/* CHECKBOX */}
                         <label>Site Constraints *</label>
