@@ -63,7 +63,7 @@ const ThirdSurveyContent = ({
                             name="vegetation"
                             value={userInput?.vegetation}
                             onChange={SurveyChange}
-                            className="w-full border p-3 rounded mb-4 "
+                            className="w-full border p-3 rounded-[10px] mb-4 "
                         >
                             <option value="">Select</option>
                             <option value="Low">Low</option>
@@ -78,7 +78,7 @@ const ThirdSurveyContent = ({
                             name="geologicalSetting"
                             value={userInput?.geologicalSetting}
                             onChange={SurveyChange}
-                            className="w-full border p-3 rounded mb-4 capitalize"
+                            className="w-full border p-3 rounded-[10px] mb-4 capitalize"
                         >
                             <option value="">Select</option>
                             <option value="Low">sedimentary</option>
@@ -87,9 +87,22 @@ const ThirdSurveyContent = ({
                         </select>
 
                         {/* Depth */}
-                        <label>Target Depth Range (m) *</label>
-                        <p className="text-red-500">{error.dept}</p>
-                        <select
+                        {/* <label>Target Depth Range (m) *</label>
+                        <p className="text-red-500">{error.dept}</p> */}
+                       
+                       <div className="flex gap-2">
+                            <div className='flex flex-col w-full'>
+                                <label >Maximum Depth (m)</label>
+                                <p className="text-red-500">{error.dept}</p>
+                                <input type="text" value={userInput?.depthRange} readOnly placeholder='max-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                            </div>
+                            <div className='flex flex-col w-full'>
+                                <label >Minimum Depth (m)</label>
+                                <p className="text-red-500">{error.dept}</p>
+                                <input type="text" value={userInput?.depthRange} readOnly placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                            </div>
+                       </div>
+                        {/* <select
                             name="depthRange"
                             value={userInput?.depthRange}
                             onChange={SurveyChange}
@@ -101,7 +114,7 @@ const ThirdSurveyContent = ({
                             <option value="10-20m">10–20m</option>
                             <option value="20-50m">20–50m</option>
                             <option value="50m+">50m+</option>
-                        </select>
+                        </select> */}
 
                         {/* CHECKBOX */}
                         <label>Site Constraints *</label>
