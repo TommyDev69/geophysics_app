@@ -1,0 +1,122 @@
+{
+    
+    "data": [
+        {
+            "id": 1,
+            "service": "Environmental Assessment",
+            "key": "env_ass",
+            "photo": "../image/🌿.png",
+            "basins": [
+            {
+                "name": "Nigerian Sedimentary Basin",
+                "methods": [
+                "Geological setting and Depth",
+                "Electrical Resistivity Tomography (ERT) (0.5 – 150m)",
+                "Time-Domain Electromagnetic (13 – 300m)",
+                "Frequency-Domain Electromagnetic (1 – 60m)",
+                "Seismic Refraction (3 – 50m)",
+                "Seismic Reflection (30 – 4000m)",
+                "Ground Penetrating Radar (GPR) (0.05 – 8m)",
+                "Magnetic Survey (0 – 500m)"
+                ]
+            },
+            {
+                "name": "Nigerian Basement Complex",
+                "methods": [
+                "Vertical Electrical Sounding (VES)/ERT (0.5 – 150m)",
+                "Frequency-Domain EM (0 – 70m)",
+                "Magnetic Survey (0 – 400m)",
+                "Seismic Refraction (1 – 60m)",
+                "Ground penetrating Radar (GPR) (0.05 – 10m)"
+                ]
+            }
+            ]
+        },
+        {
+            "id": 2,
+            "service": "Groundwater Exploration",
+            "key": "gw_ex",
+             "photo": "../image/⛏️.png",
+            "basins": [
+            {
+                "name": "Nigerian Sedimentary Basin",
+                "methods": [
+                "Vertical Electrical Sounding (0.5 – 250m)",
+                "Time-Domain Electromagnetic (13 – 500m)",
+                "Frequency-Domain Electromagnetic (1 – 60m)",
+                "Seismic Refraction (3 – 50m)",
+                "Seismic Reflection (30 – 4000m)",
+                "Gravity Survey (20 – 4000m)",
+                "Magnetic Survey (0 – 500m)"
+                ]
+            },
+            {
+                "name": "Nigerian Basement Complex",
+                "methods": [
+                "Vertical Electrical Sounding (VES)/ERT (0.5 – 150m)",
+                "Frequency-Domain EM (0 – 70m)",
+                "Magnetic Survey (0 – 200m)",
+                "Seismic Refraction (1 – 60m)",
+                "Time-Domain Electromagnetic (13 – 200m)"
+                ]
+            }
+            ]
+        },
+        {
+            "id": 3,
+            "service": "Engineering Investigation",
+            "key": "eng_inv",
+             "photo": "../image/🏗️.png",
+            "basins": [
+            {
+                "name": "Nigerian Sedimentary Basin",
+                "methods": [
+                "Seismic Refraction (1 – 100m)",
+                "Multichannel Analysis of Surface Waves (MASW) (0.5 – 60m)",
+                "Electrical Resistivity Tomography (ERT) (0.5 – 150m)",
+                "Ground Penetrating Radar (GPR) (0.05 – 8m)",
+                "Seismic Reflection (10 – 1500m)"
+                ]
+            },
+            {
+                "name": "Nigerian Basement Complex",
+                "methods": [
+                "Seismic Refraction (1 – 70m)",
+                "Electrical Resistivity (VES / ERT) (0.5 – 150m)",
+                "Multichannel Analysis of Surface Waves (MASW) (0.5 – 40m)",
+                "Ground Penetrating Radar (GPR) (0.05 – 15m)",
+                "Magnetic Survey (0 – 250m)"
+                ]
+            }
+            ]
+        },
+        {
+            "id": 4,
+            "service": "Archaeological Survey",
+            "key": "arc_sur",
+            "photo": "../image/🏛️.png",
+            "basins": [
+            {
+                "name": "Nigerian Sedimentary Basin",
+                "methods": [
+                "Ground Penetrating Radar (GPR) (0.02 – 8m)",
+                "Electrical Resistivity Tomography (0.1 – 30m)",
+                "Magnetometry (0.05 – 3m)",
+                "Frequency-Domain EM (0.1 – 5m)",
+                "Induced Polarization (0.3 – 25m)"
+                ]
+            },
+            {
+                "name": "Nigerian Basement Complex",
+                "methods": [
+                "Magnetometry (0.05 – 2m)",
+                "Ground Penetrating Radar (GPR) (0.02 – 12m)",
+                "Electrical Resistivity Tomography (0.1 – 20m)",
+                "Induced Polarization (0.3 – 20m)",
+                "Frequency-Domain EM (0.1 – 5m)"
+                ]
+            }
+            ]
+        }
+    ]
+}

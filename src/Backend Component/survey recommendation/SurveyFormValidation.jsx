@@ -13,7 +13,7 @@ import first from "../image/🌿.png";
 import second from "../image/⛏️.png";
 import third from "../image/🏗️.png";
 import fourth from "../image/🏛️.png";
-import SurveyContent from "./SurveyContent";
+
 
 const SurveyFormValidation = ({ onNext }) => {
   const dispatch = useDispatch();
