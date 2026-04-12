@@ -151,7 +151,7 @@ const ProjectFinalPlanner = () => {
                                         <img src={star} alt="star" className="w-[38px] mr-2 " />
                                         <img src={star} alt="star" className="w-[38px] mr-2" />
                                         <img src={star} alt="star" className="w-[38px] mr-2" />
-                                        <img src={star} alt="star" className="w-[38px]" />
+                                        <img src={star} alt="star" className="w-[38px]"/>
                                     </div>
                                 </div>
 
