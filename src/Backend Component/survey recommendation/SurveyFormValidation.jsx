@@ -23,7 +23,7 @@ const SurveyFormValidation = ({ onNext }) => {
 
   const [content] = useState([
     { id: 1, photo: first, topic: "Environmental Assessment" },
-    { id: 2, photo: second, topic: "Ground Water Exploration" },
+    { id: 2, photo: second, topic: "Groundwater Exploration" },
     { id: 3, photo: third, topic: "Engineering Investigation" },
     { id: 4, photo: fourth, topic: "Archaeological Survey" },
   ]);
