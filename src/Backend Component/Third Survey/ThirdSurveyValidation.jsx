@@ -154,7 +154,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
                 dispatch(resetErrAction());
             });
         }
-    }, [reduxError, dispatch]);
+    }, [reduxError,dispatch]);
 
     return (
         <div>
