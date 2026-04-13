@@ -102,20 +102,7 @@ const ThirdSurveyContent = ({
                                 <input type="text" value={userInput?.depthRange} readOnly placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                        </div>
-                        {/* <select
-                            name="depthRange"
-                            value={userInput?.depthRange}
-                            onChange={SurveyChange}
-                            className="w-full border p-3 rounded mb-4"
-                        >
-                            <option value="">Select</option>
-                            <option value="0-5m">0–5m</option>
-                            <option value="5-10m">5–10m</option>
-                            <option value="10-20m">10–20m</option>
-                            <option value="20-50m">20–50m</option>
-                            <option value="50m+">50m+</option>
-                        </select> */}
-
+                    
                         {/* CHECKBOX */}
                         <label>Site Constraints *</label>
                         <p className="text-red-500">{error.check}</p>
