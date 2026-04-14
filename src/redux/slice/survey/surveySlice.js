@@ -96,6 +96,7 @@ export const updateSurveyAction = createAsyncThunk(
                 },
             };
             const res = await axios.put(`${baseUrl}/surveys/update/${id}`, {
+                // surveyName,
                 latitude,
                 longitude,
                 vegetationDensity,

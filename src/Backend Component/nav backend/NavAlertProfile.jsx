@@ -1,6 +1,17 @@
-import profile from "../image/Avatar.png"
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfileAction } from "../../redux/slice/user/usersSlice";
+import { useEffect } from "react";
+import profile1 from "../image/Avatar.png"
 import bell from "../image/Bell.png"
+
 const NavAlertProfile = () => {
+     // dispatch
+        const dispatch = useDispatch();
+        const { profile } = useSelector((state) => state.users);
+    
+        useEffect(() => {
+            dispatch(getUserProfileAction());
+        }, [dispatch]);
     return (
         <div className="md:w-[228px] w-[100px]  md:mr-0 mr-[80px] flex  gap-3 items-center px-4">
             <div className="max-w-[36px]">
@@ -9,11 +20,11 @@ const NavAlertProfile = () => {
            <div className="block md:flex items-center gap-4">
 
             <div>
-                <img src={profile} alt="initial" />
+                <img src={profile1} alt="initial" />
             </div>
 
             <div className="max-w-[#119px] hidden md:block">
-                <p className="font-instrument font-medium md:text-[14px] leading-[20.14px] tracking-[-0.15px] text-[#101828]">Dr. Adebayo Okon</p>
+                <p className="font-instrument font-medium md:text-[14px] leading-[20.14px] tracking-[-0.15px] text-[#101828]">{profile?.message?.fullName} </p>
                 <p className="font-instrument font-normal md:text-[12px] text-6 leading-[20.14px] tracking-[-0.15px] text-[#6A7282]">Lead Geophysicist</p>
             </div>
            </div>
