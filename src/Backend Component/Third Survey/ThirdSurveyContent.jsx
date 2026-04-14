@@ -94,12 +94,12 @@ const ThirdSurveyContent = ({
                             <div className='flex flex-col w-full'>
                                 <label >Maximum Depth (m)</label>
                                 <p className="text-red-500">{error.dept}</p>
-                                <input type="text" value={userInput?.depthRange} readOnly placeholder='max-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                                <input type="text" name='MaxDepth' value={userInput?.MaxDept} onChange={SurveyChange} placeholder='max-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label >Minimum Depth (m)</label>
                                 <p className="text-red-500">{error.dept}</p>
-                                <input type="text" value={userInput?.depthRange} readOnly placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                                <input type="text" name='MinDepth' value={userInput?.MinDept} onChange={SurveyChange} placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                        </div>
                     

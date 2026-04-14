@@ -1,133 +1,111 @@
 const UseStoryModal = ({
   closeUserStoryModal,
-  submission,
+  handlingSubmitStory,
   userInput,
   change,
   error,
 }) => {
   return (
-    <form onSubmit={submission} >
-      <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-        {/* Modal box */}
-        <div className="w-[600px] p-[24px] bg-white border rounded-[10px] relative">
-          <div className="w-[400px]">
-            <p className="text-[#101828] font-instrument font-semibold text-[24px] leading-[28px] tracking-[-0.45px]">
-              Add User Story
-            </p>
+    <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+      <form
+        onSubmit={handlingSubmitStory}
+        className="w-[600px] p-[24px] bg-white border rounded-[10px] relative"
+      >
+        {/* TITLE */}
+        <div className="w-[400px] mb-4">
+          <p className="text-[#101828] font-semibold text-[24px]">
+            Add User Story
+          </p>
+        </div>
+
+        {/* TITLE INPUT */}
+        <div className="flex flex-col pt-[18px] pb-[12px]">
+          <label>Title</label>
+          <input
+            type="text"
+            name="title"
+            value={userInput.title}
+            onChange={change}
+            className="border p-3 rounded"
+          />
+          <p className="text-red-600">{error.title}</p>
+        </div>
+
+        {/* PRIORITY + POINT */}
+        <div className="flex gap-4">
+          <div className="w-1/2 flex flex-col">
+            <label>Priority</label>
+            <select
+              name="priority"
+              value={userInput.priority}
+              onChange={change}
+              className="border p-3 rounded"
+            >
+              <option value="">Select priority</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+            <p className="text-red-600">{error.priority}</p>
           </div>
 
-          {/* Form content here */}
-          <div className="">
-            <div className="flex flex-col pt-[18px] pb-[12px]">
-              <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                value={userInput.title}
-                onChange={change}
-                className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-                placeholder="e.g Field Data Collection"
-              />
-              <p className="text-red-600">{error.titleError}</p>
-            </div>
-
-            {/* select section */}
-
-            <div className="flex flex-col pt-[18px] pb-[12px]">
-              <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                Epic
-              </label>
-              <select
-                name="epic"
-                // value={userInput.epic}
-                // onChange={change}
-                className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-                placeholder="e.g Field Data Collection"
-              >
-                <option value="1">select epic</option>
-              </select>
-              {/* <p className="text-red-600">{error.epicError}</p> */}
-            </div>
-
-            <div className="flex gap-4">
-              <div className="flex flex-col w-1/2 pt-[18px] pb-[12px]">
-                <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                  Priority
-                </label>
-                <select
-                  name="priority"
-                  value={userInput.priority}
-                  onChange={change}
-                  className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-                  placeholder="e.g Field Data Collection"
-                >
-                  <option value="1">select priority</option>
-                </select>
-                <p className="text-red-600">{error.priorityError}</p>
-              </div>
-              <div className="flex w-1/2 flex-col pt-[18px] pb-[12px]">
-                <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                  {/* Point */}
-                </label>
-                <input
-                  type="text"
-                  name="point"
-                  value={userInput.point}
-                  onChange={change}
-                  className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-                />
-                <p className="text-red-600">{error.pointError}</p>
-
-              </div>
-            </div>
-            {/* <div className="flex flex-col pt-[18px] pb-[12px]">
-            <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-              Assigned
-            </label>
+          <div className="w-1/2 flex flex-col">
+            <label>Point</label>
             <input
               type="text"
-              className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-              placeholder="e.g John Doe"
+              name="point"
+              value={userInput.point}
+              onChange={change}
+              className="border p-3 rounded"
             />
-          </div> */}
-
-            <div className="flex flex-col pt-[18px] pb-[12px]">
-              <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                Description
-              </label>
-              <textarea
-                name="description"
-                value={userInput.description}
-                onChange={change}
-                cols={2}
-                rows={2}
-                className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
-                placeholder="Describe the epic"
-              />
-              <p className="text-red-600">{error.descriptionError}</p>
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-6 justify-end mt-6">
-            <button
-              onClick={closeUserStoryModal}
-              className="w-[87px] border-2 flex justify-center items-center text-[#364153] border-[#DADCE0] rounded-[10px] py-[8px] px-[16px]"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="w-[117px] bg-[#585858] text-white flex justify-center items-center rounded-[10px] py-[8px] px-[16px]"
-            >
-              Add Story
-            </button>
+            <p className="text-red-600">{error.point}</p>
           </div>
         </div>
-      </div>
-    </form>
+
+        {/* ASSIGN */}
+        <div className="flex flex-col pt-[18px] pb-[12px]">
+          <label>Assign</label>
+          <input
+            type="text"
+            name="assign"
+            value={userInput.assign}
+            onChange={change}
+            className="border p-3 rounded"
+          />
+          <p className="text-red-600">{error.assign}</p>
+        </div>
+
+        {/* DESCRIPTION */}
+        <div className="flex flex-col pt-[18px] pb-[12px]">
+          <label>Description</label>
+          <textarea
+            name="description"
+            value={userInput.description}
+            onChange={change}
+            className="border p-3 rounded"
+          />
+          <p className="text-red-600">{error.description}</p>
+        </div>
+
+        {/* BUTTONS */}
+        <div className="flex justify-end gap-4 mt-6">
+          <button
+            type="button"
+            onClick={closeUserStoryModal}
+            className="px-4 py-2 border rounded"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="px-4 py-2 bg-black text-white rounded"
+          >
+            Add Story
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

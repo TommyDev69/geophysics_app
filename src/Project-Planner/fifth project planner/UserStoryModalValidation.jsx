@@ -106,7 +106,7 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
     <UseStoryModal
       closeUserStoryModal={closeUserStoryModal}
       change={handleInputChange}
-      submission={handleSubmit}
+      handlingSubmitStory={handleSubmit}
       userInput={formData}
       error={errors}
     />
