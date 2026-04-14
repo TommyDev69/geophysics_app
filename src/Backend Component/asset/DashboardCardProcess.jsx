@@ -13,7 +13,7 @@ const DashboardCardProcess = () => {
         {id:1, cardTitle:'total projects', numb:4, image:totalCard},
         {id:2, cardTitle:'active', numb:2, image:active},
         {id:3, cardTitle:'completed', numb:1, image:completed},
-        {id:4, cardTitle:'dafts',numb:1, image:daft},
+        {id:4, cardTitle:'drafts',numb:1, image:daft},
     ])
     return ( 
         <div className="md:w-[967px] w-11/12 md:mx-0 mx-auto grid grid-cols-2  md:grid-cols-4 gap-4 ">

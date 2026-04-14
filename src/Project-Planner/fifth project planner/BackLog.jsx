@@ -1,18 +1,19 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEpicsAction } from "../../redux/slice/epic/epicSlice";
 import Right from "../../Backend Component/image/Vector.png";
 import down from "../../Backend Component/image/ChevronDown.png";
 import Plus from "../../Backend Component/image/Plus.jpg";
 import BackLogContent from "./BackLogContent";
 
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchEpicsAction } from "../../redux/slice/epic/epicSlice";
-
-const BackLog = ({ currentProjectId, onAddStory }) => {
+const BackLog = ({ currentProjectId }) => {
   const dispatch = useDispatch();
   const { epics } = useSelector((state) => state.epics);
+
+  // State
   const [toggledEpics, setToggledEpics] = useState({});
 
-  // Toggle expanded/collapsed state for epic
+  // Functions
   const toggling = (epicId) => {
     setToggledEpics((prev) => ({
       ...prev,
@@ -20,20 +21,21 @@ const BackLog = ({ currentProjectId, onAddStory }) => {
     }));
   };
 
-  // Fetch epics whenever currentProjectId changes
+  // Effects
   useEffect(() => {
     if (currentProjectId) {
       dispatch(fetchEpicsAction(currentProjectId));
     }
   }, [dispatch, currentProjectId]);
 
-  // Filter epics to only the current project
+  // Computed values
   const currentProjectEpics = epics?.filter(
     (epic) => epic.project?._id === currentProjectId
   );
 
   const projectName =
     currentProjectEpics?.[0]?.project?.projectName || "Unknown Project";
+
 
   return (
     <div>
@@ -106,7 +108,7 @@ const BackLog = ({ currentProjectId, onAddStory }) => {
 
                 {/* Story content */}
                 {toggledEpics[epic._id] && (
-                  <BackLogContent epicId={epic._id} onAddStory={onAddStory} />
+                  <BackLogContent epicId={epic._id} />  
                 )}
               </div>
             ))}

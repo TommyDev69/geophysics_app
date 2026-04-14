@@ -13,7 +13,7 @@ const DashboardSurveycard = ({surveyDetails}) => {
                     </div>
                 </div>
                 <div className="w-full">
-                    <button type="button" className="w-full items-center space-x-1 py-3 rounded-[5px] text-[#ffffff] bg-[#585858] border-[[#585858]] border flex justify-center capitalize">
+                    <button type="button" className="w-full items-center space-x-1 py-3 rounded-[5px] text-[#ffffff] bg-[#585858] border-[#585858] border flex justify-center capitalize">
                         <img src={details.icon}  alt={details.title} />
                           start survey</button>
                 </div>
