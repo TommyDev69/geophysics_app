@@ -7,6 +7,7 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
   const [formData, setFormData] = useState({
     title: "",
     priority: "",
+    point:'',
     assign: "",
     description: "",
   });
@@ -15,6 +16,7 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
   const [errors, setErrors] = useState({
     title: "",
     priority: "",
+      point:'',
     assign: "",
     description: "",
   });
@@ -46,6 +48,9 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
 
     if (!formData.priority.trim()) {
       newErrors.priority = "Priority is required";
+    }
+    if (!formData.point.trim()) {
+      newErrors.point = "Point is required";
     }
 
     if (!formData.assign.trim()) {
@@ -88,6 +93,7 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
     setFormData({
       title: "",
       priority: "",
+      point:'',
       assign: "",
       description: "",
     });

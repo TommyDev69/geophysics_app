@@ -69,12 +69,17 @@ const UseStoryModal = ({
               </div>
               <div className="flex w-1/2 flex-col pt-[18px] pb-[12px]">
                 <label className="text-[#364153] pb-2 font-instrument font-medium text-[18px] leading-[20px] tracking-[-0.15px]">
-                  Priority
+                  {/* Point */}
                 </label>
                 <input
                   type="text"
+                  name="point"
+                  value={userInput.point}
+                  onChange={change}
                   className="border py-[14px] text-[16px] px-[16px] border-[#DADCE0] rounded-[10px]"
                 />
+                <p className="text-red-600">{error.pointError}</p>
+
               </div>
             </div>
             {/* <div className="flex flex-col pt-[18px] pb-[12px]">
