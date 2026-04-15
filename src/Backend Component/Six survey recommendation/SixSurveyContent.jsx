@@ -1,5 +1,5 @@
-const SixSurveyContent = ({ selectedMethod, projectName, clientName, projectObjective, clientEmail, onNext }) => {
-    const methodName = selectedMethod || 'Electrical Resistivity Tomography (ERT)';
+const SixSurveyContent = ({ selectedMethod, projectName, clientName, projectObjective, clientEmail, methodName, onNext }) => {
+    const displayMethodName = methodName || selectedMethod || 'Electrical Resistivity Tomography (ERT)';
 
     const handleNext = () => {
         if (onNext) onNext();
@@ -59,7 +59,7 @@ const SixSurveyContent = ({ selectedMethod, projectName, clientName, projectObje
 
                            <p className="w-[800px] font-instrument font-semibold text-[22px] leading-[28px] tracking-[-0.45px] py-6 ">Recommended Method</p>
                              <div className="w-[800px] bg-[#F9F9F9] mx-auto  py-10 flex justify-center">
-                                <p className="font-instrument font-bold  text-[18px] leading-6 tracking-[-0.31px] text -[#101828]">{methodName}</p>
+                                <p className="font-instrument font-bold  text-[18px] leading-6 tracking-[-0.31px] text-[#101828]">{displayMethodName}</p>
 
                               
                             </div>

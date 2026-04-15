@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfileAction } from "../../redux/slice/user/usersSlice";
 import { useEffect } from "react";
-import profile1 from "../image/Avatar.png"
+import profile from "../image/Avatar.png"
 import bell from "../image/Bell.png"
 
 const NavAlertProfile = () => {
@@ -20,7 +20,7 @@ const NavAlertProfile = () => {
            <div className="block md:flex items-center gap-4">
 
             <div>
-                <img src={profile1} alt="initial" />
+                <img src={profile} alt="initial" />
             </div>
 
             <div className="max-w-[#119px] hidden md:block">
