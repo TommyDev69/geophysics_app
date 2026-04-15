@@ -75,7 +75,7 @@ export default function FourthSurveyContent({
         </div>
 
         {/* ALTERNATIVE METHODS */}
-        <div className="border rounded-lg p-4 bg-gray-50 mb-6">
+        {/* <div className="border rounded-lg p-4 bg-gray-50 mb-6">
           <h3 className="font-semibold mb-2">Alternative Methods</h3>
 
           <table className="w-full text-left">
@@ -127,7 +127,7 @@ export default function FourthSurveyContent({
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
 
         {/* BUTTONS */}
         <div className="flex justify-between">
