@@ -1,34 +1,36 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.min.css';
-import number1 from "../Backend Component/image/num1.png"
-import number2 from "../Backend Component/image/num2.png"
-import number3 from "../Backend Component/image/num3.png"
-import number4 from "../Backend Component/image/num4.png"
-import number5 from "../Backend Component/image/num5.png"
-import number6 from "../Backend Component/image/num6.png"
-import range from "../Backend Component/image/range.png"
+import "sweetalert2/dist/sweetalert2.min.css";
+
+import number1 from "../Backend Component/image/num1.png";
+import number2 from "../Backend Component/image/num2.png";
+import number3 from "../Backend Component/image/num3.png";
+import number4 from "../Backend Component/image/num4.png";
+import number5 from "../Backend Component/image/num5.png";
+import number6 from "../Backend Component/image/num6.png";
+import range from "../Backend Component/image/range.png";
+
 import SecondSurveyContent from "./SecondSurveyContent";
 import { updateSurveyAction } from "../redux/slice/survey/surveySlice";
-import { resetSuccessAction, resetErrAction } from "../redux/slice/globalActions/globalActions";
+import {
+  resetSuccessAction,
+  resetErrAction,
+} from "../redux/slice/globalActions/globalActions";
 import { getUserProfileAction } from "../redux/slice/user/usersSlice";
 
 const SecondSurveyConnectivity = ({ onNext }) => {
   const dispatch = useDispatch();
-  const { profile } = useSelector((state) => state.users);
-  const { loading, error: reduxError, success, successMessage } = useSelector((state) => state.surveys);
 
-  const [survey] = useState([
-    { id: 1, name: "project setup", range: range, photo: number1 },
-    { id: 2, name: "survey area", range: range, photo: number2 },
-    { id: 3, name: "site characterisation", range: range, photo: number3, paddingBottom: '2px' },
-    { id: 4, name: "method recommendation", range: range, photo: number4, paddingBottom: '2px' },
-    { id: 5, name: "survey design", range: range, photo: number5 },
-    { id: 6, name: "review and report", range: range, photo: number6 }
-  ]);
+  // ✅ Get user profile and loading state from correct Redux path
+  const profile = useSelector((state) => state.users.profile);
+  const profileLoading = useSelector((state) => state.users.loading);
 
-  const [secondSurveyForm, setSecondSurveyForm] = useState({
+  const { success, successMessage, error: reduxError, loading: surveyLoading } = useSelector(
+    (state) => state.surveys
+  );
+
+  const [form, setForm] = useState({
     latitude: "",
     longitude: "",
   });
@@ -37,85 +39,110 @@ const SecondSurveyConnectivity = ({ onNext }) => {
     latName: "",
     longName: "",
   });
-  const [submitted, setSubmitted] = useState(false);
 
-  // Handle input change
+  const [steps] = useState([
+    { id: 1, name: "project setup", range, photo: number1 },
+    { id: 2, name: "survey area", range, photo: number2 },
+    { id: 3, name: "site characterisation", range, photo: number3 },
+    { id: 4, name: "method recommendation", range, photo: number4 },
+    { id: 5, name: "survey design", range, photo: number5 },
+    { id: 6, name: "review and report", range: number6 },
+  ]);
+
+  // ✅ LOAD PROFILE ON MOUNT
+  useEffect(() => {
+    dispatch(getUserProfileAction());
+  }, [dispatch]);
+
+  // ✅ DEBUG: Log profile structure
+  useEffect(() => {
+    console.log("SecondSurvey Profile Data:", {
+      profile,
+      surveys: profile?.message?.survey,
+      fullProfile: profile
+    });
+  }, [profile]);
+
+  // ✅ SAFE SURVEY ID (NO useEffect, NO state)
+  const surveys = profile?.message?.survey;
+  
+  const surveyId = surveys
+    ? Array.isArray(surveys) && surveys.length > 0
+      ? surveys[0]?._id
+      : surveys?._id
+    : null;
+
+  // INPUT HANDLER
   const handleSecondSurveyChange = (e) => {
     const { name, value } = e.target;
-    setSecondSurveyForm((prev) => ({
+
+    setForm((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  // Submit Form
+  // SUBMIT HANDLER
   const handleSecondSurveySubmit = (e) => {
     e.preventDefault();
 
-    const surveyFormError = {
+    let errors = {
       latName: "",
       longName: "",
     };
 
-    if (!secondSurveyForm.latitude) {
-      surveyFormError.latName = "Length of your latitude is required";
-    }
+    if (!form.latitude) errors.latName = "Latitude is required";
+    if (!form.longitude) errors.longName = "Longitude is required";
 
-    if (!secondSurveyForm.longitude) {
-      surveyFormError.longName = "Longitude is required";
-    }
+    setError(errors);
 
-    setError(surveyFormError);
-
-    // Check for errors
-    if (surveyFormError.latName || surveyFormError.longName) {
+    if (errors.latName || errors.longName) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Fill all required fields (*) before continuing",
+        text: "Please fill all required fields",
       });
       return;
     }
 
-    // Get survey ID from profile
-    const surveyId = profile?.message?.survey?.[0]?._id;
+    // ✅ Validate surveyId exists
     if (!surveyId) {
+      console.error("Survey ID not found. Profile data:", { profile, surveys });
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "Survey ID not found. Please ensure a survey exists.",
+        title: "Survey not ready",
+        text: "No survey found. Please create a survey first in the Project Setup step.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#3085d6"
       });
       return;
     }
 
-    // ✅ Correct payload structure for Redux thunk
     const surveyData = {
-      latitude: secondSurveyForm.latitude,
-      longitude: secondSurveyForm.longitude,
+      latitude: form.latitude,
+      longitude: form.longitude,
     };
 
-    // ✅ Dispatch updateSurveyAction with {id, surveyData}
+    console.log("Submitting survey update with:", { surveyId, surveyData });
     dispatch(updateSurveyAction({ id: surveyId, surveyData }));
-    setSubmitted(true);
   };
 
-  // Handle Redux success + error
+  // SUCCESS HANDLER
   useEffect(() => {
-    if (submitted && success) {
+    if (success) {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: successMessage || "Latitude and longitude saved successfully",
+        text: successMessage || "Survey updated successfully",
       }).then(() => {
-        setSubmitted(false);
         dispatch(resetSuccessAction());
-        dispatch(getUserProfileAction()); // Refresh profile to get updated survey
-
-        if (onNext) onNext();
+        dispatch(getUserProfileAction());
+        onNext?.();
       });
     }
-  }, [submitted, success, successMessage, dispatch, onNext, secondSurveyForm]);
+  }, [success, successMessage, dispatch, onNext]);
 
+  // ERROR HANDLER
   useEffect(() => {
     if (reduxError) {
       Swal.fire({
@@ -130,14 +157,25 @@ const SecondSurveyConnectivity = ({ onNext }) => {
 
   return (
     <div className="w-full py-14">
+      {profileLoading && (
+        <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-blue-700 text-center font-medium">Loading profile...</p>
+        </div>
+      )}
+      {surveyLoading && (
+        <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+          <p className="text-orange-700 text-center font-medium">Processing your survey...</p>
+        </div>
+      )}
       <SecondSurveyContent
-        secondSurveyForm={secondSurveyForm}
+        secondSurveyForm={form}
         error={error}
         handleSecondSurveyChange={handleSecondSurveyChange}
         handleSubmit={handleSecondSurveySubmit}
-        title="survey recommendation"
-        survey={survey}
-        SecondTitle="survey area definition"
+        title="Survey Recommendation"
+        survey={steps}
+        SecondTitle="Survey Area Definition"
+        isLoading={surveyLoading}
       />
     </div>
   );

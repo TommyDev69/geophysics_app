@@ -78,11 +78,15 @@ export const updateSurveyAction = createAsyncThunk(
         try {
             const { id, surveyData } = payload;
             const {
+                surveyObjective,
                 latitude,
                 longitude,
                 vegetationDensity,
+                geologicalSetting,
+                minDepth,
+                maxDepth,
+                siteConstraints,
                 ambientNoise,
-                targetDepthRange,
                 layoutPattern,
                 stationSpacing,
                 lineSpacing,
@@ -96,12 +100,15 @@ export const updateSurveyAction = createAsyncThunk(
                 },
             };
             const res = await axios.put(`${baseUrl}/surveys/update/${id}`, {
-                // surveyName,
+                surveyObjective,
                 latitude,
                 longitude,
                 vegetationDensity,
+                geologicalSetting,
+                minDepth,
+                maxDepth,
+                siteConstraints,
                 ambientNoise,
-                targetDepthRange,
                 layoutPattern,
                 stationSpacing,
                 lineSpacing,
@@ -109,7 +116,10 @@ export const updateSurveyAction = createAsyncThunk(
             console.log(res.data.survey);
 
 
-            return res.data.survey;
+            return {
+                survey: res.data.survey,
+                recommendedMethods: res.data.recommendedMethods
+            };
         } catch (error) {
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
@@ -193,13 +203,16 @@ const surveySlice = createSlice({
         builder.addCase(updateSurveyAction.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            state.successMessage = action.payload.message;
+            state.successMessage = action.payload.message || "Survey updated successfully";
+            state.recommendedMethods = action.payload.recommendedMethods;
             if (action.payload.survey) {
                 state.survey = action.payload.survey;
-                // Update in surveys array
-                const index = state.surveys.findIndex(s => s._id === action.payload.survey._id);
-                if (index !== -1) {
-                    state.surveys[index] = action.payload.survey;
+                // Update in surveys array - only find if survey has _id
+                if (action.payload.survey._id) {
+                    const index = state.surveys.findIndex(s => s && s._id === action.payload.survey._id);
+                    if (index !== -1) {
+                        state.surveys[index] = action.payload.survey;
+                    }
                 }
             }
         });
@@ -218,8 +231,8 @@ const surveySlice = createSlice({
             state.loading = false;
             state.success = true;
             state.successMessage = action.payload.message;
-            // Remove from surveys array
-            state.surveys = state.surveys.filter(s => s._id !== action.meta.arg);
+            // Remove from surveys array - safely filter out deleted survey
+            state.surveys = state.surveys.filter(s => s && s._id && s._id !== action.meta.arg);
         });
         builder.addCase(deleteSurveyAction.rejected, (state, action) => {
             state.loading = false;

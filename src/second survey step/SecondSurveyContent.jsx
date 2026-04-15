@@ -2,7 +2,7 @@ import React from 'react'
 import save from "../Backend Component/image/Save.png"
 import right from "../Backend Component/image/ChevronRight.png";
 import left from "../Backend Component/image/ChevronLeft.png";
-export default function SecondSurveyContent({title, survey,error, SecondTitle, secondSurveyForm, handleSubmit, handleSecondSurveyChange}) {
+export default function SecondSurveyContent({title, survey,error, SecondTitle, secondSurveyForm, handleSubmit, handleSecondSurveyChange, isLoading = false}) {
   return (
     <form className='w-[967px] mx-auto' onSubmit={handleSubmit}>
 
@@ -86,9 +86,14 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
             
                     <button
                         type='submit'
-                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
+                        disabled={isLoading}
+                        className={`flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] font-medium text-[14px] ${
+                          isLoading 
+                            ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                            : 'bg-[#364153] text-white'
+                        }`}
                     >
-                        Next
+                        {isLoading ? 'Loading...' : 'Next'}
                         <img src={right} alt="" />
                     </button>
             

@@ -24,7 +24,8 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
     const [userInput, setUserInput] = useState({
         vegetation: '',
         geologicalSetting: '',
-        depthRange: "",
+        minDepth: "",
+        maxDepth: "",
         checker: []
     });
 
@@ -84,8 +85,10 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             newErrors.geo = 'Geological setting field is required';
         }
 
-        if (!userInput.depthRange) {
-            newErrors.dept = 'Depth range is required';
+        if (!userInput.minDepth || !userInput.maxDepth) {
+            newErrors.dept = 'Both minimum and maximum depth are required';
+        } else if (parseFloat(userInput.minDepth) >= parseFloat(userInput.maxDepth)) {
+            newErrors.dept = 'Maximum depth must be greater than minimum depth';
         }
 
         if (!userInput.checker.length) {
@@ -104,8 +107,9 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             return;
         }
 
-        // Get survey ID from profile
+        // Get survey ID and objective from profile
         const surveyId = profile?.message?.survey?.[0]?._id;
+        const surveyObjective = profile?.message?.survey?.[0]?.surveyObjective;
         if (!surveyId) {
             Swal.fire({
                 icon: "error",
@@ -115,14 +119,34 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
             return;
         }
 
+        if (!surveyObjective) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Survey objective not found. Please complete step 1 first.",
+            });
+            return;
+        }
+
         // Prepare data to update
         const surveyData = {
+            surveyObjective,
             latitude: lengthValue,
             longitude: breadthValue,
             vegetationDensity: userInput.vegetation,
             geologicalSetting: userInput.geologicalSetting,
-            targetDepthRange: userInput.depthRange,
+            minDepth: parseFloat(userInput.minDepth),
+            maxDepth: parseFloat(userInput.maxDepth),
+            siteConstraints: userInput.checker,
         };
+
+        // Debug logging
+        console.log('=== ThirdSurvey Form Submission ===');
+        console.log('Survey Objective:', surveyObjective);
+        console.log('Geological Setting:', `"${userInput.geologicalSetting}"`, `(length: ${userInput.geologicalSetting?.length})`);
+        console.log('Min Depth:', userInput.minDepth, '=>', parseFloat(userInput.minDepth));
+        console.log('Max Depth:', userInput.maxDepth, '=>', parseFloat(userInput.maxDepth));
+        console.log('Full surveyData:', surveyData);
 
         // Dispatch update action
         dispatch(updateSurveyAction({ id: surveyId, surveyData }));

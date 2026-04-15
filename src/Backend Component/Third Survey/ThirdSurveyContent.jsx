@@ -81,8 +81,8 @@ const ThirdSurveyContent = ({
                             className="w-full border p-3 rounded-[10px] mb-4 capitalize"
                         >
                             <option value="">Select</option>
-                            <option value="Low">sedimentary</option>
-                            <option value="Medium">basement complex</option>
+                            <option value="Nigeria Sedimentary Basin">Nigeria Sedimentary Basin</option>
+                            <option value="Nigeria Basement Complex">Nigeria Basement Complex</option>
                             
                         </select>
 
@@ -94,12 +94,12 @@ const ThirdSurveyContent = ({
                             <div className='flex flex-col w-full'>
                                 <label >Maximum Depth (m)</label>
                                 <p className="text-red-500">{error.dept}</p>
-                                <input type="text" name='MaxDepth' value={userInput?.MaxDept} onChange={SurveyChange} placeholder='max-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                                <input type="text" name='maxDepth' value={userInput?.maxDepth} onChange={SurveyChange} placeholder='max-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label >Minimum Depth (m)</label>
                                 <p className="text-red-500">{error.dept}</p>
-                                <input type="text" name='MinDepth' value={userInput?.MinDept} onChange={SurveyChange} placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
+                                <input type="text" name='minDepth' value={userInput?.minDepth} onChange={SurveyChange} placeholder='min-dept' className="rounded-[10px] w-full border p-3  mb-4" />
                             </div>
                        </div>
                     

@@ -1,14 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FourthSurveyContent from './FourthSurveyContent';
 import Swal from "sweetalert2";
+import { getUserProfileAction } from '../redux/slice/user/usersSlice';
+// import { getUserProfileAction } from '../../redux/slice/user/usersSlice';
+// getUserProfileAction
 
 export default function FourthSurveyConnectivity({ onNext }) {
+  const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.users);
+  const { survey } = useSelector((state) => state.surveys);
+  
   const [selectedRow, setSelectedRow] = useState(null);
 
-  const methods = [
-    { id: 'magnetic', name: 'Magnetic Survey' },
-    { id: 'gravity', name: 'Gravity Survey' },
-  ];
+  useEffect(() => {
+    dispatch(getUserProfileAction());
+  }, [dispatch]);
+
+  // Get recommended methods from survey data
+  const recommendedMethods = survey?.recommendedMethods || [];
+  
+  // If no recommended methods, provide fallback
+  const methods = recommendedMethods.length > 0 
+    ? recommendedMethods.map((method, index) => {
+        // Handle different data structures
+        const methodName = typeof method === 'string' 
+          ? method 
+          : method?.name || method?.method || 'Unknown Method';
+        
+        return {
+          id: `method-${index}`,
+          name: methodName,
+          details: method?.depthRange || 'Method recommended based on survey parameters'
+        };
+      })
+    : [
+        { id: 'magnetic', name: 'Magnetic Survey', details: 'Magnetic survey extra details here' },
+        { id: 'gravity', name: 'Gravity Survey', details: 'Gravity survey extra details here' },
+      ];
 
   const handleIcon = (row) => {
     setSelectedRow(prev => (prev === row ? null : row));
@@ -39,9 +68,11 @@ export default function FourthSurveyConnectivity({ onNext }) {
   return (
     <div className='w-[967px] mx-auto'>
       <FourthSurveyContent
-        handleSelect={handleSelect}  // lowercase h
+        handleSelect={handleSelect}
         selectedRow={selectedRow}
         handleIcon={handleIcon}
+        methods={methods}
+        primaryMethod={methods[0]}
       />
     </div>
   );
