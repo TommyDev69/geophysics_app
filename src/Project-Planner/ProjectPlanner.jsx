@@ -89,7 +89,11 @@ export default function ProjectPlanner({
                                     <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                 </div>
 
+<<<<<<< Updated upstream
                                 <input name="projectName" className="w-[768px] rounded-[10px] border border-[#DADCEO] py-4 px-[14px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution" />
+=======
+                                <input name="projectName" className=" w-[768px] rounded-[10px] border border-[#DADCEO] py-4 px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution" />
+>>>>>>> Stashed changes
                                 <p className="text-red-600">{error.projectName}</p>
                             </div>
                             <div className="flex flex-col  gap-[8px]">
@@ -97,7 +101,11 @@ export default function ProjectPlanner({
                                     Description
                                     <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
                                 </label>
+<<<<<<< Updated upstream
                                 <textarea name="description" id="" className="w-[768px] flex px-[14px] rounded-[10px] text-[14px] border border-[#DADCEO] resize-none outline-none" placeholder="Provide a brief description of the project..." value={userInput?.description ?? ""} onChange={HandleChange}>
+=======
+                                <textarea name="description" id="" className="flex w-[768px] px-[18px] rounded-[10px] text-[16px] border border-[#DADCEO] resize-none outline-none" placeholder="Provide a brief description of the project..." value={userInput?.description ?? ""} onChange={HandleChange}>
+>>>>>>> Stashed changes
                                 </textarea>
                                 <p className="text-red-600">{error.description}</p>
                             </div>
