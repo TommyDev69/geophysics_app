@@ -20,7 +20,7 @@ const NavAlertProfile = () => {
            <div className="block md:flex items-center gap-4">
 
             <div className="w-[40px] rounded-full py-4 px-8 flex justify-center items-center bg-[#f2f2f2]">
-                <p className="font-instrument uppercase text-[#101828] font-semibold text-[14px]">Ao</p>
+                <p className="font-instrument uppercase text-[#101828] font-semibold text-[14px]">{profile?.message?.fullName?.split(" ").map(name => name.charAt(0)).join("").slice(0, 2) || "A"}</p>
             </div>
 
             <div className="max-w-[#119px] hidden md:block">
