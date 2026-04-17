@@ -96,7 +96,9 @@ export default function FourthSurveyConnectivity({ onNext }) {
   }, [currentSurvey, userAuth]);
 
   // ✅ Use API data first, then Redux, then fallback
-  const finalRecommendedMethods = methodsFromApi.length > 0 ? methodsFromApi : reduxRecommendedMethods;
+  // const finalRecommendedMethods = methodsFromApi.length > 0 ? methodsFromApi : reduxRecommendedMethods;
+  // dispatch(clearRecommendedMethods()); // create this action
+  const finalRecommendedMethods = methodsFromApi;
 
   console.log('=== FourthSurveyConnectivity Final Debug ===');
   console.log('Methods from API:', methodsFromApi);
