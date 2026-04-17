@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-const FormLogin = ({handleSubmit, formData, handleChange, error}) => {
+const FormLogin = ({handleSubmit, formData, handleChange, error, handleBacktoRegister}) => {
 
     const navigateDashboard = useNavigate();
 
@@ -46,7 +46,7 @@ const FormLogin = ({handleSubmit, formData, handleChange, error}) => {
             </div>
             <div className="flex pt-4 gap-2 max-w-[577px] justify-center   pb-8 ">
                 <p className="font-instrument font-normal  text-[15px] leading-[150%] tracking-[-5%]">Don’t have an account?</p>
-                <button type='button'  className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</button>
+                <button type='button' onClick={() => handleBacktoRegister("/register")}  className="font-instrument font-bold text-[15px] leading-[150%] tracking-[-5%] "> Create an Account</button>
             </div>
         </div>
        </form>
