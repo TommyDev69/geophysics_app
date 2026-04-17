@@ -4,10 +4,10 @@ import right from "../Backend Component/image/ChevronRight.png";
 import left from "../Backend Component/image/ChevronLeft.png";
 export default function SecondSurveyContent({title, survey,error, SecondTitle, secondSurveyForm, handleSubmit, handleSecondSurveyChange, isLoading = false}) {
   return (
-    <form className='w-[967px] mx-auto' onSubmit={handleSubmit}>
+    <form className='w-[967px] mx-auto ' onSubmit={handleSubmit}>
 
-        <div clasdsName="flex ">
-            <div className="w-full flex justify-between items-center ">
+        <div className="flex  bg-green-600">
+            {/* <div className="w-full flex justify-between items-center ">
                 <div className="w-[456px] text-[#364153] py-10">
                     <h1 class="font-bold w-[370px] text-[30px] leading-[36px] tracking-[0.4px] capitalize ">{title}</h1>
                     <p className="w-[72px]">Step 1 of 6</p>
@@ -21,8 +21,8 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
 
                     </button>
                 </div>
-            </div>
-            <div className="flex w-[967px] items-center rounded-[10px] border-[1px] border-[#DADCE0] py-[10px]">
+            </div> */}
+            {/* <div className="flex w-[967px] bg-yellow-600 items-center rounded-[10px] border-[1px] border-[#DADCE0] py-[10px]">
                 {survey.map(item => (
                 
                     <div className=" py-5" style={{paddingTop: item.paddingTop, paddingBottom: item.paddingBottom}} id={item.id}>
@@ -40,14 +40,14 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
 
-            <div className=' py-8'>
+            <div className=' pb-8'>
                 <div className="w-full">
                     <p className=" capitalize w-full font-instrument font-semibold text-[20px] leading-[28px] tracking-[-0.45px]">{SecondTitle}</p>
                 </div>
 
-            <div className=' my-12 border rounded-md'>
+                <div className=' my-12 border rounded-md'>
                     <div className="mx-auto w-[917px] py-10">
                         <label className="uppercase font-medium text-[14px] text-[#364153]">
                         latitude of survey area *

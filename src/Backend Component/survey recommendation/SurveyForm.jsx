@@ -12,7 +12,7 @@ const SurveyForm = ({
   handleSurveyObjective,
 }) => {
   return (
-    <form onSubmit={handleSurveySubmit}>
+    <form className="" onSubmit={handleSurveySubmit}>
     
       <div className="w-[917px] py-6 px-[12px]">
         <p className="font-semibold text-[20px] leading-7 tracking-[-0.45px] capitalize text-[#101828]">
@@ -20,7 +20,7 @@ const SurveyForm = ({
         </p>
       </div>
 
-      <div className="w-[768px] mx-auto rounded-[10px] px-9 py-6">
+      <div className="w-[768px] mx-auto rounded-[10px] py-6">
         <div className="w-full py-9">
           {/* Project Name */}
           <label className="font-medium text-[14px] text-[#364153]">Project Name *</label>

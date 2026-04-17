@@ -6,7 +6,7 @@ import SecondSurveyConnectivity from './SecondSurveyConnectivity'
 
 export default function SecondSurveyContaine() {
   return (
-    <div className='w-[967px] mxb-auto ' >
+    <div className='w-[967px] mxb-auto  ' >
      {/* <Navbar /> */}
       <SecondSurveyConnectivity />
       

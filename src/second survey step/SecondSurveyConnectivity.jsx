@@ -158,12 +158,12 @@ const SecondSurveyConnectivity = ({ onNext }) => {
   return (
     <div className="w-full py-14">
       {profileLoading && (
-        <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mdb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <p className="text-blue-700 text-center font-medium">Loading profile...</p>
         </div>
       )}
       {surveyLoading && (
-        <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+        <div className="mwb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
           <p className="text-orange-700 text-center font-medium">Processing your survey...</p>
         </div>
       )}

@@ -19,7 +19,7 @@ const NavAlertProfile = () => {
             </div>
            <div className="block md:flex items-center gap-4">
 
-            <div className="w-[40px] rounded-full py-4 px-8 flex justify-center items-center bg-[#f2f2f2]">
+            <div className="w-[40px] rounded-full py-4 px-4 flex justify-center items-center bg-[#f2f2f2]">
                 <p className="font-instrument uppercase text-[#101828] font-semibold text-[14px]">ao</p>
             </div>
 

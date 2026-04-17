@@ -24,7 +24,7 @@ export default function SurveyContainer() {
   };
 
   return (
-    <div className='w-[967px] mx-auto'>
+    <div className='w-[967px]  mx-auto'>
       <SurveyConnectivity />
       <div className='mwt-5'>
         {surveyStep === 1 && <SurveyFormValidation onNext={goToNextSurveyStep} />}

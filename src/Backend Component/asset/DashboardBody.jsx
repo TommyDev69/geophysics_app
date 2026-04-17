@@ -16,7 +16,7 @@ const DashboardBody = () => {
     return (
         <>
             <div className="md:w-[967px] ">
-                <h1 className="font-instrument md:text-left text-center font-bold md:text-[30px] text-[13px] leading-[36px] tracking-[0.4px] text-[#101828]">Good Morning, Dr. {profile?.message?.fullName} 👋</h1>
+                <h1 className="font-instrument md:text-left text-center font-bold md:text-[30px] text-[13px] leading-[36px] tracking-[0.4px] text-[#101828]">Good Morning, {profile?.message?.fullName} 👋</h1>
             </div>
 
             <div className="md:w-[319px]">

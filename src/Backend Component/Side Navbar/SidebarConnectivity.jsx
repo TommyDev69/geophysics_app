@@ -22,7 +22,7 @@ const SidebarConnectivity = ({ onMenuClick, activeMenu }) => {
   ]);
 
   return (
-    <div className="min-w-[258px] ">
+    <div className="min-w-[258px]">
    
       <SideBarContent data={content} onMenuClick={onMenuClick} activeMenu={activeMenu} />
       

@@ -22,7 +22,7 @@ const SurveyConnectivity = () => {
 
 
     return (
-        <div className="w-full py-14">
+        <div className="pey-12">
             <SurveyContent  title ="survey recommendation" survey={survey} />
         </div>
 

@@ -120,7 +120,7 @@ const SurveyFormValidation = ({ onNext }) => {
   }, [submitted, reduxError, dispatch]);
 
   return (
-    <div className="max-w-[967px] w-full border border-[#DADCE0] rounded-[10px] py-[10px] mx-auto mt-10">
+    <div className="md:w-[967px] border border-[#DADCE0] rounded-[10px] py-[10px] mx-auto mt-10">
       <SurveyForm
         title="Project Setup"
         content={content}
