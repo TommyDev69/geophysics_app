@@ -6,7 +6,7 @@ export default function SecondSurveyContent({title, survey,error, SecondTitle, s
   return (
     <form className='w-[967px] mx-auto ' onSubmit={handleSubmit}>
 
-        <div className="flex  bg-green-600">
+        <div className="flex">
             {/* <div className="w-full flex justify-between items-center ">
                 <div className="w-[456px] text-[#364153] py-10">
                     <h1 class="font-bold w-[370px] text-[30px] leading-[36px] tracking-[0.4px] capitalize ">{title}</h1>
