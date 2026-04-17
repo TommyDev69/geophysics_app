@@ -8,7 +8,7 @@ import Setting from "../../Setting/Setting";
 import SurveyContainer from "../survey recommendation/SurveyContainer";
 
 // Project Planner Components
-import MyProject from "../../Fontend Component/MyProject/MyProject";
+import MyProjectData from "../../Fontend Component/MyProject/MyProjectData";
 import ProjectPlannerValidation from "../../Project-Planner/ProjectPlannerValidation";
 import SecondProjectPlannerValidation from "../../Project-Planner/SecondProjectPlannerValidation";
 import FifthProjectPlannerValidation from "../../Project-Planner/fifth project planner/FifthProjectPlannerValidation";
@@ -97,7 +97,7 @@ export default function SidebarContainer() {
 
         <Routes>
           <Route path="" element={<DashboardContainer />} />
-          <Route path="my-project" element={<MyProject />} />
+          <Route path="my-project" element={<MyProjectData />} />
           <Route path="setting" element={<Setting />} />
           <Route path="survey" element={<SurveyContainer />} />
           <Route path="survey/:step" element={<SurveyContainer />} />
