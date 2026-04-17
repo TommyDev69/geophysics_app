@@ -90,8 +90,8 @@ const DashboardCard = ({Cards}) => {
             >
                 <div className="md:w-[195px] flex justify-around items-center">
                     <div className="w-[88px]">
-                        <p className="font-instrument md:text-[14px] leading-[20px] tracking-[-0.15px] font-normal capitalize">{items.cardTitle}</p>
-                        <p className="font-instrument font-bold md:text-[28px] text-[20px] leading-[36px] tracking-[0.4px]">{items.numb}</p>
+                        <p className="font-instrument md:text-[14px] leading-[20px] tracking-[-0.15px] font-normal capitalize">{items.cardTitle}mmm</p>
+                        <p className="font-instrument font-bold md:text-[28px] text-[20px] leading-[36px] tracking-[0.4px]">{items.numb}nnn</p>
                     </div>
                     <div className="w-[40px]">
                         <img src={items.image} alt={items.cardTitle} className="object-contain w-10"/>

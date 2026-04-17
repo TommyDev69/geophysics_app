@@ -1,99 +1,137 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
 
-const SixSurveyContent = ({ selectedMethod, projectName, clientName, projectObjective, clientEmail, onNext }) => {
-    const methodName = selectedMethod || 'Elaectrical Resistivity Tomography (ERT)';
-     const projectPlannerLink = useNavigate()
-    const handleNext = () => {
-        // if (onNext) onNext(); 
-        projectPlannerLink("/dashboard/project/1")
+const SixSurveyContent = ({
+  selectedMethod,
+  projectName,
+  clientName,
+  projectObjective,
+  clientEmail,
+  primaryMethod = null,
+  methods = [],
+  onNext,
+}) => {
+  const { recommendedMethods } = useSelector((state) => state.surveys);
 
+  console.log("=== SixSurveyContent Debug ===");
+  console.log("Props methods:", methods);
+  console.log("Redux recommendedMethods:", recommendedMethods);
+
+  // ✅ SAFE NORMALIZER
+  const normalizeMethods = (data) => {
+    if (!Array.isArray(data)) return [];
+
+    return data
+      .filter(Boolean)
+      .map((item, index) => ({
+        id: item?.id ?? index,
+        name: item?.name || item?.method || "Unknown Method",
+        details: item?.details || "Recommended based on survey input",
+      }));
+  };
+
+  const defaultMethods = [];
+
+  const normalizedRecommended = normalizeMethods(recommendedMethods);
+  const normalizedPropsMethods = normalizeMethods(methods);
+
+  const displayMethods =
+    normalizedPropsMethods.length > 0
+      ? normalizedPropsMethods
+      : normalizedRecommended.length > 0
+      ? normalizedRecommended
+      : defaultMethods;
+
+  // ✅ SAFE PRIMARY METHOD
+  const primary =
+    primaryMethod ??
+    displayMethods?.[0] ?? {
+      name: "No recommendation",
+      details: "",
     };
 
-    return ( 
-         <div className="w-[967px] mx-auto border border-[#D7D7D7] rounded-[10px]">
-            <div className="w-[917px]  text-[#101828] mx-auto">
-                <p className="w-[302px] font-instrument font-semibold text-[20px] leading-[28px] tracking-[-0.45px] pt-[14px] pb-[10px]">Survey Area Definition </p>
+  // ✅ SAFE NEXT HANDLER
+  const handleNext = () => {
+    if (onNext) {
+      onNext(primary?.name); // always safe
+    }
+  };
 
-                <div className="w-full bg-[#F9F9F9] border border-[#F9F9F9] rounded-[10px] px-5 py-4    ">
-                    <div className="bg-[#ffffff] px-3  pb-8">
+  return (
+    <div className="w-[967px] mx-auto border border-[#D7D7D7] rounded-[10px]">
+      <div className="w-[917px] text-[#101828] mx-auto">
 
-                        <p className="w-[800px] font-instrument font-semibold text-[22px] leading-[28px] tracking-[-0.45px] py-6 ">Project Information</p>
-                            <div className="w-[800px]">
+        {/* HEADER */}
+        <p className="font-semibold text-[20px] pt-[14px] pb-[10px]">
+          Survey Area Definition
+        </p>
 
-                                <div className="flex items-center">
-                                    <div className="w-1/2 py-6">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Project Name
-                                        </p>
+        {/* PROJECT INFO */}
+        <div className="bg-[#ffffff] px-3 pb-8">
+          <p className="font-semibold text-[22px] py-6">
+            Project Information
+          </p>
 
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{projectName}</p>
-                                    </div>
-                                    <div className="w-1/2 ">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Client Name
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{clientName}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <div className="w-1/2 py-6">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Project Objective
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{projectObjective}</p>
-                                    </div>
-                                    <div className="w-1/2">
-                                        <p className="text-[#4A5565] text-[16px] font-instrument font-normal leading-[20px] tracking-[-0.15px] pb-3">
-                                            Client Email
-                                        </p>
-
-                                        <p className="font-instrument font-bold text-[20px] leading-6 tracking-[-0.31px]">{clientEmail}</p>
-                                    </div>
-                                 </div>
-
-                              
-                            </div>
-                
-                    </div>
-                <div className="w-full bg-[#F9F9F9] border border-[#F9F9F9] rounded-[10px]   mt-8    ">
-                    <div className="bg-[#ffffff] px-3  pb-8">
-
-                           <p className="w-[800px] font-instrument font-semibold text-[22px] leading-[28px] tracking-[-0.45px] py-6 ">Recommended Method</p>
-                             <div className="w-[800px] bg-[#F9F9F9] mx-auto  py-10 flex justify-center">
-                                <p className="font-instrument font-bold  text-[18px] leading-6 tracking-[-0.31px] text -[#101828]">{methodName}</p>
-
-                              
-                            </div>
-                
-                    </div>
-                </div>
-
-                {/* Navigation Buttons */}
-                <div className="flex justify-end gap-4 px-6 py-8">
-                    <button
-                        type="button"
-                        onClick={() => window.history.back()}
-                        className="flex gap-2 justify-center items-center w-[120px] py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="button"
-                        onClick={handleNext}
-                        className="flex capitalize gap-2 justify-center items-center  py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white font-medium text-[14px]"
-                    >
-                        create project planner
-                    </button>
-                </div>  
-                </div>  
-
+          <div className="flex">
+            <div className="w-1/2">
+              <p>Project Name</p>
+              <p className="font-bold">{projectName}</p>
             </div>
+
+            <div className="w-1/2">
+              <p>Client Name</p>
+              <p className="font-bold">{clientName}</p>
+            </div>
+          </div>
+
+          <div className="flex mt-4">
+            <div className="w-1/2">
+              <p>Project Objective</p>
+              <p className="font-bold">{projectObjective}</p>
+            </div>
+
+            <div className="w-1/2">
+              <p>Client Email</p>
+              <p className="font-bold">{clientEmail}</p>
+            </div>
+          </div>
         </div>
-     );
-}
- 
+
+        {/* RECOMMENDATION */}
+        <div className="bg-[#ffffff] px-3 pb-8 mt-8">
+          <p className="font-semibold text-[22px] py-6">
+            Recommended Method
+          </p>
+
+          <div className="bg-[#F9F9F9] py-10 flex justify-center">
+            <p className="font-bold text-[18px]">
+              {selectedMethod || primary?.name || "No recommendation"}
+            </p>
+          </div>
+        </div>
+
+        {/* BUTTONS */}
+        <div className="flex justify-end gap-4 px-6 py-8">
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="w-[120px] py-[10px] rounded-[10px] bg-[#364153] text-white"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            className="py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white"
+          >
+            Create Project Planner
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
 export default SixSurveyContent;

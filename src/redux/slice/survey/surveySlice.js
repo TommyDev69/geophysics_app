@@ -11,6 +11,7 @@ const initialState = {
     survey: null,
     success: false,
     successMessage: null,
+    recommendedMethods: [],  // ✅ ADDED: Was missing!
 };
 
 // Create Survey Action
@@ -19,15 +20,34 @@ export const createSurveyAction = createAsyncThunk(
     async (surveyData, { rejectWithValue, getState, dispatch }) => {
         try {
             const token = getState()?.users?.userAuth?.userInfo?.message?.token;
+
+            console.log('📤 Redux createSurveyAction: Starting survey creation');
+            console.log('  Token exists?', !!token);
+            console.log('  Survey data:', surveyData);
+
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
             };
+
+            console.log('  Sending POST to:', `${baseUrl}/surveys/create-survey`);
+
             const res = await axios.post(`${baseUrl}/surveys/create-survey`, surveyData, config);
+
+            // console.log('📥 createSurveyAction Response:', res.data);
+            const surveyId = res.data.surveyCreated?._id || res.data.survey?._id;
+            // console.log('  Survey created with ID:', surveyId);
+
             return res.data;
         } catch (error) {
+            console.error('❌ createSurveyAction Error:', {
+                status: error.response?.status,
+                statusText: error.response?.statusText,
+                message: error.response?.data?.message || error.message,
+                fullError: error.response?.data
+            });
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
     }
@@ -78,6 +98,8 @@ export const updateSurveyAction = createAsyncThunk(
         try {
             const { id, surveyData } = payload;
             const {
+                surveyName,
+                description,
                 surveyObjective,
                 latitude,
                 longitude,
@@ -99,6 +121,15 @@ export const updateSurveyAction = createAsyncThunk(
                     Authorization: `Bearer ${token}`,
                 },
             };
+
+            console.log('📤 Redux updateSurveyAction: Sending to backend:', {
+                url: `${baseUrl}/surveys/update/${id}`,
+                surveyObjective,
+                geologicalSetting,
+                minDepth,
+                maxDepth
+            });
+
             const res = await axios.put(`${baseUrl}/surveys/update/${id}`, {
                 surveyObjective,
                 latitude,
@@ -113,14 +144,21 @@ export const updateSurveyAction = createAsyncThunk(
                 stationSpacing,
                 lineSpacing,
             }, config);
-            console.log(res.data.survey);
 
+            console.log('📥 Redux updateSurveyAction: Response received:', res.data);
+            console.log('  Survey saved:', res.data.survey?._id);
+            console.log('  Recommended methods:', res.data.recommendedMethods);
 
             return {
                 survey: res.data.survey,
                 recommendedMethods: res.data.recommendedMethods
             };
         } catch (error) {
+            console.error('❌ Redux updateSurveyAction Error:', {
+                status: error.response?.status,
+                message: error.response?.data?.message || error.message,
+                fullError: error.response?.data
+            });
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
     }
@@ -155,13 +193,32 @@ const surveySlice = createSlice({
             state.error = null;
         });
         builder.addCase(createSurveyAction.fulfilled, (state, action) => {
+            console.log('=== REDUX: createSurveyAction.fulfilled ===');
+            console.log('Full action.payload:', action.payload);
+            
             state.loading = false;
             state.success = true;
             state.successMessage = action.payload.message;
-            state.survey = action.payload.survey;
-            state.surveys.push(action.payload.survey);
+            
+            // ✅ CLEAR OLD RECOMMENDATIONS WHEN NEW SURVEY IS CREATED
+            state.recommendedMethods = [];
+            console.log('🧹 Cleared old recommendedMethods for new survey');
+            
+            // Backend returns surveyCreated, not survey
+            const surveyData = action.payload.surveyCreated || action.payload.survey;
+            console.log('Survey data found:', surveyData);
+            
+            if (surveyData) {
+                state.survey = surveyData;
+                state.surveys.push(surveyData);
+                console.log('✅ Survey stored in Redux:', surveyData._id);
+            } else {
+                console.log('❌ No survey in response to store!');
+                console.log('Response keys:', Object.keys(action.payload));
+            }
         });
         builder.addCase(createSurveyAction.rejected, (state, action) => {
+            console.log('❌ createSurveyAction.rejected:', action.payload);
             state.loading = false;
             state.error = action.payload;
             state.success = false;
@@ -201,10 +258,24 @@ const surveySlice = createSlice({
             state.error = null;
         });
         builder.addCase(updateSurveyAction.fulfilled, (state, action) => {
+            console.log('=== REDUX: updateSurveyAction.fulfilled ===');
+            console.log('Full action.payload:', action.payload);
+            console.log('recommendedMethods from payload:', action.payload.recommendedMethods);
+            console.log('Type:', typeof action.payload.recommendedMethods);
+            console.log('Is array?', Array.isArray(action.payload.recommendedMethods));
+
             state.loading = false;
             state.success = true;
             state.successMessage = action.payload.message || "Survey updated successfully";
-            state.recommendedMethods = action.payload.recommendedMethods;
+            
+            // ✅ ENSURE recommendedMethods is ALWAYS an array
+            state.recommendedMethods = Array.isArray(action.payload.recommendedMethods) 
+                ? action.payload.recommendedMethods 
+                : [];
+            
+            console.log('State after update - recommendedMethods:', state.recommendedMethods);
+            console.log('✅ Recommendations cleared/updated for survey objective');
+
             if (action.payload.survey) {
                 state.survey = action.payload.survey;
                 // Update in surveys array - only find if survey has _id

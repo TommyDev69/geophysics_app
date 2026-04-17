@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import SurveyForm from "./SurveyForm";
 import { createSurveyAction } from "../../redux/slice/survey/surveySlice";
+import { getUserProfileAction } from "../../redux/slice/user/usersSlice";
 import {
   resetSuccessAction,
   resetErrAction,
@@ -93,6 +94,9 @@ const SurveyFormValidation = ({ onNext }) => {
   /** SUCCESS (optional feedback only) */
   useEffect(() => {
     if (submitted && success) {
+      console.log('=== SurveyFormValidation Success ===');
+      console.log('Refreshing profile to get new survey ID...');
+      
       Swal.fire({
         icon: "success",
         title: "Saved",
@@ -100,7 +104,13 @@ const SurveyFormValidation = ({ onNext }) => {
       }).then(() => {
         setSubmitted(false);
         dispatch(resetSuccessAction());
-        if (onNext) onNext(2);
+        
+        // ✅ CRITICAL: Refresh profile to get the new survey ID
+        // This ensures all subsequent steps see the new survey
+        dispatch(getUserProfileAction()).then(() => {
+          console.log('✅ Profile refreshed with new survey ID');
+          if (onNext) onNext(2);
+        });
       });
     }
   }, [submitted, success, successMessage, dispatch, onNext]);

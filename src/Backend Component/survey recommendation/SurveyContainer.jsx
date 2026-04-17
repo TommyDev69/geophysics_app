@@ -13,6 +13,7 @@ export default function SurveyContainer() {
   const surveyStep = parseInt(step, 10) || 1;
   const navigate = useNavigate();
   const [secondSurveyData, setSecondSurveyData] = useState(null);
+  const [selectedMethodFromFourth, setSelectedMethodFromFourth] = useState(null);
 
   const goToNextSurveyStep = () => {
     const nextStep = surveyStep + 1;
@@ -42,9 +43,21 @@ export default function SurveyContainer() {
             onNext={goToNextSurveyStep}
           />
         )}
-        {surveyStep === 4 && <FourthSurveyConnectivity onNext={goToNextSurveyStep} />}
+        {surveyStep === 4 && (
+          <FourthSurveyConnectivity 
+            onNext={(selectedMethod) => {
+              setSelectedMethodFromFourth(selectedMethod);
+              goToNextSurveyStep();
+            }} 
+          />
+        )}
         {surveyStep === 5 && <FifthSurveyConnectivity onNext={goToNextSurveyStep} />}
-        {surveyStep === 6 && <SixSurveyConnectivity onNext={goToNextSurveyStep} />}
+        {surveyStep === 6 && (
+          <SixSurveyConnectivity 
+            selectedMethod={selectedMethodFromFourth}
+            onNext={goToNextSurveyStep} 
+          />
+        )}
       </div>
     </div>
   )
