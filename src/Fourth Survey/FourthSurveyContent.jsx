@@ -93,7 +93,6 @@ export default function FourthSurveyContent({
                   <tr>
                     <td className="pl-2 py-2">{method.name}</td>
 
-                    {/* ACTION */}
                     <td
                       className="text-center cursor-pointer"
                       onClick={() => handleIcon(method.id)}
@@ -105,7 +104,7 @@ export default function FourthSurveyContent({
                       )}
                     </td>
 
-                    {/* TOGGLE */}
+                    
                     <td className="text-center">
                       <FontAwesomeIcon
                         icon={selectedRow === method.id ? faSmileBeam : faThumbsUp}
@@ -115,7 +114,7 @@ export default function FourthSurveyContent({
                     </td>
                   </tr>
 
-                  {/* DETAILS */}
+               
                   {selectedRow === method.id && (
                     <tr>
                       <td colSpan="3" className="text-center text-gray-500 py-2">
