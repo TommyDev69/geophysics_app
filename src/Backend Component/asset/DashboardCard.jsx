@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileAction } from '../../redux/slice/user/usersSlice';
+import { PROJECT_STATUS } from '../../utils/status';
 
-const DashboardCard = ({Cards}) => {
+const DashboardCard = ({ Cards }) => {
     const dispatch = useDispatch();
     const { profile, loading, error } = useSelector((state) => state.users);
 
@@ -10,6 +11,10 @@ const DashboardCard = ({Cards}) => {
     useEffect(() => {
         dispatch(getUserProfileAction());
     }, [dispatch]);
+
+    // const activeProjects = projects.filter(
+    //     (p) => p.status === PROJECT_STATUS.ACTIVE
+    // ).length;
 
     // Calculate project counts from profile
     const calculateProjectCounts = () => {
@@ -35,34 +40,37 @@ const DashboardCard = ({Cards}) => {
     };
 
     const projectCounts = calculateProjectCounts();
-
+console.log("PROJECTS:", profile?.message?.projects);
     // Create cards data from user profile
-    const userCards = profile?.message ? [
-        {
-            id: 1,
-            cardTitle: "Total Projects",
-            numb: projectCounts.totalProjects,
-            image: Cards?.[0]?.image || "📊"
-        },
-        {
-            id: 2,
-            cardTitle: "Active",
-            numb: profile.message.projects.filter(p => p.status === "active").length,
-            image: Cards?.[1]?.image || "🔄"
-        },
-        {
-            id: 3,
-            cardTitle: "Completed",
-            numb: projectCounts.completedProjects,
-            image: Cards?.[2]?.image || "✅"
-        },
-        {
-            id: 4,
-            cardTitle: "Drafts",
-            numb: projectCounts.draftProjects,
-            image: Cards?.[3]?.image || "📝"
-        }
-    ] : Cards || [];
+   const userCards = profile?.message ? [
+  {
+    id: 1,
+    cardTitle: "Total Projects",
+    numb: projectCounts.totalProjects,
+    image: Cards?.[0]?.image || ""
+  },
+  {
+    id: 2,
+    cardTitle: "Active",
+    numb:
+      profile?.message?.projects?.filter(
+        (p) => p?.status === PROJECT_STATUS.ACTIVE
+      ).length || 0,
+    image: Cards?.[1]?.image || ""
+  },
+  {
+    id: 3,
+    cardTitle: "Completed",
+    numb: projectCounts.completedProjects,
+    image: Cards?.[2]?.image || ""
+  },
+  {
+    id: 4,
+    cardTitle: "Drafts",
+    numb: projectCounts.draftProjects,
+    image: Cards?.[3]?.image || ""
+  }
+] : Cards || [];
 
     if (loading) {
         return (
@@ -80,27 +88,27 @@ const DashboardCard = ({Cards}) => {
         );
     }
 
-    return ( 
+    return (
         <>
-        {userCards.map(items =>(
-            <div 
-                className="md:w-[223px] w-full mx-auto rounded-[10px] text-[#4A5565] border border-[#DADCE0] py-[20px] md:px-[25px] px-4 bg-[#FFFFFF]" 
-                id={items.id}
-                key={items.id}
-            >
-                <div className="md:w-[195px] flex justify-around items-center">
-                    <div className="w-[88px]">
-                        <p className="font-instrument md:text-[14px] leading-[20px] tracking-[-0.15px] font-normal capitalize">{items.cardTitle}mmm</p>
-                        <p className="font-instrument font-bold md:text-[28px] text-[20px] leading-[36px] tracking-[0.4px]">{items.numb}nnn</p>
-                    </div>
-                    <div className="w-[40px]">
-                        <img src={items.image} alt={items.cardTitle} className="object-contain w-10"/>
+            {userCards.map(items => (
+                <div
+                    className="md:w-[223px] w-full mx-auto rounded-[10px] text-[#4A5565] border border-[#DADCE0] py-[20px] md:px-[25px] px-4 bg-[#FFFFFF]"
+                    id={items.id}
+                    key={items.id}
+                >
+                    <div className="md:w-[195px] flex justify-around items-center">
+                        <div className="w-[88px]">
+                            <p className="font-instrument md:text-[14px] leading-[20px] tracking-[-0.15px] font-normal capitalize">{items.cardTitle}</p>
+                            <p className="font-instrument font-bold md:text-[28px] text-[20px] leading-[36px] tracking-[0.4px]">{items.numb}</p>
+                        </div>
+                        <div className="w-[40px]">
+                            <img src={items.image} alt={items.cardTitle} className="object-contain w-10" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        ))}
+            ))}
         </>
-     );
+    );
 }
- 
+
 export default DashboardCard;

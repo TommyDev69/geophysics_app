@@ -20,12 +20,12 @@ const NavAlertProfile = () => {
            <div className="block md:flex items-center gap-4">
 
             <div className="w-[40px] rounded-full py-4 px-4 flex justify-center items-center bg-[#f2f2f2]">
-                <p className="font-instrument uppercase text-[#101828] font-semibold text-[14px]">ao</p>
+                <p className="font-instrument uppercase text-[#101828] font-semibold text-[14px]">{profile?.message?.initials}</p>
             </div>
 
             <div className="max-w-[#119px] hidden md:block">
                 <p className="font-instrument font-medium md:text-[14px] leading-[20.14px] tracking-[-0.15px] text-[#101828]">{profile?.message?.fullName} </p>
-                <p className="font-instrument font-normal md:text-[12px] text-6 leading-[20.14px] tracking-[-0.15px] text-[#6A7282]">Lead Geophysicist</p>
+                <p className="font-instrument font-normal md:text-[12px] text-6 leading-[20.14px] tracking-[-0.15px] text-[#6A7282]">{profile?.message?.role}</p>
             </div>
            </div>
         </div>
