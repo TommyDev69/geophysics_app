@@ -21,7 +21,7 @@ const ThirdSurveyContent = ({
 
     return (
         <form onSubmit={HandleSubmit}>
-            <div className="w-full rounded-[10px] border pb-8 border-[#DADCE0] capitalize">
+            <div className="w-full my-9 rounded-[10px] border pb-8 border-[#DADCE0] capitalize">
 
                 {/* TITLE */}
                 <div className="w-[917px] mx-auto py-4">
