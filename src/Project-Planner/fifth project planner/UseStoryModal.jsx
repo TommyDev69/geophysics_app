@@ -8,8 +8,8 @@ const UseStoryModal = ({
   return (
     <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       <form
-        onSubmit={handlingSubmitStory}
-        className="w-[600px] p-[24px] bg-white border rounded-[10px] relative"
+        
+        className=" font-instrument w-[600px] p-[24px] bg-white border rounded-[10px] relative"
       >
         {/* TITLE */}
         <div className="w-[400px] mb-4">
@@ -28,7 +28,7 @@ const UseStoryModal = ({
             onChange={change}
             className="border p-3 rounded"
           />
-          <p className="text-red-600">{error.title}</p>
+          <p className="text-red-600">{error.titleError}</p>
         </div>
 
         {/* PRIORITY + POINT */}
@@ -46,7 +46,7 @@ const UseStoryModal = ({
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
-            <p className="text-red-600">{error.priority}</p>
+            <p className="text-red-600">{error.priorityError} </p>
           </div>
 
           <div className="w-1/2 flex flex-col">
@@ -58,7 +58,7 @@ const UseStoryModal = ({
               onChange={change}
               className="border p-3 rounded"
             />
-            <p className="text-red-600">{error.point}</p>
+            <p className="text-red-600">{error.pointError}</p>
           </div>
         </div>
 
@@ -72,7 +72,7 @@ const UseStoryModal = ({
             onChange={change}
             className="border p-3 rounded"
           />
-          <p className="text-red-600">{error.assign}</p>
+          <p className="text-red-600">{error.assignError}</p>
         </div>
 
         {/* DESCRIPTION */}
@@ -84,7 +84,7 @@ const UseStoryModal = ({
             onChange={change}
             className="border p-3 rounded"
           />
-          <p className="text-red-600">{error.description}</p>
+          <p className="text-red-600">{error.descriptionError}</p>
         </div>
 
         {/* BUTTONS */}
@@ -92,14 +92,15 @@ const UseStoryModal = ({
           <button
             type="button"
             onClick={closeUserStoryModal}
-            className="px-4 py-2 border rounded"
+            className="px-4 py-2 border rounded-[10px] border-[#DADCE0] text-[#585858]"
           >
             Cancel
           </button>
 
           <button
-            type="submit"
-            className="px-4 py-2 bg-black text-white rounded"
+            type="button"
+            onClick={handlingSubmitStory}
+            className="rounded-[10px] px-4 py-2 bg-[#585858]  text-white"
           >
             Add Story
           </button>

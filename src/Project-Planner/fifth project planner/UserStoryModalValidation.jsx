@@ -3,75 +3,83 @@ import Swal from "sweetalert2";
 import UseStoryModal from "./UseStoryModal";
 
 const UserStoryModalValidation = ({ closeUserStoryModal }) => {
-  // Form state
   const [formData, setFormData] = useState({
     title: "",
     priority: "",
-    point:'',
+    point: "",
     assign: "",
     description: "",
   });
 
-  // Error state
   const [errors, setErrors] = useState({
-    title: "",
-    priority: "",
-      point:'',
-    assign: "",
-    description: "",
+    titleError: "",
+    priorityError: "",
+    pointError: "",
+    assignError: "",
+    descriptionError: "",
   });
 
-  // Handle input changes
+  // ✅ HANDLE INPUT
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
 
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
+    // Clear error instantly when typing
+    // const errorKey = `${name}Error`;
+
+    // setErrors((prev) => ({
+    //   ...prev,
+    //   [errorKey]: "",
+    // }));
   };
 
-  // Validate form
-  const validateForm = () => {
-    const newErrors = {};
+  // ✅ HANDLE SUBMIT
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('handleSubmit called');
+    console.log('formData:', formData);
 
+    const newErrors = {
+      titleError: "",
+      priorityError: "",
+      pointError: "",
+      assignError: "",
+      descriptionError: "",
+    };
+
+    // Validation
     if (!formData.title.trim()) {
-      newErrors.title = "Title is required";
+      newErrors.titleError = "Title is required";
     }
 
     if (!formData.priority.trim()) {
-      newErrors.priority = "Priority is required";
+      newErrors.priorityError = "Priority is required";
     }
+
     if (!formData.point.trim()) {
-      newErrors.point = "Point is required";
+      newErrors.pointError = "Point is required";
     }
 
     if (!formData.assign.trim()) {
-      newErrors.assign = "Assign is required";
+      newErrors.assignError = "Assign is required";
     }
 
     if (!formData.description.trim()) {
-      newErrors.description = "Description is required";
+      newErrors.descriptionError = "Description is required";
     }
 
-    return newErrors;
-  };
+    setErrors(newErrors);
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const hasError = Object.values(newErrors).some(Boolean);
+    console.log('hasError:', hasError);
+    console.log('newErrors:', newErrors);
 
-    const validationErrors = validateForm();
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
+    // ❌ STOP IF ERROR
+    if (hasError) {
       Swal.fire({
         title: "Validation Error",
         text: "Please fill in all required fields",
@@ -80,11 +88,11 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
       return;
     }
 
-    // Success - show confirmation and reset
+    // ✅ SUCCESS
     Swal.fire({
       icon: "success",
       title: "User Story Created!",
-      text: "New user story added for this project",
+      text: "New user story added",
       timer: 1500,
       showConfirmButton: false,
     });
@@ -93,13 +101,13 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
     setFormData({
       title: "",
       priority: "",
-      point:'',
+      point: "",
       assign: "",
       description: "",
     });
 
-    // Close modal
     closeUserStoryModal();
+    console.log(handleSubmit);
   };
 
   return (

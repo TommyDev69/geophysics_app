@@ -1,9 +1,7 @@
 import React from "react";
-// import BoardProgress from "./BoardProgress";
-import BoardProgressValidation from "./BoardProgressValidation";
-import BoardCompleteValidation from "./BoardCompleteValidation";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
-const BoardContent = ({ content, title  }) => {
+const BoardContent = ({ columns }) => {
   return (
     <div className="flex flex-col min-w-[917px]">
       {/* Header */}
@@ -15,54 +13,67 @@ const BoardContent = ({ content, title  }) => {
       </p>
 
       {/* Columns */}
-      <div className="grid grid-cols-3  px-6  gap-3 rounded-[10px] mt-4">
-        <div className="flex flex-col w-[e295px] bg-[#F3F4F6] border-2 py-6 px-4 rounded-[10px] border-[#D1D5DC]">
-          {/* Column Header */}
-          <div className="flex justify-between items-center mb-4">
-            <p className="text-[#101828] font-instrument font-semibold text-[18px] leading-[27px] tracking-[-0.44px]">
-              {title}
-            </p>
-
-            <div className="w-[25px] h-[25px] rounded-full bg-white flex justify-center items-center">
-              <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">
-                {content.length}
-              </p>
-            </div>
-          </div>
-            <div className=" ">
-          {/* Cards */}
-          {content.map((dataItems) => (
+      <div className="grid grid-cols-3 px-6 gap-3 rounded-[10px] mt-4">
+        {Object.entries(columns).map(([columnId, column]) => (
+          <Droppable key={columnId} droppableId={columnId}>
+            {(provided, snapshot) => (
               <div
-              key={dataItems.id}
-              className="bg-white  rounded-[10px] border-[2px] border-[#DADCE0] p-3 mb-3"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                className={`flex flex-col bg-[#F3F4F6] rounded-[10px] border-2 p-4 ${
+                  snapshot.isDraggingOver ? "bg-blue-50" : "bg-[#F3F4F6]"
+                }`}
               >
-                
-              <p className="text-[#101828] pb-4 font-medium text-[18px] leading-[24px] tracking-[-0.31px] font-sans">
-                {dataItems.subject}
-              </p>
-              <p className="text-[#4A5565] font-instrument font-normal text-[16px] leading-5 tracking-[-0.15px]">
-                {dataItems.details}
-              </p>
+                <div className="flex justify-between items-center mb-4">
+                  <p className="text-[#101828] capitalize font-instrument font-semibold text-[18px] leading-[27px] tracking-[-0.44px]">
+                    {column.name}
+                  </p>
 
-              <div className="flex justify-between items-center mt-2">
-                <p className="font-medium text-[12px] text-[#4A5565] leading-4 tracking-normal font-instrument">
-                  {dataItems.points} points
-                </p>
+                  <div className="w-[25px] h-[25px] rounded-full bg-white flex justify-center items-center">
+                    <p className="text-[#4A5565] font-instrument font-normal text-[14px] leading-[20px] tracking-[-0.15px]">
+                      {column.items.length}
+                    </p>
+                  </div>
+                </div>
 
-                <div className="w-[30px] h-[30px] rounded-full bg-[#585858] flex items-center justify-center text-white text-[14px]">
-                  {dataItems.aka}
+                <div className="min-h-[100px]">
+                  {column.items.map((item, index) => (
+                    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+                      {(providedDraggable, snapshotDraggable) => (
+                        <div
+                          ref={providedDraggable.innerRef}
+                          {...providedDraggable.draggableProps}
+                          {...providedDraggable.dragHandleProps}
+                          style={providedDraggable.draggableProps.style}
+                          className={`bg-white rounded-[10px] border-[2px] border-[#DADCE0] p-3 mb-3 cursor-ew-resize ${
+                            snapshotDraggable.isDragging ? "shadow-lg" : ""
+                          }`}
+                        >
+                          <p className="text-[#101828] pb-4 font-medium text-[18px] leading-[24px] tracking-[-0.31px] font-sans">
+                            {item.subject}</p>
+                          <p className="text-[#4A5565] font-instrument font-normal text-[16px] leading-5 tracking-[-0.15px]">
+                            {item.details}
+                          </p>
+
+                          <div className="flex justify-between items-center mt-2">
+                            <p className="font-medium text-[12px] text-[#4A5565] leading-4 tracking-normal font-instrument">
+                              {item.points} points
+                            </p>
+
+                            <div className="w-[30px] h-[30px] rounded-full bg-[#585858] flex items-center justify-center text-white text-[14px]">
+                              {item.aka}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
                 </div>
               </div>
-            </div>
-          ))}
-            </div>
-        </div>
-        <>
-        <BoardProgressValidation />
-        </>
-        <>
-        <BoardCompleteValidation />
-        </>
+            )}
+          </Droppable>
+        ))}
       </div>
     </div>
   );
