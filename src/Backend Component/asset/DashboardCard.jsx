@@ -47,7 +47,7 @@ const DashboardCard = ({Cards}) => {
         {
             id: 2,
             cardTitle: "Active",
-            numb: projectCounts.isActive ? "Active" : "Inactive",
+            numb: profile.message.projects.filter(p => p.status === "active").length,
             image: Cards?.[1]?.image || "🔄"
         },
         {
