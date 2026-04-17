@@ -5,6 +5,7 @@ export default function NavBarBand() {
     <div className='max-w-[202px]  flex gap-3 items-center'>
        <div className='md:w-[32px] '>
           <img src={logo} alt="brand" />
+          <p className=""></p>
        </div>
        <div className='md:w-[162px] w-[120px]'>
          <p className="font-instrument max-w-[158px] font-semibold md:text-[18px] text-10 leading-[28.2px] tracking-[-0.44px] text-[#101828]">

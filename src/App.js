@@ -1,4 +1,4 @@
-// <<<<<<< HEAD
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { Provider } from 'react-redux';
 // import store from './redux/store/store';
@@ -26,6 +26,8 @@ function App() {
         <Route path="/dashboard/*" element={ <Sidebar /> } />
         {/* Redirect old planner URL to new dashboard project route */}
         <Route path="/dashboard/planner/1" element={<Navigate to="/dashboard/project/1" replace />} />
+        <Route path="/dashboard/my-projects" element={<Navigate to="/dashboard/my-project" replace />} />
+
         {/* Redirect unknown paths */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

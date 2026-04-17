@@ -39,9 +39,9 @@ const FormValidationLogin = () => {
 
         if (!formData.agreeTerms) {
             Swal.fire({
-                icon: "warning",
-                title: "Terms Required",
-                text: "You must agree to the terms and conditions"
+                icon: "success",
+                title: "your details are correct",
+                text: "we will log you in now"
             });
         }
 
