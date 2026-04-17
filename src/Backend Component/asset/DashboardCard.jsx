@@ -40,7 +40,6 @@ const DashboardCard = ({ Cards }) => {
     };
 
     const projectCounts = calculateProjectCounts();
-console.log("PROJECTS:", profile?.message?.projects);
     // Create cards data from user profile
    const userCards = profile?.message ? [
   {
