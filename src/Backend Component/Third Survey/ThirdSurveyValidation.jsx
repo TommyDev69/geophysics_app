@@ -18,9 +18,12 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
     // ✅ CRITICAL FIX: Get LATEST survey (last in array), not first!
     // When user creates new survey in Step 1, we need the newest one, not the old one
     const currentSurvey = profile?.message?.survey && profile.message.survey.length > 0
-        ? profile.message.survey[profile.message.survey.length - 1]
-        : null;
+    ? profile.message.survey[profile.message.survey.length - 1]
+    : null;
 
+
+    const latitude = currentSurvey?.latitude;
+    const longitude = currentSurvey?.longitude;
     // ✅ DEBUG: Log profile when it updates
     useEffect(() => {
         if (currentSurvey) {
@@ -37,8 +40,10 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
     const dataFromProfileLatitude = currentSurvey?.latitude || '';
     const dataFromProfileLongitude = currentSurvey?.longitude || '';
 
-    const lengthValue = secondSurveyData?.latitude || dataFromProfileLatitude || '0';
-    const breadthValue = secondSurveyData?.longitude || dataFromProfileLongitude || '0';
+    // const lengthValue = secondSurveyData?.latitude || dataFromProfileLatitude || '0';
+    // const breadthValue = secondSurveyData?.longitude || dataFromProfileLongitude || '0';
+    const lengthValue = latitude;
+    const breadthValue = longitude;
 
     const [userInput, setUserInput] = useState({
         vegetation: '',
@@ -57,7 +62,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
     const [submitted, setSubmitted] = useState(false);
 
     // ✅ FIXED
-     const handleChanges = (e) => {
+    const handleChanges = (e) => {
         const { name, value, type, checked } = e.target;
 
         if (type === "checkbox") {
@@ -148,6 +153,16 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
         }
 
         // Prepare data to update
+        // const surveyData = {
+        //     surveyObjective,
+        //     latitude: lengthValue,
+        //     longitude: breadthValue,
+        //     vegetationDensity: userInput.vegetation,
+        //     geologicalSetting: userInput.geologicalSetting,
+        //     minDepth: parseFloat(userInput.minDepth),
+        //     maxDepth: parseFloat(userInput.maxDepth),
+        //     siteConstraints: userInput.checker,
+        // };
         const surveyData = {
             surveyObjective,
             latitude: lengthValue,
@@ -168,7 +183,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
         console.log('Full surveyData:', surveyData);
 
         console.log('📤 Dispatching updateSurveyAction with:', { id: surveyId, surveyData });
-        
+
         // Dispatch update action
         dispatch(updateSurveyAction({ id: surveyId, surveyData }));
         setSubmitted(true);
@@ -179,7 +194,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
         if (submitted && success) {
             console.log('=== ThirdSurvey Success ===');
             console.log('Recommended Methods from Redux:', recommendedMethods);
-            
+
             Swal.fire({
                 icon: "success",
                 title: "Success",
@@ -202,7 +217,7 @@ export default function ThirdSurveyValidation({ secondSurveyData, onNext }) {
                 dispatch(resetErrAction());
             });
         }
-    }, [reduxError,dispatch]);
+    }, [reduxError, dispatch]);
 
     return (
         <div>
