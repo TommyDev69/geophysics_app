@@ -60,7 +60,7 @@ export default function FourthSurveyContent({
 
   return (
     <form onSubmit={handleSelect}>
-      <div className="font-instrument w-full border px-6 py-4 rounded-lg border-gray-300">
+      <div className="font-instrument w-full my-8 border px-6 py-4 rounded-lg border-gray-300">
 
         {/* HEADER */}
         <h2 className="text-xl font-semibold mb-4">
