@@ -87,7 +87,19 @@ const SurveyFormValidation = ({ onNext }) => {
     }
 
     // ✅ SEND TO REDUX AND SHOW SUCCESS ON COMPLETE
-    dispatch(createSurveyAction(surveyForm));
+    const result = dispatch(createSurveyAction(surveyForm));
+
+  const payload = result?.payload;
+
+  // ❌ STOP IF FAILED
+  if (payload?.status === "failed") {
+    Swal.fire({
+      icon: "error",
+      title: "Duplicate Survey",
+      text: payload.message,
+    });
+    return;
+  }
     setSubmitted(true);
   };
 
