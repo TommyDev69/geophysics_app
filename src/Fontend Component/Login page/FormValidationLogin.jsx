@@ -9,7 +9,10 @@ import Swal from 'sweetalert2';
 
 
 const FormValidationLogin = () => {
-
+ const navRegister = useNavigate();
+  const handleBacktoRegister = () => {
+    navRegister('/register');
+  }
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -99,6 +102,7 @@ const FormValidationLogin = () => {
                 formData={formData}
                 handleChange={handleChange}
                 error={error}
+                handleBacktoRegister = {handleBacktoRegister}
             />
         </div>
     );

@@ -58,7 +58,7 @@ const SixSurveyContent = ({
   };
 
   return (
-    <div className="w-[967px] mx-auto border border-[#D7D7D7] rounded-[10px]">
+    <div className="w-[967px] my-6 mx-auto border border-[#D7D7D7] rounded-[10px]">
       <div className="w-[917px] text-[#101828] mx-auto">
 
         {/* HEADER */}

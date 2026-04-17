@@ -13,7 +13,7 @@ const FifthSurveyContent = ({
 
   return (
     <form onSubmit={HandleSubmit}>
-      <div className="w-[967px] mx-auto border border-[#D7D7D7] rounded-[10px]">
+      <div className="w-[967px] mx-auto my-8 border border-[#D7D7D7] rounded-[10px]">
         <div className="w-[917px] text-[#101828] mx-auto">
           <p className="font-semibold text-[20px] pt-[14px] pb-[10px]">
             Survey Area Definition
@@ -102,6 +102,7 @@ const FifthSurveyContent = ({
           </div>
         </div>
 
+      </div>
         {/* Buttons */}
         <div className="flex justify-between px-6 py-8">
           <button
@@ -122,7 +123,6 @@ const FifthSurveyContent = ({
             <img src={right} alt="" />
           </button>
         </div>
-      </div>
     </form>
   );
 };
