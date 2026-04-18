@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import baseUrl from "../utils/baseUrl";
-
+import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2";
 import ProjectPlanner from "./ProjectPlanner";
 import { createProjectAction } from "../redux/slice/project/projectSlice";
 
 const ProjectPlannerValidation = ({ onNext }) => {
-
+    const saveToDraft = useNavigate();
+    const handleSaveToDraft = () => {
+        saveToDraft('/dashboard/my-projects/drafts');
+    }
     const dispatch = useDispatch();
 
     const [projectDetails, setProjectDetails] = useState({
@@ -190,6 +193,8 @@ const ProjectPlannerValidation = ({ onNext }) => {
                 onAddTeamMember={onAddTeamMember}
                 teamMembers={teamMembers}
                 onNext={onNext}
+
+                handleSaveToDraft={handleSaveToDraft}
                 
             />
         </>

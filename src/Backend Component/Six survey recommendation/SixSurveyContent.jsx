@@ -10,6 +10,7 @@ const SixSurveyContent = ({
   primaryMethod = null,
   methods = [],
   onNext,
+  handleNavigateToProjectPlan
 }) => {
   const { recommendedMethods } = useSelector((state) => state.surveys);
 
@@ -122,7 +123,7 @@ const SixSurveyContent = ({
 
           <button
             type="button"
-            onClick={handleNext}
+            onClick={() => handleNavigateToProjectPlan()}
             className="py-[10px] px-[15px] rounded-[10px] bg-[#364153] text-white"
           >
             Create Project Planner

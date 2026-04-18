@@ -4,15 +4,15 @@ import SixSurveyContent from './SixSurveyContent';
 import { getUserProfileAction } from '../../redux/slice/user/usersSlice';
 import axios from 'axios';
 import baseUrl from '../../utils/baseUrl';
+import { useNavigate } from 'react-router-dom';
 
 const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
   const dispatch = useDispatch();
   
-  // Fetch user profile and survey data from Redux
   const { profile } = useSelector((state) => state.users);
-// <<<<<<< Updated upstream
+
 //   const { survey, recommendedMethods } = useSelector((state) => state.surveys);
-// =======
+
   const { userAuth } = useSelector((state) => state.users);
   const { recommendedMethods: reduxRecommendedMethods } = useSelector((state) => state.surveys);
   
@@ -22,7 +22,7 @@ const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
 
   const [methodsFromApi, setMethodsFromApi] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-// >>>>>>> Stashed changes
+
 
   useEffect(() => {
     dispatch(getUserProfileAction());
@@ -107,7 +107,10 @@ const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
   // Extract recommended method name - handle different data structures
   // const methodName = selectedMethod || 
   //   (recommendedMethods?.[0]?.name || recommendedMethods?.[0]?.method || 'Electrical Resistivity Tomography (ERT)');
-
+  const naviToProjectPlan = useNavigate();
+  const handleNavigateToProjectPlan = () => {
+    naviToProjectPlan('/dashboard/planner/1');
+  }
   return (
     <SixSurveyContent
       selectedMethod={selectedMethod}
@@ -115,9 +118,7 @@ const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
       clientName={clientName}
       projectObjective={projectObjective}
       clientEmail={clientEmail}
-// <<<<<<< Updated upstream
-      // methodName={methodName}
-// =======
+      handleNavigateToProjectPlan={handleNavigateToProjectPlan}
       methods={methods}
       // primaryMethod={methods[0]}
       onNext={onNext}

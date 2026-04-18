@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DashboardResentCard from './DashboardResentCard'
 export default function DashboardRecentData() {
     const Dash = useNavigate()
      const dashboardData = [
-            {
+    {
       id: 1,
       title: 'abuja mining sites analysis',
       status: 'survey',
