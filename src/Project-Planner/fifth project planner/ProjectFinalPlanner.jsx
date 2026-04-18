@@ -6,10 +6,14 @@ import star from '../../Backend Component/image/Star 1.png';
 import left from '../../Backend Component/image/ChevronLeft.png';
 import right from '../../Backend Component/image/ChevronRight.png';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
 const ProjectFinalPlanner = () => {
+    // dispatch and selector
+    const dispatch = useDispatch();
+    const {profile} = useSelector((state) => state.users);
     const backToDashboard = useNavigate()
     const handleBackToDashboard = () => {
         backToDashboard('/dashboard')
@@ -122,16 +126,16 @@ const ProjectFinalPlanner = () => {
                                         <div className="w-[420px] flex gap-4 mx-sauto items-cxenter ">
                                             <div className="w-[315px] py-6 border-[#D8D8D8] rounded-[10px] px-12 border bg-[#F2F2F2] flex flex-col">
                                                 <p className="text-[#4A5565] font-instrument font-normal text-[14x] leading-[28px] tracking-[-0.44px]"> Total Stories</p>
-                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">12</p>
+                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">{profile?.message?.storyCount || 0}</p>
                                             </div>
                                             <div className="w-[315px] py-6 border-[#D8D8D8] border rounded-[10px] px-12 bg-[#F2F2F2] flex flex-col ">
                                                 <p className="text-[#4A5565] font-instrument font-normal text-[14x] leading-[28px] tracking-[-0.44px]"> Total Points</p>
-                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">12</p>
+                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">{profile?.message?.totalPoints || 0}</p>
                                             </div>
                                         </div>
                                         <div className="my-6 py-6 border-[#D8D8D8] border rounded-[10px] px-12 bg-[#F2F2F2] flex flex-col ">
                                                 <p className="text-[#4A5565] font-instrument font-normal text-[14x] leading-[28px] tracking-[-0.44px]"> Duration</p>
-                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">6weeks</p>
+                                                <p className="text-[#101828] font-instrument font-bold text-[28px] leading-[28px] tracking-[-0.44px]">{profile?.message?.totalProjectDuration || '6weeks'}</p>
                                             </div>
                             </div>
                         </div>

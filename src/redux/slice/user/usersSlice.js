@@ -79,15 +79,15 @@ export const userProfileUpdateAction = createAsyncThunk(
             console.log("Payload:", payload);
             
             if (!userInfo) {
-                return rejectWithValue("❌ User not logged in. Please login first.");
+                return rejectWithValue("User not logged in. Please login first.");
             }
             
             if (!token) {
-                return rejectWithValue("❌ Authentication token not found. Please login again.");
+                return rejectWithValue("Authentication token not found. Please login again.");
             }
             
             if (!userId) {
-                return rejectWithValue("❌ User ID not found. Please login again.");
+                return rejectWithValue("User ID not found. Please login again.");
             }
             
             const config = {
@@ -104,10 +104,10 @@ export const userProfileUpdateAction = createAsyncThunk(
                 config
             );
             
-            console.log("✅ API Response:", res.data);
+            console.log("API Response:", res.data);
             return res.data;
         } catch (error) {
-            console.error("❌ Update Error:", error);
+            console.error("Update Error:", error);
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
     }
