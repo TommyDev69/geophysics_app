@@ -14,6 +14,7 @@ const FifthProjectPlannerContent = ({
   setActiveId,
   handleSubmit,
   currentProjectId,
+  handleSaveToDraft
 }) => {
   const epics = useSelector((state) => state.epics.items || []); // adjust slice name
 
@@ -30,7 +31,7 @@ const FifthProjectPlannerContent = ({
           </div>
           <div className=" px-4 rounded-[10px] border-[2px] border-[#DADCEO] flex gap-2 items-center">
             <img src={save} alt="save" />
-            <button className=" font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
+            <button type="button" onClick={() =>handleSaveToDraft()} className=" font-instrument font-medium text-[16px] leading-[24px] tracking-[-0.31px]">
               Save as Draft
             </button>
           </div>

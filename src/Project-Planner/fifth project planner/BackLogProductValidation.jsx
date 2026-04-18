@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createEpicAction,
-  fetchEpicsAction,
-} from "../../redux/slice/epic/epicSlice";
+import {createEpicAction,fetchEpicsAction} from "../../redux/slice/epic/epicSlice";
 import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
-
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
 import BackLog from "./BackLog";
-
 const BackLogProductValidation = ({ onNext }) => {
   const dispatch = useDispatch();
 
@@ -167,6 +162,7 @@ const BackLogProductValidation = ({ onNext }) => {
           errors={errors}
           projects={projects}
           onNext={onNext}
+         
         />
       )}
     </div>

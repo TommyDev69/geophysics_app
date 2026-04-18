@@ -12,7 +12,7 @@ const SixSurveyContent = ({
   onNext,
   handleNavigateToProjectPlan
 }) => {
-  const { recommendedMethods } = useSelector((state) => state.surveys);
+const { recommendedMethods } = useSelector((state) => state.surveys);
 
   console.log("=== SixSurveyContent Debug ===");
   console.log("Props methods:", methods);
@@ -52,11 +52,11 @@ const SixSurveyContent = ({
     };
 
   // ✅ SAFE NEXT HANDLER
-  const handleNext = () => {
-    if (onNext) {
-      onNext(primary?.name); // always safe
-    }
-  };
+  // const handleNext = () => {
+  //   if (onNext) {
+  //     onNext(primary?.name); // always safe
+  //   }
+  // };
 
   return (
     <div className="w-[967px] my-6 mx-auto border border-[#D7D7D7] rounded-[10px]">

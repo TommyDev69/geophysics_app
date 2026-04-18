@@ -10,6 +10,13 @@ import { createProjectAction } from "../redux/slice/project/projectSlice";
 const ProjectPlannerValidation = ({ onNext }) => {
     const saveToDraft = useNavigate();
     const handleSaveToDraft = () => {
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+        });
         saveToDraft('/dashboard/my-project');
     }
     const dispatch = useDispatch();

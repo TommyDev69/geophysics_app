@@ -1,6 +1,6 @@
 import save from "../image/Save.png"
 
-const SurveyContent = ({ title, survey }) => {
+const SurveyContent = ({ title, survey, handleSaveToDraft }) => {
     return ( 
         <>
         <div clasdsName="flex">
@@ -10,7 +10,7 @@ const SurveyContent = ({ title, survey }) => {
                     <p className="w-[72px] py-4">Step 1 of 6</p>
                 </div>
                 <div className="w-[159px]">
-                    <button type="button" className="rounded-[10px] border-[2px] border-[#DADCE0] w-[#ffffff]">
+                    <button type="button" className="rounded-[10px] border-[2px] border-[#DADCE0] w-[#ffffff]" onClick={handleSaveToDraft}>
                         <div className="flex gap-4 p-4">
                             <img src={save} alt="Save" className="w-[16px]" />
                             <p class="font-medium text-[16px] leading-6 tracking-[-0.31px] text-center w-[94px] text-[#364153]">Save as Draft</p>

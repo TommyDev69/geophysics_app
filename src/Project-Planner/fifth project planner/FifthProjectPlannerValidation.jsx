@@ -1,10 +1,22 @@
-     import { useState, useEffect } from "react";
+    import { useState, useEffect } from "react";
     import FifthProjectPlannerContent from "./FifthProjectPlanerContent";
-import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
+    import Swal from "sweetalert2";
+    import { useDispatch, useSelector } from "react-redux";
+    import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
+    import { useNavigate } from "react-router-dom";
 
     const FifthProjectPlannerValidation = ({onNext}) => {
+         const saveToDraft = useNavigate();
+    const handleSaveToDraft = () => {
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+        });
+        saveToDraft('/dashboard/my-project');
+    }
         const dispatch = useDispatch();
         const { projects } = useSelector((state) => state.projects);
         
@@ -55,6 +67,7 @@ import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
                     setActiveId={setActiveId}
                     handleSubmit={handleSubmit}
                     currentProjectId={currentProjectId}
+                    handleSaveToDraft={handleSaveToDraft}
                 />
             </div>
         );

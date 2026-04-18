@@ -1,34 +1,40 @@
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import SurveyConnectivity from './SurveyConnectivity'
-import SurveyFormValidation from './SurveyFormValidation'
-import SecondSurveyConnectivity from '../../second survey step/SecondSurveyConnectivity'
-import ThirdSurveyValidation from '../Third Survey/ThirdSurveyValidation'
-import FourthSurveyConnectivity from '../../Fourth Survey/FourthSurveyConnectivity'
-import FifthSurveyConnectivity from '../Fifth recommendation/FifthSurveyConnectivity'
-import SixSurveyConnectivity from '../Six survey recommendation/SixSurveyConnectivity'
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import SurveyConnectivity from './SurveyConnectivity';
+import SurveyFormValidation from './SurveyFormValidation';
+import SecondSurveyConnectivity from '../../second survey step/SecondSurveyConnectivity';
+import ThirdSurveyValidation from '../Third Survey/ThirdSurveyValidation';
+import FourthSurveyConnectivity from '../../Fourth Survey/FourthSurveyConnectivity';
+import FifthSurveyConnectivity from '../Fifth recommendation/FifthSurveyConnectivity';
+import SixSurveyConnectivity from '../Six survey recommendation/SixSurveyConnectivity';
 
 export default function SurveyContainer() {
   const { step } = useParams();
-  const surveyStep = parseInt(step, 10) || 1;
+  const surveyStep = Number(step) || 1;
   const navigate = useNavigate();
+
   const [secondSurveyData, setSecondSurveyData] = useState(null);
   const [selectedMethodFromFourth, setSelectedMethodFromFourth] = useState(null);
 
   const goToNextSurveyStep = () => {
-    const nextStep = surveyStep + 1;
-    if (nextStep > 6) {
+    if (surveyStep >= 6) {
       navigate('/dashboard/survey/1');
     } else {
-      navigate(`/dashboard/survey/${nextStep}`);
+      navigate(`/dashboard/survey/${surveyStep + 1}`);
     }
   };
 
   return (
-    <div className='w-[967px]  mx-auto'>
-      <SurveyConnectivity />
-      <div className='mwt-5'>
-        {surveyStep === 1 && <SurveyFormValidation onNext={goToNextSurveyStep} />}
+    <div className='w-[967px] mx-auto'>
+
+      {/* Hide SurveyConnectivity on step 6 */}
+      {surveyStep !== 6 && <SurveyConnectivity />}
+
+      <div className='mt-5'>
+        {surveyStep === 1 && (
+          <SurveyFormValidation onNext={goToNextSurveyStep} />
+        )}
+
         {surveyStep === 2 && (
           <SecondSurveyConnectivity
             onNext={(data) => {
@@ -37,28 +43,34 @@ export default function SurveyContainer() {
             }}
           />
         )}
+
         {surveyStep === 3 && (
           <ThirdSurveyValidation
             secondSurveyData={secondSurveyData}
             onNext={goToNextSurveyStep}
           />
         )}
+
         {surveyStep === 4 && (
-          <FourthSurveyConnectivity 
+          <FourthSurveyConnectivity
             onNext={(selectedMethod) => {
               setSelectedMethodFromFourth(selectedMethod);
               goToNextSurveyStep();
-            }} 
+            }}
           />
         )}
-        {surveyStep === 5 && <FifthSurveyConnectivity onNext={goToNextSurveyStep} />}
+
+        {surveyStep === 5 && (
+          <FifthSurveyConnectivity onNext={goToNextSurveyStep} />
+        )}
+
         {surveyStep === 6 && (
-          <SixSurveyConnectivity 
+          <SixSurveyConnectivity
             selectedMethod={selectedMethodFromFourth}
-            onNext={goToNextSurveyStep} 
+            onNext={goToNextSurveyStep}
           />
         )}
       </div>
     </div>
-  )
+  );
 }

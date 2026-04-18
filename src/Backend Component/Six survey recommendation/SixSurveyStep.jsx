@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
-import SurveyContent from "./SurveyContent";
+
 import number1 from "../image/num1.png"
 import number2 from "../image/num2.png"
 import number3 from "../image/num3.png"
@@ -9,21 +9,9 @@ import number4 from "../image/num4.png"
 import number5 from "../image/num5.png"
 import number6 from "../image/num6.png"
 import range from "../image/range.png"
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import SixSurveyHeadCount from "./SixSurveyHeadCount";
 
-const SurveyConnectivity = () => {
-     const saveToDraft = useNavigate();
-    const handleSaveToDraft = () => {
-        Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500
-        });
-        saveToDraft('/dashboard/my-project');
-    }
+const SixSurveyStep = () => {
     const [survey] = useState([
         {id:1, name:"project setup",range:range, photo: number1},
         {id:2, name:"survey area", range:range,photo: number2},
@@ -37,10 +25,11 @@ const SurveyConnectivity = () => {
 
     return (
         <div className="pey-12">
-            <SurveyContent  title ="survey recommendation" survey={survey} handleSaveToDraft={handleSaveToDraft} />
+            <SixSurveyHeadCount  title ="survey recommendation" survey={survey}  />
         </div>
 
      );
 }
+
  
-export default SurveyConnectivity;
+export default SixSurveyStep;
