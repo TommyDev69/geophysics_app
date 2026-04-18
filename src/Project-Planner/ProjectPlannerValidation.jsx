@@ -10,7 +10,7 @@ import { createProjectAction } from "../redux/slice/project/projectSlice";
 const ProjectPlannerValidation = ({ onNext }) => {
     const saveToDraft = useNavigate();
     const handleSaveToDraft = () => {
-        saveToDraft('/dashboard/my-projects/drafts');
+        saveToDraft('/dashboard/my-project');
     }
     const dispatch = useDispatch();
 
