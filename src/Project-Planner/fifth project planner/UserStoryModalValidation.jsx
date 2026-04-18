@@ -1,9 +1,14 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import UseStoryModal from "./UseStoryModal";
+import { useDispatch } from "react-redux";
+import { createStoryAction } from "../../redux/slice/story/storySlice";
 
 const UserStoryModalValidation = ({ closeUserStoryModal }) => {
+  // dispatch
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
+
     title: "",
     priority: "",
     point: "",
@@ -37,11 +42,9 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
     // }));
   };
 
-  // ✅ HANDLE SUBMIT
-  const handleSubmit = (e) => {
+  // HANDLE SUBMIT
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('handleSubmit called');
-    console.log('formData:', formData);
 
     const newErrors = {
       titleError: "",
@@ -74,11 +77,10 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
 
     setErrors(newErrors);
 
+    //  DEFINE IT HERE
     const hasError = Object.values(newErrors).some(Boolean);
-    console.log('hasError:', hasError);
-    console.log('newErrors:', newErrors);
 
-    // ❌ STOP IF ERROR
+    //  STOP IF ERROR
     if (hasError) {
       Swal.fire({
         title: "Validation Error",
@@ -88,16 +90,28 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
       return;
     }
 
-    // ✅ SUCCESS
-    Swal.fire({
-      icon: "success",
-      title: "User Story Created!",
-      text: "New user story added",
-      timer: 1500,
-      showConfirmButton: false,
-    });
+    //  NOW SAFE TO DISPATCH
+    try {
+      const payload = await dispatch(createStoryAction(formData)).unwrap();
+      console.log(payload, "Payload");
+      
 
-    // Reset form
+      // ✅ success
+      Swal.fire({
+        icon: "success",
+        title: "User Story Created!",
+        text: "New user story added",
+      });
+
+    } catch (err) {
+      // ✅ error (including duplicates)
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: err?.message || "Something went wrong, duplicate story title",
+      });
+    }
+
     setFormData({
       title: "",
       priority: "",
@@ -107,7 +121,6 @@ const UserStoryModalValidation = ({ closeUserStoryModal }) => {
     });
 
     closeUserStoryModal();
-    console.log(handleSubmit);
   };
 
   return (

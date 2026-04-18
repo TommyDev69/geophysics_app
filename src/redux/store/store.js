@@ -4,6 +4,7 @@ import surveyReducers from "../slice/survey/surveySlice";
 import projectsReducers from "../slice/project/projectSlice";
 import epicReducers from "../slice/epic/epicSlice";
 import sprintReducers from "../slice/sprint/sprintSlice";
+import storyReducers from "../slice/story/storySlice";
 
 const store = configureStore({
    reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     projects: projectsReducers,
     epics: epicReducers,
     sprints: sprintReducers,
+    stories: storyReducers,
    }
 })
 

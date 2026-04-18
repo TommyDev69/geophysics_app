@@ -89,17 +89,17 @@ const SurveyFormValidation = ({ onNext }) => {
     // ✅ SEND TO REDUX AND SHOW SUCCESS ON COMPLETE
     const result = dispatch(createSurveyAction(surveyForm));
 
-  const payload = result?.payload;
+    const payload = result?.payload;
 
-  // ❌ STOP IF FAILED
-  if (payload?.status === "failed") {
-    Swal.fire({
-      icon: "error",
-      title: "Duplicate Survey",
-      text: payload.message,
-    });
-    return;
-  }
+    // ❌ STOP IF FAILED
+    if (payload?.status === "failed") {
+      Swal.fire({
+        icon: "error",
+        title: "Duplicate Survey",
+        text: payload.message,
+      });
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -108,7 +108,7 @@ const SurveyFormValidation = ({ onNext }) => {
     if (submitted && success) {
       console.log('=== SurveyFormValidation Success ===');
       console.log('Refreshing profile to get new survey ID...');
-      
+
       Swal.fire({
         icon: "success",
         title: "Saved",
@@ -116,7 +116,7 @@ const SurveyFormValidation = ({ onNext }) => {
       }).then(() => {
         setSubmitted(false);
         dispatch(resetSuccessAction());
-        
+
         // ✅ CRITICAL: Refresh profile to get the new survey ID
         // This ensures all subsequent steps see the new survey
         dispatch(getUserProfileAction()).then(() => {
