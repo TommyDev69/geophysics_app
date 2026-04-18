@@ -78,10 +78,10 @@ export default function SidebarContainer() {
   };
 
   return (
-    <div className="flex w-full min-h-screen relative">
+    <div className="flex w-full">
       {/* Sidebar */}
-      <div className="hidden md:block bg-[#EBEBEB] w-[340px] pt-[32px] md:pl-[13px] pr-[1px] border">
-        <SidebarConnectivity onMenuClick={handleMenuClick} activeMenu={activeMenu} />
+       <div className="sticky top-0 h-screen bg-[#EBEBEB] pt-[32px] md:pl-[13px] pr-[1px] border">
+        <SidebarConnectivity  onMenuClick={handleMenuClick} activeMenu={activeMenu} />
       </div>
 
       {/* Main Content */}
