@@ -5,6 +5,7 @@ import { getUserProfileAction } from '../../redux/slice/user/usersSlice';
 import axios from 'axios';
 import baseUrl from '../../utils/baseUrl';
 import SixSurveyStep from './SixSurveyStep';
+import { useNavigate } from 'react-router-dom';
 
 const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
   const dispatch = useDispatch();
@@ -107,12 +108,15 @@ const SixSurveyConnectivity = ({ selectedMethod, onNext }) => {
   // Extract recommended method name - handle different data structures
   // const methodName = selectedMethod || 
   //   (recommendedMethods?.[0]?.name || recommendedMethods?.[0]?.method || 'Electrical Resistivity Tomography (ERT)');
-  
+   const navigateToProjectPlan = useNavigate();
+  const handleNavigateToProjectPlan = () => {
+    navigateToProjectPlan('/dashboard/project/1');
+  }
   
   return (
     <>
     <SixSurveyStep />
-    <SixSurveyContent selectedMethod={selectedMethod} projectName={projectName} clientName={clientName} projectObjective={projectObjective} clientEmail={clientEmail} methods={methods} onNext={onNext}/> 
+    <SixSurveyContent handleNavigateToProjectPlan={handleNavigateToProjectPlan} selectedMethod={selectedMethod} projectName={projectName} clientName={clientName} projectObjective={projectObjective} clientEmail={clientEmail} methods={methods} onNext={onNext}/> 
     </>
   );
 };
