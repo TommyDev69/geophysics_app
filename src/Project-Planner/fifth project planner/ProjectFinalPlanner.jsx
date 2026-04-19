@@ -28,7 +28,7 @@ const ProjectFinalPlanner = () => {
 
     if (dataFile) {
       const options = {
-        margin: 0.5,
+        margin: [0, 0.5, 0, 0.5],
         filename: "project-plan.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
