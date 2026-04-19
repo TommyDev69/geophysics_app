@@ -69,6 +69,8 @@ const Form = ({
           </div>
         </div>
 
+        <label className="capitalize font-medium text-[12px] leading-[1.5] tracking-[-0.05em]"> userName</label>
+
         {/* Organisation and Role */}
         <div className="md:flex space-x-4">
           <div className="w-full">
