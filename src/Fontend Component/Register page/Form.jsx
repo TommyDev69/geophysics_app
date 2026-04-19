@@ -69,7 +69,6 @@ const Form = ({
           </div>
         </div>
 
-        <label className="capitalize font-medium text-[12px] leading-[1.5] tracking-[-0.05em]"> userName</label>
 
         {/* Organisation and Role */}
         <div className="md:flex space-x-4">
@@ -104,7 +103,7 @@ const Form = ({
             >
             
               <option value="">Choose role</option>
-              <option value="geophysic">Geophysic</option>
+              <option value="geophysics">Geophysicist</option>
               <option value="geologist">Geologist</option>
               <option value="engineer">Engineer</option>
             </select>
