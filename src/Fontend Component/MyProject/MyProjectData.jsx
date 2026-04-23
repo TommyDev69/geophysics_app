@@ -49,6 +49,17 @@ export default function MyProjectData() {
       Content: 'Subsurface investigation for construction',
       buttonContent: 'Open Project',
       linking: '/dashboard/project/3'
+    },
+    {
+      id: 5,
+      title: 'Port Harcourt Foundation Study',
+      status: 'project plan',
+      action: 'complete',
+      timeStamp: '2026-02-28',
+      objective: 'Engineering Investigation',
+      Content: 'Subsurface investigation for construction',
+      buttonContent: 'Open Project',
+      linking: '/dashboard/project/3'
     }
   ]
 
