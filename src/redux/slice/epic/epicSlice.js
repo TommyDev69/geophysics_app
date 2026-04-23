@@ -3,7 +3,6 @@ import axios from "axios";
 import baseUrl from "../../../utils/baseUrl";
 import { resetErrAction, resetSuccessAction } from "../globalActions/globalActions";
 
-// initialState
 const initialState = {
     loading: false,
     error: null,
@@ -13,69 +12,67 @@ const initialState = {
     successMessage: null,
 };
 
+// CREATE EPIC
 export const createEpicAction = createAsyncThunk(
     "epic/create",
-<<<<<<< Updated upstream
-    async ({ title, description, priority, project }, { rejectWithValue, getState, dispatch }) => {
-=======
-    async ({ title, description, priority }, { rejectWithValue, getState, dispatch }) => {
->>>>>>> Stashed changes
+    async (
+        { title, description, priority, project },
+        { rejectWithValue, getState }
+    ) => {
         try {
-            const token = getState()?.users?.userAuth?.userInfo?.message?.token;
+            const token =
+                getState()?.users?.userAuth?.userInfo?.message?.token;
+
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const res = await axios.post(`${baseUrl}/epics/create-epic`, 
-<<<<<<< Updated upstream
-                
-                {
-                    title, description, priority, project
-                }, config);
-            console.log(res.data, "epic data");
-            
-            if (!res.data) {
-                throw new Error(res.data.message || "Failed to create epic");
-            }
-            
-            return res.data.data;
-=======
-                {
-                    title, description, priority
-                }, config);
-            console.log(res.data, "epic data");
-            
+
+            const res = await axios.post(
+                `${baseUrl}/epics/create-epic`,
+                { title, description, priority, project },
+                config
+            );
+
             if (res.data.status !== "Success") {
                 throw new Error(res.data.message || "Failed to create epic");
             }
-            
+
             return res.data;
->>>>>>> Stashed changes
         } catch (error) {
-            return rejectWithValue(error?.response?.data?.message || error.message);
+            return rejectWithValue(
+                error?.response?.data?.message || error.message
+            );
         }
     }
 );
 
-// fetch all epics action
+// FETCH ALL EPICS
 export const fetchEpicsAction = createAsyncThunk(
     "epic/fetchAll",
-    async (payload, { rejectWithValue, getState, dispatch }) => {
+    async (_, { rejectWithValue, getState }) => {
         try {
-            const token = getState()?.users?.userAuth?.userInfo?.message?.token;
+            const token =
+                getState()?.users?.userAuth?.userInfo?.message?.token;
+
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const res = await axios.get(`${baseUrl}/epics/all-epics`, config);
-            // console.log(res.data, "Epics data");
-            
+
+            const res = await axios.get(
+                `${baseUrl}/epics/all-epics`,
+                config
+            );
+
             return res.data;
         } catch (error) {
-            return rejectWithValue(error?.response?.data?.message || error.message);
+            return rejectWithValue(
+                error?.response?.data?.message || error.message
+            );
         }
     }
 );
@@ -84,57 +81,62 @@ const epicSlice = createSlice({
     name: "epics",
     initialState,
     extraReducers: (builder) => {
-        // Create Project
+
+        // CREATE EPIC
         builder.addCase(createEpicAction.pending, (state) => {
             state.loading = true;
             state.error = null;
         });
+
         builder.addCase(createEpicAction.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            state.successMessage = action.payload?.message || action.payload?.messsage || "Epic created";
-            const epicData = action.payload?.data || action.payload?.messsage || action.payload?.message || null;
+
+            state.successMessage =
+                action.payload?.message || "Epic created successfully";
+
+            const epicData = action.payload?.data;
+
             state.epic = epicData;
+
             if (epicData) {
                 state.epics.push(epicData);
             }
         });
+
         builder.addCase(createEpicAction.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
             state.success = false;
         });
 
-        // Fetch all epics
+        // FETCH EPICS
         builder.addCase(fetchEpicsAction.pending, (state) => {
             state.loading = true;
             state.error = null;
         });
+
         builder.addCase(fetchEpicsAction.fulfilled, (state, action) => {
             state.loading = false;
-<<<<<<< Updated upstream
-            state.epics = action.payload?.message || [];
-=======
             state.epics = action.payload?.data || [];
->>>>>>> Stashed changes
             state.error = null;
         });
+
         builder.addCase(fetchEpicsAction.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
         });
 
-        // Reset error and success
+        // RESET STATES
         builder.addCase(resetErrAction.pending, (state) => {
             state.error = null;
         });
+
         builder.addCase(resetSuccessAction.pending, (state) => {
             state.success = false;
             state.successMessage = null;
         });
-    }
+    },
 });
 
-const epicReducers = epicSlice.reducer;
-
-export default epicReducers;
+export default epicSlice.reducer;
