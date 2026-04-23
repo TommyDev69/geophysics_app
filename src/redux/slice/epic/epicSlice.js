@@ -15,7 +15,11 @@ const initialState = {
 
 export const createEpicAction = createAsyncThunk(
     "epic/create",
+<<<<<<< Updated upstream
     async ({ title, description, priority, project }, { rejectWithValue, getState, dispatch }) => {
+=======
+    async ({ title, description, priority }, { rejectWithValue, getState, dispatch }) => {
+>>>>>>> Stashed changes
         try {
             const token = getState()?.users?.userAuth?.userInfo?.message?.token;
             const config = {
@@ -25,6 +29,7 @@ export const createEpicAction = createAsyncThunk(
                 },
             };
             const res = await axios.post(`${baseUrl}/epics/create-epic`, 
+<<<<<<< Updated upstream
                 
                 {
                     title, description, priority, project
@@ -36,6 +41,18 @@ export const createEpicAction = createAsyncThunk(
             }
             
             return res.data.data;
+=======
+                {
+                    title, description, priority
+                }, config);
+            console.log(res.data, "epic data");
+            
+            if (res.data.status !== "Success") {
+                throw new Error(res.data.message || "Failed to create epic");
+            }
+            
+            return res.data;
+>>>>>>> Stashed changes
         } catch (error) {
             return rejectWithValue(error?.response?.data?.message || error.message);
         }
@@ -95,7 +112,11 @@ const epicSlice = createSlice({
         });
         builder.addCase(fetchEpicsAction.fulfilled, (state, action) => {
             state.loading = false;
+<<<<<<< Updated upstream
             state.epics = action.payload?.message || [];
+=======
+            state.epics = action.payload?.data || [];
+>>>>>>> Stashed changes
             state.error = null;
         });
         builder.addCase(fetchEpicsAction.rejected, (state, action) => {

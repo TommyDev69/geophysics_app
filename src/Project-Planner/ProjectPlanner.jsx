@@ -78,59 +78,53 @@ export default function ProjectPlanner({
 
               <p className="text-red-600">{error.projectName}</p>
             </div>
+                <div className="py-6 rounded-[10px] w-[917px] border text[#FFFFFF] border-[#DADCEO] shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]">
+                    <div className="flex flex-col w-[768px] mt-[20px] gap-[16px] justify-center">
+                        <div className="w-[917px] h-[28px] mt-[2px] ml-[25px]">
+                            <div className="w-[124px] h-[28px] font-instrument font-semiBold text-[20px] leading-[28px] tracking-[-0.45px] text-[#101828]">
+                                <h2>Project Setup</h2>
+                            </div>
+                        </div>
+                        <div className="flex flex-col mt-[px] ml-[100px] gap-[16px]">
+                            <div className="flex flex-col gap-[8px]">
+                                <div>
+                                    <label htmlFor="" className="font-instrument mt-[0.5px] font-medium text-[14px] leading-[20px] tracking-[0.15px]">Project Name</label>
+                                    <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
+                                </div>
 
-            {/* DESCRIPTION */}
-            <div className="flex flex-col gap-[8px]">
-              <label className="text-[14px] font-medium">
-                Description <span className="text-red-500">*</span>
-              </label>
-
-              <textarea
-                name="description"
-                className="w-full px-[14px] py-3 rounded-[10px] border border-[#DADCEO] resize-none outline-none"
-                placeholder="Provide a brief description of the project..."
-                value={userInput?.description ?? ""}
-                onChange={HandleChange}
-              />
-
-              <p className="text-red-600">{error.description}</p>
-            </div>
-
-            {/* DATES */}
-            <div className="grid grid-cols-2 gap-[16px]">
-              
-              <div className="flex flex-col gap-2">
-                <label className="text-[14px] font-medium">
-                  Start Date <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="date"
-                  name="startDate"
-                  className="py-4 rounded-[10px] border border-[#DADCEO] px-2"
-                  value={userInput?.startDate ?? ""}
-                  onChange={HandleChange}
-                />
-
-                <p className="text-red-600 text-sm">{error.startDate}</p>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-[14px] font-medium">
-                  End Date <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="date"
-                  name="endDate"
-                  className="py-4 rounded-[10px] border border-[#DADCEO] px-2"
-                  value={userInput?.endDate ?? ""}
-                  onChange={HandleChange}
-                />
-
-                <p className="text-red-600 text-sm">{error.endDate}</p>
-              </div>
-            </div>
+                                <input name="projectName" className=" rounded-[10px] border border-[#DADCEO] py-4 px-[18px]" value={userInput?.projectName ?? ""} onChange={HandleChange} placeholder="e.g, Lagos Survey Execution" />
+                                <p className="text-red-600">{error.projectName}</p>
+                            </div>
+                            <div className="flex flex-col  gap-[8px]">
+                                <label className="w-[768px] h-[20px] mt-[0.5px] font-instrument font-medium text-[14px] leading-[20px] tracking-[-0.15px] text-[#364153]">
+                                    Description
+                                    <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
+                                </label>
+                                <textarea name="description" id="" className="flex ] px-[18px] rounded-[10px] text-[16px] border border-[#DADCEO] resize-none outline-none" placeholder="Provide a brief description of the project..." value={userInput?.description ?? ""} onChange={HandleChange}>
+                                </textarea>
+                                <p className="text-red-600">{error.description}</p>
+                            </div>
+                            <div className=" grid grid-cols-2 min-w-[768px]  gap-[16px]">
+                                <div className="">
+                                    <div className="w-[376px]  grid gap-2 row-start-1 col-start-1 row-span-1 col-span-1">
+                                        <label htmlFor="" className="mt-[0.5px] font-instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
+                                            Start Date
+                                            <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
+                                        </label>
+                                        <input type="date" name="startDate" className="py-4 rounded-[10px] border border-[#DADCEO] px-2" value={userInput?.startDate ?? ""} onChange={HandleChange} />
+                                        <p className="text-red-600 text-sm">{error.startDate}</p>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="w-[376px] ml-[px] grid gap-2 row-start-1 col-start-2 row-span-1 col-span-1">
+                                        <label htmlFor="" className="mt-[0.5px] font-instrument font-medium text-[16px] leading-[20px] tracking-[-0.15px] text-[#364153]">
+                                            End Date
+                                            <span className="font-instrument font-medium text-[14px] text-[#FF0000] leading-[20px] tracking-[-0.15px]">*</span>
+                                        </label>
+                                        <input type="date" name="endDate" className="py-4 rounded-[10px] border border-[#DADCEO] px-2" value={userInput?.endDate ?? ""} onChange={HandleChange} />
+                                        <p className="text-red-600 text-sm">{error.endDate}</p>
+                                    </div>
+                                </div>
 
             {/* SPRINT */}
             <div className="flex flex-col gap-[8px]">

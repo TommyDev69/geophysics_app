@@ -5,13 +5,10 @@ import {createEpicAction,fetchEpicsAction} from "../../redux/slice/epic/epicSlic
 import { getUserProjectsAction } from "../../redux/slice/project/projectSlice";
 import BackLogProduct from "./BackLogProduct";
 import BackLogModal from "./BackLogModal";
-import BackLog from "./BackLog";
+// import BackLog from "./BackLog";
+
 const BackLogProductValidation = ({ onNext }) => {
   const dispatch = useDispatch();
-
-  const { projects } = useSelector((state) => state.projects);
-
-  const [currentProjectId, setCurrentProjectId] = useState(null);
 
   const [epicForm, setEpicForm] = useState({
     title: "",
@@ -30,80 +27,23 @@ const BackLogProductValidation = ({ onNext }) => {
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [epicCreated, setEpicCreated] = useState(false);
 
-  // Fetch projects
-  useEffect(() => {
-    dispatch(getUserProjectsAction());
-  }, [dispatch]);
-
-  // Set latest project
-  useEffect(() => {
-    if (projects && projects.length > 0) {
-      const latestProject = [...projects].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      )[0];
-
-      const projectId = latestProject._id;
-
-      setCurrentProjectId(projectId);
-
-      setEpicForm((prev) => ({
-        ...prev,
-        project: projectId,
-      }));
-
-      setEpicCreated(false);
-    }
-  }, [projects]);
-
-  // Fetch epics
-  useEffect(() => {
-    if (currentProjectId) {
-      dispatch(fetchEpicsAction(currentProjectId));
-    }
-  }, [dispatch, currentProjectId]);
-
-  // Modal handlers
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  // Input handler
   const handleEpicChange = (e) => {
     const { name, value } = e.target;
-
-    setEpicForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
+    setEpicForm((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const newErrors = {};
-    if (!epicForm.title.trim()) newErrors.title = "Title is required";
-    if (!epicForm.description.trim())
-      newErrors.description = "Description is required";
-    if (!epicForm.priority.trim())
-      newErrors.priority = "Priority is required";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+    // validation...
 
     try {
-      const result = await dispatch(createEpicAction(epicForm)).unwrap();
-      console.log("Epic created:", result);
-
-      dispatch(fetchEpicsAction(currentProjectId));
+      await dispatch(createEpicAction(epicForm)).unwrap();
 
       Swal.fire({
         icon: "success",
@@ -111,21 +51,13 @@ const BackLogProductValidation = ({ onNext }) => {
         text: "New epic added for this project",
         timer: 1500,
         showConfirmButton: false,
-      });
+      }); 
 
-      setEpicForm({
-        title: "",
-        description: "",
-        priority: "",
-        project: currentProjectId,
-      });
-
+      setEpicForm({ title: "", description: "", priority: "" });
       closeModal();
-      setActiveId(1);
-      setEpicCreated(true);
-    } catch (error) {
-      console.error("Failed to create epic:", error);
 
+      if (onNext) onNext(); // ✅ triggers parent to re-render and show <BackLog />
+    } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -134,17 +66,16 @@ const BackLogProductValidation = ({ onNext }) => {
     }
   };
 
-  return epicCreated ? (
-    <BackLog currentProjectId={currentProjectId} />
-  ) : (
+  const dataItems = [
+    { id: 1, topic: "backlog" },
+    { id: 2, topic: "board" },
+    { id: 3, topic: "sprint view" },
+    { id: 4, topic: "burndown" },
+  ];
+  return (
     <div>
       <BackLogProduct
-        items={[
-          { id: 1, topic: "backlog" },
-          { id: 2, topic: "board" },
-          { id: 3, topic: "sprint view" },
-          { id: 4, topic: "burndown" },
-        ]}
+        items={dataItems}
         activeId={activeId}
         setActiveId={setActiveId}
         isModalOpen={isModalOpen}
@@ -158,11 +89,8 @@ const BackLogProductValidation = ({ onNext }) => {
           closeModal={closeModal}
           epicForm={epicForm}
           handleEpicChange={handleEpicChange}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleSubmit} // handleSubmit should call onNext after success
           errors={errors}
-          projects={projects}
-          onNext={onNext}
-         
         />
       )}
     </div>
